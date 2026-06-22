@@ -77,7 +77,7 @@ export let guide = {
     designation: "Associate Professor & Lab Head",
     affiliation: "ViBeS Lab, IIITDM Kancheepuram",
     email: "rahul@iiitdm.ac.in",
-    bio: "Doctorate researcher leading the Visual Surveillance and Biometrics Security Lab (ViBeS Lab) at IIITDM Kancheepuram. Active across image processing, biometrics, machine learning, and visual surveillance.",
+    bio: "Doctorate researcher leading the Visual Surveillance & Biometrics Security Lab (ViBeS Lab) at IIITDM Kancheepuram. Active across image processing, biometrics, machine learning, and visual surveillance.",
     joined: 2021,
     domains: [
         "Visual Surveillance",
@@ -2268,70 +2268,7 @@ export let projects = [
         image: "from-accent/40 via-primary/20 to-accent/10",
     },
 ];
-export let achievements = [
-    {
-        id: "ach-dst-grant",
-        title: "DST SERB Core Research Grant",
-        detail: "Multi-year grant for cross-spectral biometrics research.",
-        year: 2024,
-        category: "Grant",
-        org: "Govt. of India · DST SERB",
-    },
-    {
-        id: "ach-icip-best",
-        title: "Best Paper Award — ICIP Workshop",
-        detail: "For work on lightweight face anti-spoofing for edge devices.",
-        year: 2024,
-        category: "Recognition",
-        org: "IEEE Signal Processing Society",
-    },
-    {
-        id: "ach-patent-1",
-        title: "Indian Patent · Mobile Liveness Method",
-        detail: "Patent granted on the MobileViT-based liveness detector developed in-house.",
-        year: 2023,
-        category: "Patent",
-        org: "Indian Patent Office",
-    },
-    {
-        id: "ach-100pubs",
-        title: "100+ Cumulative Publications",
-        detail: "ViBeS Lab crossed the 100-paper milestone across journals and conferences.",
-        year: 2024,
-        category: "Milestone",
-    },
-    {
-        id: "ach-iaaip-fellow",
-        title: "IAPR Senior Member Recognition",
-        detail: "Lab head recognised as a senior member of IAPR for contributions to pattern recognition.",
-        year: 2023,
-        category: "Recognition",
-        org: "IAPR",
-    },
-    {
-        id: "ach-collab-meity",
-        title: "MeitY Collaboration on Surveillance AI",
-        detail: "Joint research collaboration with the Ministry of Electronics & IT.",
-        year: 2025,
-        category: "Grant",
-        org: "MeitY",
-    },
-    {
-        id: "ach-deploy",
-        title: "Campus-Scale Surveillance Deployment",
-        detail: "Crowd-anomaly system running on a 16-camera array for six months in pilot.",
-        year: 2024,
-        category: "Milestone",
-    },
-    {
-        id: "ach-keynote",
-        title: "Keynote · International Biometrics Workshop",
-        detail: "Lab head delivered a keynote on cross-spectral biometrics in field conditions.",
-        year: 2024,
-        category: "Recognition",
-        org: "IJCB Workshop",
-    },
-];
+export let achievements = [];
 export let labStats = {
     members: 1 + scholars.length,
     publications: guide.publications.length + scholars.reduce((s, p) => s + p.publications.length, 0),

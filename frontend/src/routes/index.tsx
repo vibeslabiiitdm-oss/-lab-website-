@@ -210,13 +210,12 @@ function Home() {
       {/* STATS BAR */}
       <section className="mx-auto max-w-7xl px-6 mt-4">
         <Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             <Stat label="Publications" value={labStats.publications} />
             <Stat label="Researchers" value={labStats.members} />
             <Stat label="Active Projects" value={labStats.projects} />
             <Stat label="Collaborations" value={labStats.collaborations} />
             <Stat label="Awards" value={labStats.awards} />
-            <Stat label="GPUs" value={labStats.gpus} />
           </div>
         </Reveal>
       </section>

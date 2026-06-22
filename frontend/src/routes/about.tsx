@@ -13,7 +13,7 @@ function About() {
       <Reveal>
         <div className="text-xs uppercase tracking-[0.2em] text-primary/80">About</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">
-          Inside the <span className="text-gradient">Advanced Biometric & Surveillance Lab</span>
+          Inside the <span className="text-gradient">Visual Surveillance & Biometrics Security Lab</span>
         </h1>
         <p className="mt-4 max-w-3xl text-muted-foreground">
           Established at IIITDM Kancheepuram, the lab is a hands-on space where research scholars,
@@ -22,13 +22,12 @@ function About() {
         </p>
       </Reveal>
 
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-6 gap-3">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-5 gap-3">
         <Stat label="Publications" value={labStats.publications} />
         <Stat label="Researchers" value={labStats.members} />
         <Stat label="Active Projects" value={labStats.projects} />
         <Stat label="Collaborations" value={labStats.collaborations} />
         <Stat label="Awards" value={labStats.awards} />
-        <Stat label="GPUs" value={labStats.gpus} />
       </div>
 
       <section className="mt-16">

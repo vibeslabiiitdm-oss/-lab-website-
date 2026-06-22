@@ -80,6 +80,16 @@ const getUserInitials = (name: string) => {
   return parts[0] ? parts[0].slice(0, 2).toUpperCase() : "U";
 };
 
+const isImageUrl = (url: string) => {
+  if (!url) return false;
+  return (
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("/") ||
+    /\.(jpg|jpeg|png|webp|svg|gif|avif)/i.test(url)
+  );
+};
+
 interface LoginFormProps {
   onLoginSuccess: (user: { name: string; email: string; role: string }) => void;
   onNavigate: (view: "login" | "signup" | "forgot") => void;
@@ -810,7 +820,14 @@ export default function App() {
   const generateId = (prefix: string) => `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
 
   // Delete Handlers
-  const handleDeletePerson = (id: string) => {
+  // =========================================================================
+  // PERSON DELETION LOGIC (handleDeletePerson)
+  // =========================================================================
+  // This is triggered from the UI delete icon.
+  // 1. It sends a DELETE request to the backend endpoint '/api/people/:id'.
+  // 2. It requires the 'auth_token' to prove you are an admin.
+  // 3. If the backend confirms deletion, the person is removed from the local state array.
+    const handleDeletePerson = (id: string) => {
     triggerConfirm(
       "Remove Member",
       "Are you sure you want to delete this team member from the directory roster?",
@@ -953,10 +970,28 @@ export default function App() {
   };
 
   // Form submit handlers
-  const handleSavePerson = (e: React.FormEvent<HTMLFormElement>) => {
+  // =========================================================================
+  // PERSON SAVING LOGIC (handleSavePerson)
+  // =========================================================================
+  // This executes when you click "Save Person" in the Add/Edit Team Member modal.
+  // 1. It constructs a new Person object by reading values from the HTML form.
+  // 2. It checks if we are editing an existing person (PUT request) or creating a new one (POST request).
+  // 3. It sends the constructed object along with the Authorization token to the backend API.
+  // 4. Upon success, it updates the local React state so the UI reflects the change immediately.
+    const handleSavePerson = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const id = editingPerson?.id || generateId("scholar");
+
+    const scholarUrl = formData.get("scholar") as string;
+    let newLinks = editingPerson?.links ? [...editingPerson.links] : [];
+    if (scholarUrl) {
+      const existingScholar = newLinks.find((l: any) => l.label === "Google Scholar");
+      if (existingScholar) existingScholar.href = scholarUrl;
+      else newLinks.push({ label: "Google Scholar", href: scholarUrl });
+    } else {
+      newLinks = newLinks.filter((l: any) => l.label !== "Google Scholar");
+    }
 
     const newPerson: Person = {
       id,
@@ -976,7 +1011,7 @@ export default function App() {
       publications: editingPerson?.publications || [],
       awards: editingPerson?.awards || [],
       conferences: editingPerson?.conferences || [],
-      links: editingPerson?.links || [],
+      links: newLinks,
       researchProject: editingPerson?.researchProject || undefined,
     };
 
@@ -1377,92 +1412,100 @@ export default function App() {
         />
       )}
 
-      {/* Sidebar Navigation */}
+      {/* =========================================================================
+      // MAIN SIDEBAR UI
+      // =========================================================================
+      // This section defines the navigation menu on the left side of the dashboard.
+      // It includes buttons for Dashboard, Team Members, Projects, etc.
+      // Clicking a button updates the 'activeTab' state, which controls what content is shown in the Main Panel Area. */}
+  {/* Sidebar Navigation */}
       <aside 
         className={`fixed inset-y-0 left-0 z-50 md:relative md:inset-auto md:z-0 bg-card flex flex-col shrink-0 h-screen transition-all duration-300 ease-in-out overflow-hidden
           ${sidebarOpen 
             ? "w-64 translate-x-0 opacity-100 border-r border-border" 
-            : "-translate-x-full opacity-0 pointer-events-none md:translate-x-0 md:w-0 md:opacity-0 md:border-r-0 md:pointer-events-auto"
+            : "-translate-x-full opacity-0 pointer-events-none md:translate-x-0 md:w-16 md:opacity-100 md:border-r md:border-border md:pointer-events-auto"
           }
         `}
       >
-        <div className="w-64 h-full flex flex-col">
+        <div className="w-full h-full flex flex-col">
           
           {/* Brand Header */}
-          <div className="p-5 border-b border-border flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/logo.png"
-                alt="ViBeS Lab Logo"
-                className="h-9 w-9 object-contain shrink-0"
-              />
-              <div className="flex flex-col text-left">
-                <span className="font-display font-black text-lg leading-none tracking-tight text-foreground">
-                  {labName}
-                </span>
-                <span className="text-[9px] text-muted-foreground uppercase tracking-widest font-bold mt-0.5">Admin Console</span>
+          <div className={`p-4 border-b border-border flex items-center ${sidebarOpen ? "justify-between" : "justify-center"} h-[73px]`}>
+            {sidebarOpen && (
+              <div className="flex items-center gap-2.5 overflow-hidden">
+                <img src="/logo.png" alt="ViBeS Lab" className="h-8 w-8 object-contain shrink-0" />
+                <div className="flex flex-col text-left whitespace-nowrap">
+                  <span className="font-display font-black text-sm leading-none tracking-tight text-foreground">{labName}</span>
+                </div>
               </div>
-            </div>
+            )}
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 rounded-xl hover:bg-muted text-muted-foreground hover:text-foreground transition duration-300 flex items-center justify-center cursor-pointer focus:outline-none shrink-0"
+            >
+              <Menu size={20} />
+            </button>
           </div>
 
           {/* Tab Selection */}
-          <div className="p-4 flex-1 flex flex-col justify-between space-y-6 overflow-y-auto">
-            <div className="space-y-4">
-              <div>
-                <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider px-3 mb-2">Menu</div>
-                <nav className="space-y-1">
-                  <button
-                    onClick={() => { setActiveTab("dashboard"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "dashboard" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <LayoutDashboard size={16} />
-                    <span>Dashboard</span>
-                  </button>
-                  
-                  <button
-                    onClick={() => { setActiveTab("team"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "team" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <Users size={16} />
-                    <span>Team Members</span>
-                  </button>
+          <div className="flex-1 flex flex-col justify-between py-6 overflow-y-auto overflow-x-hidden custom-scrollbar">
+            <nav className="space-y-3 px-2">
+              <button
+                onClick={() => { setActiveTab("dashboard"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "dashboard" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "dashboard" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <LayoutDashboard size={20} />
+                {sidebarOpen && <span>Dashboard</span>}
+              </button>
+              
+              <button
+                onClick={() => { setActiveTab("team"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "team" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "team" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <Users size={20} />
+                {sidebarOpen && <span>Team Members</span>}
+              </button>
 
-                  <button
-                    onClick={() => { setActiveTab("projects"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "projects" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <FolderGit2 size={16} />
-                    <span>Research Projects</span>
-                  </button>
+              <button
+                onClick={() => { setActiveTab("projects"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "projects" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "projects" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <FolderGit2 size={20} />
+                {sidebarOpen && <span>Research Projects</span>}
+              </button>
 
-                  <button
-                    onClick={() => { setActiveTab("thesis"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "thesis" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <GraduationCap size={16} />
-                    <span>Thesis Board</span>
-                  </button>
+              <button
+                onClick={() => { setActiveTab("thesis"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "thesis" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "thesis" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <GraduationCap size={20} />
+                {sidebarOpen && <span>Thesis Board</span>}
+              </button>
 
-                  <button
-                    onClick={() => { setActiveTab("achievements"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "achievements" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <Trophy size={16} />
-                    <span>Achievements</span>
-                  </button>
+              <button
+                onClick={() => { setActiveTab("achievements"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "achievements" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "achievements" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <Trophy size={20} />
+                {sidebarOpen && <span>Achievements</span>}
+              </button>
 
-                  <button
-                    onClick={() => { setActiveTab("resources"); if (window.innerWidth < 768) setSidebarOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "resources" ? "bg-primary text-primary-foreground font-bold shadow-md shadow-primary/10" : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"}`}
-                  >
-                    <Cpu size={16} />
-                    <span>Stats & Specs</span>
-                  </button>
-                </nav>
-              </div>
-            </div>
+              <button
+                onClick={() => { setActiveTab("resources"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "resources" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "resources" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <Cpu size={20} />
+                {sidebarOpen && <span>Stats & Specs</span>}
+              </button>
+            </nav>
 
-            <div className="pt-4 border-t border-border/40">
+            <div className="pt-4 mt-6 border-t border-border/40 px-2">
               <button
                 onClick={() => {
                   triggerConfirm(
@@ -1479,10 +1522,10 @@ export default function App() {
                     "danger"
                   );
                 }}
-                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-rose-500 hover:bg-rose-500/10 hover:text-rose-600 transition-all cursor-pointer"
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold text-rose-500 hover:bg-rose-500/10 hover:text-rose-600 transition-all cursor-pointer`}
               >
-                <LogOut size={16} />
-                <span>Logout</span>
+                <LogOut size={20} />
+                {sidebarOpen && <span>Logout</span>}
               </button>
             </div>
           </div>
@@ -1495,10 +1538,10 @@ export default function App() {
         {/* TOP BAR HEADER */}
         <div className="flex items-center justify-between gap-4 mb-8 pb-5 border-b border-border/20 sticky top-0 bg-background/85 backdrop-blur-md z-30 transition-all duration-300">
           <div className="flex items-center gap-4">
-            {/* Hamburger/Menu Toggle Button */}
+            {/* Hamburger/Menu Toggle Button (Mobile Only) */}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-xl border border-border/50 bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition duration-300 flex items-center justify-center cursor-pointer focus:outline-none"
+              className="p-2 rounded-xl border border-border/50 bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition duration-300 flex md:hidden items-center justify-center cursor-pointer focus:outline-none"
               title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
             >
               <Menu size={18} />
@@ -2647,13 +2690,7 @@ export default function App() {
               colorClass: "from-pink-500 to-rose-400",
               icon: <Users size={16} className="text-pink-500" />
             },
-            gpus: { 
-              title: "Compute GPUs", 
-              max: 32, 
-              unit: "GPUs", 
-              colorClass: "from-amber-500 to-orange-400",
-              icon: <Cpu size={16} className="text-amber-500" />
-            },
+
             awards: { 
               title: "Honors & Awards", 
               max: 50, 
@@ -2938,6 +2975,17 @@ export default function App() {
                     name="resume"
                     defaultValue={editingPerson?.resume || ""}
                     placeholder="/resumes/example_resume.pdf"
+                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Google Scholar (Optional)</label>
+                  <input
+                    type="text"
+                    name="scholar"
+                    defaultValue={editingPerson?.links?.find((l: any) => l.label === "Google Scholar")?.href || ""}
+                    placeholder="https://scholar.google.com/..."
                     className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
                   />
                 </div>
