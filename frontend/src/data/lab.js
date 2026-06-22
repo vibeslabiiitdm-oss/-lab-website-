@@ -2274,7 +2274,7 @@ export let labStats = {
     publications: guide.publications.length + scholars.reduce((s, p) => s + p.publications.length, 0),
     projects: projects.length,
     collaborations: 14,
-    gpus: 8,
+    outlay: 37.34,
     awards: guide.awards.length + scholars.reduce((s, p) => s + p.awards.length, 0),
 };
 export let resources = [
@@ -2543,7 +2543,6 @@ if (!isSeeding) {
             publications: allPeople.reduce((sum, p) => sum + (p.publications?.length || 0), 0),
             projects: projects.length,
             collaborations: 14,
-            gpus: 8,
             awards: allPeople.reduce((sum, p) => sum + (p.awards?.length || 0), 0),
         };
     }

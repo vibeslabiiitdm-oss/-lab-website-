@@ -11,6 +11,7 @@ import supervisedRouter from "./routes/supervised.js";
 import newsRouter from "./routes/news.js";
 import contactRouter from "./routes/contact.js";
 import resourcesRouter from "./routes/resources.js";
+import statsRouter from "./routes/stats.js";
 
 // Load environment variables
 dotenv.config();
@@ -59,6 +60,7 @@ app.use("/api/supervised", supervisedRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/resources", resourcesRouter);
+app.use("/api/stats", statsRouter);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

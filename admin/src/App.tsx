@@ -80,15 +80,15 @@ const getUserInitials = (name: string) => {
   return parts[0] ? parts[0].slice(0, 2).toUpperCase() : "U";
 };
 
-const isImageUrl = (url: string) => {
-  if (!url) return false;
-  return (
-    url.startsWith("http://") ||
-    url.startsWith("https://") ||
-    url.startsWith("/") ||
-    /\.(jpg|jpeg|png|webp|svg|gif|avif)/i.test(url)
-  );
-};
+// const isImageUrl = (url: string) => {
+//   if (!url) return false;
+//   return (
+//     url.startsWith("http://") ||
+//     url.startsWith("https://") ||
+//     url.startsWith("/") ||
+//     /\.(jpg|jpeg|png|webp|svg|gif|avif)/i.test(url)
+//   );
+// };
 
 interface LoginFormProps {
   onLoginSuccess: (user: { name: string; email: string; role: string }) => void;
@@ -747,6 +747,20 @@ export default function App() {
         .then(data => setResources(data))
         .catch(err => console.error("Error fetching resources:", err));
 
+      // Fetch Stats
+      fetch("http://localhost:5000/api/stats")
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data)) {
+            const statsMap: any = {};
+            data.forEach(item => {
+              statsMap[item.key] = item.value;
+            });
+            setStats(prev => ({ ...prev, ...statsMap }));
+          }
+        })
+        .catch(err => console.error("Error fetching stats:", err));
+
       // Fetch Contact Messages
       const token = sessionStorage.getItem("auth_token");
       fetch("http://localhost:5000/api/contact", {
@@ -1312,11 +1326,44 @@ export default function App() {
 
   // Dynamic counter modification helpers
   const modifyStat = (key: keyof typeof stats, amount: number) => {
+    const newValue = Math.max(0, (stats[key] || 0) + amount);
     setStats(prev => ({
       ...prev,
-      [key]: Math.max(0, prev[key] + amount)
+      [key]: newValue
     }));
-    showNotification(`Updated ${key} counter!`);
+
+    const token = sessionStorage.getItem("auth_token");
+    fetch(`http://localhost:5000/api/stats/${key}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ value: newValue })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to save stat to server");
+        showNotification(`Updated ${key} counter!`);
+      })
+      .catch(err => showNotification(err.message, "error"));
+  };
+
+  const handleUpdateStatDirectly = (key: string, value: number) => {
+    setStats(prev => ({
+      ...prev,
+      [key]: value
+    }));
+
+    const token = sessionStorage.getItem("auth_token");
+    fetch(`http://localhost:5000/api/stats/${key}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ value })
+    })
+      .catch(err => console.error("Error saving stat:", err));
   };
 
   // Color mapping helper for timeline categories
@@ -1570,14 +1617,7 @@ export default function App() {
               <Moon size={12} className={`mr-1.5 transition-opacity duration-300 ${theme === "dark" ? "text-sky-400 opacity-100" : "text-muted-foreground opacity-40"}`} />
             </button>
 
-            {/* Settings logo button */}
-            <button 
-              onClick={() => setIsSettingsModalOpen(true)}
-              className="p-1.5 rounded-xl border border-border/50 bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition cursor-pointer"
-              title="Settings"
-            >
-              <Settings size={15} />
-            </button>
+
 
             {/* Inbox / Messages Dropdown */}
             <div className="relative inbox-dropdown-container">
@@ -1828,8 +1868,8 @@ export default function App() {
           const totalScholarsCount = people.filter(p => p.role === "scholar").length;
           const ipCount = achievements.filter(a => a.category === "Patent").length + uniquePubs.filter(p => p.type === "Patent").length;
 
-          // Outlay calculations (DST SERB DST etc.)
-          const outlayText = "₹37.34L";
+          // Outlay calculations (read from editable stats in real-time)
+          const outlayText = stats.outlay !== undefined ? `₹${stats.outlay.toFixed(2)}L` : "₹0L";
 
           // Chart 1: Publications & Citations trend Math
           const years = [2021, 2022, 2023, 2024, 2025, 2026];
@@ -2697,6 +2737,13 @@ export default function App() {
               unit: "Wins", 
               colorClass: "from-emerald-500 to-teal-400",
               icon: <Trophy size={16} className="text-emerald-500" />
+            },
+            outlay: { 
+              title: "Research Outlay", 
+              max: 200, 
+              unit: "Lakhs (₹)", 
+              colorClass: "from-amber-500 to-orange-400",
+              icon: <Activity size={16} className="text-amber-500" />
             }
           };
 
@@ -2751,8 +2798,29 @@ export default function App() {
                                 {meta.icon}
                               </div>
                             </div>
-                            <div className="flex items-baseline gap-2 mt-2">
-                              <span className="text-4xl font-display font-black text-gradient leading-none">{val}</span>
+                            <div className="flex items-center gap-2 mt-2">
+                              <input
+                                type="number"
+                                step="any"
+                                key={stats[k]}
+                                defaultValue={stats[k] || 0}
+                                onBlur={(e) => {
+                                  const newVal = parseFloat(e.target.value);
+                                  if (!isNaN(newVal)) {
+                                    handleUpdateStatDirectly(k, newVal);
+                                  }
+                                }}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    const newVal = parseFloat((e.target as HTMLInputElement).value);
+                                    if (!isNaN(newVal)) {
+                                      handleUpdateStatDirectly(k, newVal);
+                                      (e.target as HTMLInputElement).blur();
+                                    }
+                                  }
+                                }}
+                                className="w-24 px-2.5 py-1 text-2xl font-display font-black text-gradient leading-none bg-muted/40 border border-border/30 rounded-lg focus:outline-none focus:border-primary text-foreground"
+                              />
                               <span className="text-[10px] font-bold text-muted-foreground font-mono">/ {meta.max} {meta.unit}</span>
                             </div>
 
@@ -2772,24 +2840,26 @@ export default function App() {
                           </div>
 
                           {/* Increment/Decrement Dials */}
-                          <div className="flex items-center gap-2 mt-6 z-10">
-                            <button
-                              type="button"
-                              onClick={() => modifyStat(k, -1)}
-                              className="h-8 w-8 rounded-xl border border-border bg-card hover:bg-rose-500/10 hover:border-rose-500/40 hover:text-rose-600 dark:hover:text-rose-400 flex items-center justify-center font-bold text-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
-                              title="Decrement"
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => modifyStat(k, 1)}
-                              className="h-8 w-8 rounded-xl border border-border bg-card hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 flex items-center justify-center font-bold text-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
-                              title="Increment"
-                            >
-                              +
-                            </button>
-                          </div>
+                          {k !== "outlay" && (
+                            <div className="flex items-center gap-2 mt-6 z-10">
+                              <button
+                                type="button"
+                                onClick={() => modifyStat(k, -1)}
+                                className="h-8 w-8 rounded-xl border border-border bg-card hover:bg-rose-500/10 hover:border-rose-500/40 hover:text-rose-600 dark:hover:text-rose-400 flex items-center justify-center font-bold text-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+                                title="Decrement"
+                              >
+                                -
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => modifyStat(k, 1)}
+                                className="h-8 w-8 rounded-xl border border-border bg-card hover:bg-emerald-500/10 hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 flex items-center justify-center font-bold text-sm transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+                                title="Increment"
+                              >
+                                +
+                              </button>
+                            </div>
+                          )}
                         </div>
                       );
                     })}

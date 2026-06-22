@@ -8,6 +8,7 @@ import { Project } from "./models/Project.js";
 import { Achievement } from "./models/Achievement.js";
 import { SupervisedProject } from "./models/Supervised.js";
 import { Resource } from "./models/Resource.js";
+import { Stat } from "./models/Stat.js";
 
 // Direct TS imports from frontend lab data
 import {
@@ -36,6 +37,7 @@ const seedDatabase = async () => {
     await Achievement.deleteMany({});
     await SupervisedProject.deleteMany({});
     await Resource.deleteMany({});
+    await Stat.deleteMany({});
     console.log("Collections cleared successfully.");
 
     // 1. Seed Default Admin User
@@ -100,6 +102,14 @@ const seedDatabase = async () => {
     console.log(`Seeding ${resources.length} equipment resources...`);
     await Resource.insertMany(resources);
     console.log("Equipment resources seeded successfully.");
+
+    // 7. Seed Stats
+    console.log("Seeding default lab stats...");
+    await Stat.insertMany([
+      { key: "collaborations", value: 14 },
+      { key: "outlay", value: 37.34 }
+    ]);
+    console.log("Lab stats seeded successfully.");
 
     console.log("\nDatabase Seeding Completed Successfully! 🚀");
   } catch (error) {
