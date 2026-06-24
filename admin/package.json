@@ -1,4 +1,37 @@
 {
+  "comments": {
+    "name": "The name of the package.",
+    "private": "Indicates that the package is private and should not be published to the npm registry.",
+    "version": "The version of the package.",
+    "type": "Specifies the module type for the package. In this case, it is set to 'module' to indicate that the package uses ECMAScript modules.",
+    "scripts": {
+      "dev": "A script to start the development server using Vite.",
+      "build": "A script to build the project using TypeScript and Vite.",
+      "lint": "A script to run ESLint on the project files.",
+      "preview": "A script to preview the built project using Vite."
+    },
+    "dependencies": {
+      "@tailwindcss/vite": "Tailwind CSS plugin for Vite.",
+      "lucide-react": "A library for using Lucide icons in React applications.",
+      "react": "The React library for building user interfaces.",
+      "react-dom": "The React DOM library for rendering React components in the browser.",
+      "tailwindcss": "A utility-first CSS framework for styling web applications."
+    },
+    "devDependencies": {
+      "@eslint/js": "ESLint plugin for JavaScript linting.",
+      "@types/node": "Type definitions for Node.js.",
+      "@types/react": "Type definitions for React.",
+      "@types/react-dom": "Type definitions for React DOM.",
+      "@vitejs/plugin-react": "Vite plugin for React support.",
+      "eslint": "A tool for identifying and fixing problems in JavaScript code.",
+      "eslint-plugin-react-hooks": "ESLint plugin for enforcing rules of React Hooks.",
+      "eslint-plugin-react-refresh": "ESLint plugin for React Fast Refresh support.",
+      "globals": "A library providing global variables for various environments.",
+      "typescript": "A typed superset of JavaScript that compiles to plain JavaScript.",
+      "typescript-eslint": "TypeScript parser and plugin for ESLint.",
+      "vite": "A fast build tool and development server for modern web projects."
+    }
+  },
   "name": "admin",
   "private": true,
   "version": "0.0.0",

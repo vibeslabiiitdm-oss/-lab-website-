@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -121,11 +121,13 @@
   * {
     border-color: var(--color-border);
   }
+
   html,
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
   body {
     font-family: var(--font-sans);
     background-image:
@@ -138,6 +140,7 @@
       background-color 0.3s ease,
       color 0.3s ease;
   }
+
   h1,
   h2,
   h3,
@@ -145,6 +148,7 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
+
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
@@ -157,12 +161,14 @@
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
 }
+
 .text-gradient {
   background: linear-gradient(90deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+
 .grid-bg {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -170,6 +176,7 @@
   background-size: 44px 44px;
   mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
 }
+
 .glow-ring {
   box-shadow:
     0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
@@ -177,45 +184,56 @@
 }
 
 @keyframes float-y {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
+
 .float-y {
   animation: float-y 6s ease-in-out infinite;
 }
+
 @keyframes pulse-dot {
+
   0%,
   100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.4);
   }
 }
+
 .pulse-dot {
   animation: pulse-dot 2.4s ease-in-out infinite;
 }
+
 @keyframes dash {
   to {
     stroke-dashoffset: -200;
   }
 }
+
 .flow-line {
   stroke-dasharray: 6 10;
   animation: dash 8s linear infinite;
 }
+
 @keyframes spin-slow {
   to {
     transform: rotate(360deg);
   }
 }
+
 .spin-slow {
   animation: spin-slow 28s linear infinite;
 }
@@ -228,6 +246,7 @@
     opacity 0.35s ease,
     transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+
 .reveal.in {
   opacity: 1;
   transform: none;
@@ -237,6 +256,7 @@
   transform-style: preserve-3d;
   transition: transform 0.25s ease;
 }
+
 .tilt-inner {
   transform: translateZ(30px);
 }

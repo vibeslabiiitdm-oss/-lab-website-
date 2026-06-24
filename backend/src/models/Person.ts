@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+// Define the Person schema with fields for id, role, category, name, designation, affiliation, email, bio, joined, domains, skills, education, publications, awards, conferences, links, teaching, experience, projects, professionalService, outreachActivities, avatar, resume, and researchProject. The schema also includes timestamps for createdAt and updatedAt.
 const EducationSchema = new Schema({
   degree: { type: String, required: true },
   field: { type: String, required: true },

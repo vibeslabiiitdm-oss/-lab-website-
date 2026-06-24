@@ -23,6 +23,7 @@ import {
   projects,
   resources,
   scholars,
+  liveUpdates,
 } from "@/data/lab";
 import {
   Carousel,
@@ -56,32 +57,16 @@ function Home() {
       });
   }, []);
 
-  const updates = [
-    {
-      id: 1,
-      date: "Oct 24, 2025",
-      tag: "Publication",
-      title: "New Paper Accepted at CVPR",
-      desc: "Our work on 'Cross-Spectral Iris Matching' has been accepted. We achieved a new state-of-the-art EER.",
-      link: "/publications",
-    },
-    {
-      id: 2,
-      date: "Sep 12, 2025",
-      tag: "Event",
-      title: "Keynote at IJCB Singapore",
-      desc: "Lab head delivered the opening keynote on edge-based surveillance challenges.",
-      link: "/achievements",
-    },
-    {
-      id: 3,
-      date: "Aug 05, 2025",
-      tag: "Infrastructure",
-      title: "Jetson Orin Cluster Deployed",
-      desc: "We just upgraded our edge testing capabilities with a 16-node Jetson Orin cluster.",
-      link: "/about",
-    },
-  ];
+  const updates = (liveUpdates || []).slice(0, 5).map((u) => {
+    return {
+      id: u.id,
+      date: u.date,
+      tag: u.tag,
+      title: u.title,
+      desc: u.desc,
+      link: u.link,
+    };
+  });
 
   return (
     <div>
@@ -183,16 +168,31 @@ function Home() {
                         </div>
                         <h3 className="font-display text-2xl font-bold leading-tight">{u.title}</h3>
                         <p className="text-sm text-muted-foreground">{u.desc}</p>
-                        <Link
-                          to={u.link}
-                          className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
-                        >
-                          Read more{" "}
-                          <ChevronRight
-                            size={14}
-                            className="group-hover:translate-x-1 transition-transform"
-                          />
-                        </Link>
+                        {u.link.startsWith("/") ? (
+                          <Link
+                            to={u.link}
+                            className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                          >
+                            Read more{" "}
+                            <ArrowRight
+                              size={14}
+                              className="group-hover:translate-x-1 transition-transform"
+                            />
+                          </Link>
+                        ) : (
+                          <a
+                            href={u.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                          >
+                            Read more{" "}
+                            <ArrowRight
+                              size={14}
+                              className="group-hover:translate-x-1 transition-transform"
+                            />
+                          </a>
+                        )}
                       </div>
                     </CarouselItem>
                   ))}

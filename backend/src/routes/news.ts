@@ -6,7 +6,7 @@ interface CacheEntry {
   items: any[];
   timestamp: number;
 }
-
+// this whole file is a bit of a hack, but it works for now. We are fetching the Google News RSS feed and parsing it manually to get the latest news items. We cache the results for 1 hour to avoid hitting the Google News RSS feed too often. The cache is stored in memory, so it will be lost if the server restarts. In a production environment, you might want to use a more robust caching solution like Redis or a database.
 const cache: Record<string, CacheEntry> = {};
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
 

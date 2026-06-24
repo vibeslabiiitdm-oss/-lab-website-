@@ -11,6 +11,8 @@ import { Resource } from "./models/Resource.js";
 import { Stat } from "./models/Stat.js";
 
 // Direct TS imports from frontend lab data
+// this file tells about the lab members, projects, achievements, supervised projects, and resources. It is used to seed the database with initial data.
+// and also imports the data from the frontend/src/data/lab.js file. This is a temporary solution until we have a proper admin panel to manage the data.
 import {
   allPeople,
   projects,

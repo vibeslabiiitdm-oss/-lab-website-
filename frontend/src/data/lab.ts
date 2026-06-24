@@ -2387,7 +2387,15 @@ export let projects: Project[] = [
   },
 ];
 
-export let achievements: Achievement[] = [];
+export let achievements: Achievement[] = allPeople.flatMap(p => 
+  (p.awards || []).map((a, i) => ({
+    id: a.id || `${p.id}-award-${i}`,
+    title: a.title,
+    category: "Recognition",
+    year: a.year,
+    detail: `${p.name} received the ${a.title} from ${a.org}.`,
+  } as Achievement))
+).sort((a, b) => b.year - a.year);
 
 export let labStats = {
   members: 1 + scholars.length,
@@ -2667,16 +2675,44 @@ export let supervisedProjects: SupervisedProject[] = [
   }
 ];
 
+export let liveUpdates: any[] = [
+  {
+    id: 1,
+    date: "Oct 24, 2025",
+    tag: "Publication",
+    title: "New Paper Accepted at CVPR",
+    desc: "Our work on 'Cross-Spectral Iris Matching' has been accepted. We achieved a new state-of-the-art EER.",
+    link: "/publications",
+  },
+  {
+    id: 2,
+    date: "Sep 12, 2025",
+    tag: "Event",
+    title: "Keynote at IJCB Singapore",
+    desc: "Lab head delivered the opening keynote on edge-based surveillance challenges.",
+    link: "/achievements",
+  },
+  {
+    id: 3,
+    date: "Aug 05, 2025",
+    tag: "Infrastructure",
+    title: "Jetson Orin Cluster Deployed",
+    desc: "We just upgraded our edge testing capabilities with a 16-node Jetson Orin cluster.",
+    link: "/about",
+  },
+];
+
 const API_URL = "http://localhost:5000/api";
 
 const isSeeding = typeof (globalThis as any).process !== "undefined" && (globalThis as any).process.argv && (globalThis as any).process.argv.some((arg: string) => arg.includes("seed") || arg.includes("check_db") || arg.includes("test_import"));
 
 if (!isSeeding) {
   try {
-    const [peopleRes, projectsRes, achievementsRes, supervisedRes, resourcesRes, statsRes] = await Promise.all([
+    const [peopleRes, projectsRes, achievementsRes, updatesRes, supervisedRes, resourcesRes, statsRes] = await Promise.all([
       fetch(`${API_URL}/people`).catch(() => null),
       fetch(`${API_URL}/projects`).catch(() => null),
       fetch(`${API_URL}/achievements`).catch(() => null),
+      fetch(`${API_URL}/updates`).catch(() => null),
       fetch(`${API_URL}/supervised`).catch(() => null),
       fetch(`${API_URL}/resources`).catch(() => null),
       fetch(`${API_URL}/stats`).catch(() => null),
@@ -2694,28 +2730,35 @@ if (!isSeeding) {
 
     if (projectsRes && projectsRes.ok) {
       const fetchedProjects = await projectsRes.json();
-      if (Array.isArray(fetchedProjects)) {
+      if (Array.isArray(fetchedProjects) && fetchedProjects.length > 0) {
         projects = fetchedProjects;
       }
     }
 
     if (achievementsRes && achievementsRes.ok) {
       const fetchedAchievements = await achievementsRes.json();
-      if (Array.isArray(fetchedAchievements)) {
+      if (Array.isArray(fetchedAchievements) && fetchedAchievements.length > 0) {
         achievements = fetchedAchievements;
+      }
+    }
+
+    if (updatesRes && updatesRes.ok) {
+      const fetchedUpdates = await updatesRes.json();
+      if (Array.isArray(fetchedUpdates) && fetchedUpdates.length > 0) {
+        liveUpdates = fetchedUpdates;
       }
     }
 
     if (supervisedRes && supervisedRes.ok) {
       const fetchedSupervised = await supervisedRes.json();
-      if (Array.isArray(fetchedSupervised)) {
+      if (Array.isArray(fetchedSupervised) && fetchedSupervised.length > 0) {
         supervisedProjects = fetchedSupervised;
       }
     }
 
     if (resourcesRes && resourcesRes.ok) {
       const fetchedResources = await resourcesRes.json();
-      if (Array.isArray(fetchedResources)) {
+      if (Array.isArray(fetchedResources) && fetchedResources.length > 0) {
         resources = fetchedResources;
       }
     }

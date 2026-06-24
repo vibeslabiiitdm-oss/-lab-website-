@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+// Define the User schema with fields for name, email, password, role, and lastLogin. The schema also includes timestamps for createdAt and updatedAt.
 const UserSchema = new Schema(
   {
     name: { type: String, required: true },

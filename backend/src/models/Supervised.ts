@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+// Define the SupervisedProject schema with fields for sno, studentName, rollNo, title, explanation, type, and status. The schema also includes timestamps for createdAt and updatedAt.
 const SupervisedProjectSchema = new Schema(
   {
     sno: { type: Number, required: true, unique: true },

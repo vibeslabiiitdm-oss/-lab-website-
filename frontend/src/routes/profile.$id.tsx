@@ -1,3 +1,4 @@
+// This file defines the profile page for individual lab members on the ViBeS Lab website. It uses the `@tanstack/react-router` library to create a route for the profile page, which is accessed via a dynamic URL parameter representing the member's ID. The page displays various sections such as an overview, experience, education, publications, journals, conferences, awards, statistics, and supervised projects. It also includes interactive elements like tabs for navigation between sections, expandable publication cards, and a honeycomb grid for research interests. The page is styled using Tailwind CSS classes and includes responsive design elements for different screen sizes.
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -168,7 +169,7 @@ function ProfilePage() {
           <div className="px-6 md:px-10 pb-8 -mt-16 grid md:grid-cols-[auto_1fr_auto] gap-6 items-end">
             {p.avatar ? (
               <img
-                src={p.avatar}
+                src={p.avatar.startsWith('/uploads') ? `http://localhost:5000${p.avatar}` : p.avatar}
                 alt={p.name}
                 className="h-32 w-32 rounded-2xl border border-border/70 object-cover bg-background glow-ring relative z-10"
               />
@@ -198,7 +199,7 @@ function ProfilePage() {
             <div className="flex flex-wrap gap-2 items-center">
               {p.resume ? (
                 <a
-                  href={p.resume}
+                  href={(p.resume.startsWith('/uploads') || p.resume.startsWith('/resumes')) ? `http://localhost:5000${p.resume}` : (!p.resume.startsWith('http') && !p.resume.startsWith('/')) ? `https://${p.resume}` : p.resume}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs px-3 py-1.5 rounded-lg bg-primary/20 border border-primary/40 text-primary hover:bg-primary/30 flex items-center gap-1.5 font-medium transition"
@@ -865,7 +866,7 @@ function ProfilePage() {
                   <div className="flex items-start gap-4 relative z-10">
                     {scholar.avatar ? (
                       <img
-                        src={scholar.avatar}
+                        src={scholar.avatar.startsWith('/uploads') ? `http://localhost:5000${scholar.avatar}` : scholar.avatar}
                         alt={scholar.name}
                         className="h-12 w-12 rounded-xl object-cover border border-border/70 bg-background"
                       />

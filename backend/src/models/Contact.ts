@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+// Define the Contact schema with fields for name, email, message, and read. The schema also includes timestamps for createdAt and updatedAt.
 const ContactSchema = new Schema(
   {
     name: { type: String, required: true },

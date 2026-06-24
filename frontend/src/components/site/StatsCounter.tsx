@@ -13,7 +13,8 @@ function useCountUp(target: number, duration = 1400) {
           const start = performance.now();
           const tick = (now: number) => {
             const p = Math.min(1, (now - start) / duration);
-            setV(Math.round(target * (1 - Math.pow(1 - p, 3))));
+            const val = target * (1 - Math.pow(1 - p, 3));
+            setV(target % 1 !== 0 ? Number(val.toFixed(2)) : Math.round(val));
             if (p < 1) requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);

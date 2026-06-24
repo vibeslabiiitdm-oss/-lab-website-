@@ -1,3 +1,4 @@
+// This file defines the data structures and utility functions for managing lab-related information such as publications, awards, conferences, education, and people. It includes TypeScript types for each entity and functions to generate mock data for publications, awards, and conferences based on a seed value. The data structures are used to represent the lab's research output, achievements, and team members in a structured format that can be easily consumed by the frontend application.
 export type Publication = {
   id: string;
   title: string;

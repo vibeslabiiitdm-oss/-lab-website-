@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
-
+// this file defines the Navbar component for the frontend application. It includes navigation links to different sections of the website, a theme toggle button, and a responsive design that adapts to different screen sizes. The Navbar component uses the `@tanstack/react-router` library for navigation and state management, and it also includes a mobile menu that can be toggled open or closed. The component is styled using Tailwind CSS classes and includes hover effects and active link highlighting.
 const links = [
   { to: "/", label: "Home" },
   { to: "/team", label: "Team" },

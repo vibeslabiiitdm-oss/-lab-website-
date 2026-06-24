@@ -49,6 +49,15 @@ import {
   type SupervisedProject,
 } from "./data/lab";
 
+export interface Update {
+  id: number;
+  date: string;
+  tag: string;
+  title: string;
+  desc: string;
+  link: string;
+}
+
 interface ResourceItem {
   _id?: string;
   name: string;
@@ -595,9 +604,10 @@ export default function App() {
   const [stats, setStats] = useState(initialStats);
   const [resources, setResources] = useState<ResourceItem[]>(initialResources);
   const [supervisedProjects, setSupervisedProjects] = useState<SupervisedProject[]>(initialSupervisedProjects);
+  const [liveUpdates, setLiveUpdates] = useState<Update[]>([]);
 
   // UI Navigation State
-  const [activeTab, setActiveTab] = useState<"dashboard" | "team" | "projects" | "thesis" | "achievements" | "resources">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "team" | "projects" | "thesis" | "achievements" | "resources" | "updates">("dashboard");
 
   // Expanded project state for results list
   const [expandedProjects, setExpandedProjects] = useState<Record<string, boolean>>({});
@@ -670,6 +680,9 @@ export default function App() {
   const [editingAchievement, setEditingAchievement] = useState<Achievement | null>(null);
   const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
 
+  const [editingUpdate, setEditingUpdate] = useState<Update | null>(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
   // Settings modal states
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isAddResourceOpen, setIsAddResourceOpen] = useState(false);
@@ -734,6 +747,12 @@ export default function App() {
         .then(res => res.json())
         .then(data => setAchievements(data))
         .catch(err => console.error("Error fetching achievements:", err));
+
+      // Fetch Live Updates
+      fetch("http://localhost:5000/api/updates")
+        .then(res => res.json())
+        .then(data => setLiveUpdates(data))
+        .catch(err => console.error("Error fetching live updates:", err));
 
       // Fetch Supervised Projects
       fetch("http://localhost:5000/api/supervised")
@@ -920,10 +939,32 @@ export default function App() {
             showNotification("Achievement deleted successfully");
             addSessionNotification(`Achievement milestone deleted (ID: ${id})`, "warning");
           })
-          .catch(err => showNotification(err.message, "error"));
+          .catch(err => showNotification("Failed to delete achievement", "error"));
       }
     );
   };
+
+  const handleDeleteUpdate = (id: number) => {
+    triggerConfirm(
+      "Remove Update",
+      "Are you sure you want to delete this live update?",
+      () => {
+        const token = sessionStorage.getItem("auth_token");
+        fetch(`http://localhost:5000/api/updates/${id}`, {
+          method: "DELETE",
+          headers: { "Authorization": `Bearer ${token}` }
+        })
+          .then(res => {
+            if (!res.ok) throw new Error("Delete failed");
+            setLiveUpdates(liveUpdates.filter(u => u.id !== id));
+            showNotification("Update deleted successfully");
+          })
+          .catch(err => showNotification("Failed to delete update", "error"));
+      }
+    );
+  };
+
+
 
   const handleDeleteResource = (id: string) => {
     triggerConfirm(
@@ -992,10 +1033,64 @@ export default function App() {
   // 2. It checks if we are editing an existing person (PUT request) or creating a new one (POST request).
   // 3. It sends the constructed object along with the Authorization token to the backend API.
   // 4. Upon success, it updates the local React state so the UI reflects the change immediately.
-    const handleSavePerson = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSavePerson = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const id = editingPerson?.id || generateId("scholar");
+
+    const token = sessionStorage.getItem("auth_token");
+
+    // Handle File Upload for Avatar
+    const avatarFile = formData.get("avatarFile") as File;
+    let avatarUrl = formData.get("avatar") as string;
+
+    if (avatarFile && avatarFile.size > 0) {
+      const uploadData = new FormData();
+      uploadData.append("file", avatarFile);
+      try {
+        const uploadRes = await fetch("http://localhost:5000/api/upload", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${token}` },
+          body: uploadData
+        });
+        if (uploadRes.ok) {
+          const resData = await uploadRes.json();
+          avatarUrl = resData.url;
+        } else {
+          showNotification("Failed to upload profile photo", "error");
+          return;
+        }
+      } catch (err) {
+        showNotification("Error uploading profile photo", "error");
+        return;
+      }
+    }
+
+    // Handle File Upload for Resume
+    const resumeFile = formData.get("resumeFile") as File;
+    let resumeUrl = formData.get("resume") as string;
+
+    if (resumeFile && resumeFile.size > 0) {
+      const uploadData = new FormData();
+      uploadData.append("file", resumeFile);
+      try {
+        const uploadRes = await fetch("http://localhost:5000/api/upload", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${token}` },
+          body: uploadData
+        });
+        if (uploadRes.ok) {
+          const resData = await uploadRes.json();
+          resumeUrl = resData.url;
+        } else {
+          showNotification("Failed to upload resume", "error");
+          return;
+        }
+      } catch (err) {
+        showNotification("Error uploading resume", "error");
+        return;
+      }
+    }
 
     const scholarUrl = formData.get("scholar") as string;
     let newLinks = editingPerson?.links ? [...editingPerson.links] : [];
@@ -1017,8 +1112,8 @@ export default function App() {
       email: formData.get("email") as string,
       bio: formData.get("bio") as string,
       joined: Number(formData.get("joined")),
-      avatar: formData.get("avatar") as string || undefined,
-      resume: formData.get("resume") as string || undefined,
+      avatar: avatarUrl,
+      resume: resumeUrl,
       domains: editingPerson?.domains || [],
       skills: editingPerson?.skills || [],
       education: editingPerson?.education || [],
@@ -1029,7 +1124,6 @@ export default function App() {
       researchProject: editingPerson?.researchProject || undefined,
     };
 
-    const token = sessionStorage.getItem("auth_token");
     const isEditing = !!editingPerson?.id;
     const url = isEditing ? `http://localhost:5000/api/people/${editingPerson.id}` : "http://localhost:5000/api/people";
     const method = isEditing ? "PUT" : "POST";
@@ -1217,6 +1311,54 @@ export default function App() {
         }
         setIsAchievementModalOpen(false);
         setEditingAchievement(null);
+      })
+      .catch(err => showNotification(err.message, "error"));
+  };
+
+  const handleSaveUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const id = editingUpdate?.id || Math.floor(Math.random() * 100000);
+
+    const newUpdate: Update = {
+      id,
+      date: formData.get("date") as string,
+      tag: formData.get("tag") as string,
+      title: formData.get("title") as string,
+      desc: formData.get("desc") as string,
+      link: formData.get("link") as string,
+    };
+
+    const token = sessionStorage.getItem("auth_token");
+    const isEditing = !!editingUpdate?.id;
+    const url = isEditing ? `http://localhost:5000/api/updates/${editingUpdate.id}` : "http://localhost:5000/api/updates";
+    const method = isEditing ? "PUT" : "POST";
+
+    fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(newUpdate)
+    })
+      .then(async res => {
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || errData.message || "Save failed");
+        }
+        return res.json();
+      })
+      .then(savedUpdate => {
+        if (isEditing) {
+          setLiveUpdates(liveUpdates.map(u => u.id === editingUpdate.id ? savedUpdate : u));
+          showNotification("Update saved successfully!");
+        } else {
+          setLiveUpdates([...liveUpdates, savedUpdate]);
+          showNotification("Update added successfully!");
+        }
+        setIsUpdateModalOpen(false);
+        setEditingUpdate(null);
       })
       .catch(err => showNotification(err.message, "error"));
   };
@@ -1550,6 +1692,15 @@ export default function App() {
                 <Cpu size={20} />
                 {sidebarOpen && <span>Stats & Specs</span>}
               </button>
+
+              <button
+                onClick={() => { setActiveTab("updates"); if (window.innerWidth < 768) setSidebarOpen(false); }}
+                className={`w-full flex items-center ${sidebarOpen ? "gap-3 px-3 justify-start" : "justify-center px-0"} py-3 rounded-xl text-xs font-semibold transition-all relative ${activeTab === "updates" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"}`}
+              >
+                {activeTab === "updates" && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#e88c0a] rounded-r-md" />}
+                <Activity size={20} />
+                {sidebarOpen && <span>Live Updates</span>}
+              </button>
             </nav>
 
             <div className="pt-4 mt-6 border-t border-border/40 px-2">
@@ -1842,6 +1993,7 @@ export default function App() {
               {activeTab === "thesis" && "Thesis Board"}
               {activeTab === "achievements" && "Achievements Timeline"}
               {activeTab === "resources" && "Stats & Resources Console"}
+              {activeTab === "updates" && "Live Updates Editor"}
             </h2>
             <p className="text-xs text-muted-foreground mt-1 leading-normal">
               {activeTab === "dashboard" && "Plan, prioritize, and accomplish your tasks with ease."}
@@ -1850,6 +2002,7 @@ export default function App() {
               {activeTab === "thesis" && "Supervised student thesis board for Master (MTP) and Bachelor (BTP) projects."}
               {activeTab === "achievements" && "Interactive history timeline showing lab grants, milestones, and patents."}
               {activeTab === "resources" && "Futuristic control center to update key stats dials and equipment specs."}
+              {activeTab === "updates" && "Manage the scrolling Live Updates ticker seen on the frontend homepage."}
             </p>
           </div>
         </header>
@@ -2345,7 +2498,7 @@ export default function App() {
                           <div className="flex items-center gap-3">
                             <div className="h-10 w-10 rounded-xl bg-card border border-border grid place-items-center font-display font-bold text-primary shrink-0 overflow-hidden">
                               {p.avatar ? (
-                                <img src={p.avatar} alt={p.name} className="h-full w-full object-cover" />
+                                <img src={p.avatar.startsWith('/uploads') ? `http://localhost:5000${p.avatar}` : p.avatar} alt={p.name} className="h-full w-full object-cover" />
                               ) : (
                                 p.name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase()
                               )}
@@ -2821,7 +2974,6 @@ export default function App() {
                                 }}
                                 className="w-24 px-2.5 py-1 text-2xl font-display font-black text-gradient leading-none bg-muted/40 border border-border/30 rounded-lg focus:outline-none focus:border-primary text-foreground"
                               />
-                              <span className="text-[10px] font-bold text-muted-foreground font-mono">/ {meta.max} {meta.unit}</span>
                             </div>
 
                             {/* Progress bar */}
@@ -2840,7 +2992,6 @@ export default function App() {
                           </div>
 
                           {/* Increment/Decrement Dials */}
-                          {k !== "outlay" && (
                             <div className="flex items-center gap-2 mt-6 z-10">
                               <button
                                 type="button"
@@ -2859,7 +3010,6 @@ export default function App() {
                                 +
                               </button>
                             </div>
-                          )}
                         </div>
                       );
                     })}
@@ -2928,6 +3078,65 @@ export default function App() {
             </div>
           );
         })()}
+
+        {/* 6. UPDATES PAGE */}
+        {activeTab === "updates" && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between border-b border-border/40 pb-4">
+              <div className="flex items-center gap-2">
+                <Activity className="text-primary" size={22} />
+                <h3 className="font-display font-semibold text-xl">Live Updates Ticker</h3>
+              </div>
+              <button
+                onClick={() => { setEditingUpdate(null); setIsUpdateModalOpen(true); }}
+                className="flex items-center gap-2 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/95 transition shadow-sm"
+              >
+                <Plus size={16} />
+                <span>Add Live Update</span>
+              </button>
+            </div>
+            
+            <div className="grid gap-4">
+              {liveUpdates.length === 0 ? (
+                <div className="text-center text-muted-foreground p-8 border border-dashed rounded-lg">
+                  No live updates currently configured. Click "Add Live Update" to create one.
+                </div>
+              ) : (
+                liveUpdates.map((update) => (
+                  <div key={update.id} className="glass p-5 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-semibold text-primary">{update.date}</span>
+                        <span className="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
+                          {update.tag}
+                        </span>
+                      </div>
+                      <h4 className="font-display font-bold text-lg">{update.title}</h4>
+                      <p className="text-sm text-muted-foreground max-w-3xl">{update.desc}</p>
+                      <a href={update.link} target="_blank" rel="noreferrer" className="text-xs text-blue-500 hover:underline">
+                        {update.link}
+                      </a>
+                    </div>
+                    <div className="flex shrink-0 gap-2">
+                      <button
+                        onClick={() => { setEditingUpdate(update); setIsUpdateModalOpen(true); }}
+                        className="p-2 rounded-lg border border-border text-muted-foreground hover:border-primary/50 hover:text-primary hover:bg-card transition"
+                      >
+                        <Edit3 size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUpdate(update.id)}
+                        className="p-2 rounded-lg border border-border text-muted-foreground hover:border-rose-500/50 hover:text-rose-500 hover:bg-card transition"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
 
       </main>
 
@@ -3028,25 +3237,61 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Avatar URL (Optional)</label>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Upload Profile Photo (Optional)</label>
+                  {editingPerson?.avatar && (
+                    <div className="mb-3 flex items-center gap-4">
+                      <img src={editingPerson.avatar.startsWith('/uploads') ? `http://localhost:5000${editingPerson.avatar}` : editingPerson.avatar} alt="Avatar preview" className="w-16 h-16 rounded-full object-cover border border-border" />
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                          setEditingPerson({ ...editingPerson, avatar: "" } as any);
+                          const fileInput = document.getElementById("avatarFileInput") as HTMLInputElement;
+                          if (fileInput) fileInput.value = "";
+                        }}
+                        className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20 transition"
+                      >
+                        Remove Photo
+                      </button>
+                    </div>
+                  )}
                   <input
-                    type="text"
-                    name="avatar"
-                    defaultValue={editingPerson?.avatar || ""}
-                    placeholder="/images/example.jpg"
-                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                    id="avatarFileInput"
+                    type="file"
+                    name="avatarFile"
+                    accept="image/*,application/pdf"
+                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                   />
+                  <input type="hidden" name="avatar" value={editingPerson?.avatar || ""} readOnly />
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Resume Path (Optional)</label>
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Upload Resume (Optional)</label>
+                  {editingPerson?.resume && (
+                    <div className="mb-3 flex items-center gap-4">
+                      <a href={(editingPerson.resume.startsWith('/uploads') || editingPerson.resume.startsWith('/resumes')) ? `http://localhost:5000${editingPerson.resume}` : (!editingPerson.resume.startsWith('http') && !editingPerson.resume.startsWith('/')) ? `https://${editingPerson.resume}` : editingPerson.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition">
+                        View Current Resume
+                      </a>
+                      <button 
+                        type="button" 
+                        onClick={() => {
+                          setEditingPerson({ ...editingPerson, resume: "" } as any);
+                          const fileInput = document.getElementById("resumeFileInput") as HTMLInputElement;
+                          if (fileInput) fileInput.value = "";
+                        }}
+                        className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20 transition"
+                      >
+                        Remove Resume
+                      </button>
+                    </div>
+                  )}
                   <input
-                    type="text"
-                    name="resume"
-                    defaultValue={editingPerson?.resume || ""}
-                    placeholder="/resumes/example_resume.pdf"
-                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                    id="resumeFileInput"
+                    type="file"
+                    name="resumeFile"
+                    accept="application/pdf,.doc,.docx"
+                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
                   />
+                  <input type="hidden" name="resume" value={editingPerson?.resume || ""} readOnly />
                 </div>
 
                 <div className="flex flex-col">
@@ -3696,6 +3941,137 @@ export default function App() {
                   className="px-4 py-2 text-sm bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/95 transition shadow-sm"
                 >
                   Save Achievement
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          UPDATE MODAL
+      ======================================================== */}
+      {isUpdateModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="glass bg-card w-full max-w-xl rounded-2xl shadow-xl border border-border flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            
+            <div className="p-6 border-b border-border flex items-center justify-between">
+              <h3 className="font-display font-semibold text-xl text-primary">
+                {editingUpdate?.id ? "Edit Live Update" : "Add Live Update"}
+              </h3>
+              <button
+                onClick={() => { setIsUpdateModalOpen(false); setEditingUpdate(null); }}
+                className="p-1 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveUpdate} className="p-6 space-y-4">
+              
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  required
+                  defaultValue={editingUpdate?.title || ""}
+                  className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col">
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Date String</label>
+                  <input
+                    type="text"
+                    name="date"
+                    required
+                    placeholder="e.g. Oct 24, 2025"
+                    defaultValue={editingUpdate?.date || ""}
+                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Tag / Category</label>
+                  <input
+                    type="text"
+                    name="tag"
+                    required
+                    placeholder="e.g. Publication"
+                    defaultValue={editingUpdate?.tag || ""}
+                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Description</label>
+                <textarea
+                  name="desc"
+                  required
+                  rows={2}
+                  defaultValue={editingUpdate?.desc || ""}
+                  className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Link To</label>
+                <select
+                  name="link"
+                  required
+                  defaultValue={editingUpdate?.link || "/publications"}
+                  className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                  onChange={(e) => {
+                    const customInput = document.getElementById('custom-link-wrapper');
+                    if (e.target.value === 'custom') {
+                      customInput?.classList.remove('hidden');
+                      (document.getElementById('custom-link-input') as HTMLInputElement).name = 'link';
+                      e.target.name = '';
+                    } else {
+                      customInput?.classList.add('hidden');
+                      e.target.name = 'link';
+                      (document.getElementById('custom-link-input') as HTMLInputElement).name = '';
+                    }
+                  }}
+                >
+                  <option value="/publications">Publications Page</option>
+                  <option value="/achievements">Achievements Page</option>
+                  <option value="/projects">Projects Page</option>
+                  <option value="/team">Team Page</option>
+                  <option value="/about">About Page</option>
+                  <option value="#">No Link (Don't go anywhere)</option>
+                  <option value="custom">Enter a custom web address...</option>
+                </select>
+              </div>
+
+              <div id="custom-link-wrapper" className="flex flex-col hidden mt-3">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Type Custom URL</label>
+                <input
+                  id="custom-link-input"
+                  type="text"
+                  defaultValue={["/publications", "/achievements", "/projects", "/team", "/about", "#"].includes(editingUpdate?.link || "") ? "" : editingUpdate?.link}
+                  placeholder="https://..."
+                  className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => { setIsUpdateModalOpen(false); setEditingUpdate(null); }}
+                  className="px-4 py-2 text-sm border border-border text-muted-foreground hover:text-foreground rounded-lg transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-sm bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/95 transition shadow-sm"
+                >
+                  Save Update
                 </button>
               </div>
 

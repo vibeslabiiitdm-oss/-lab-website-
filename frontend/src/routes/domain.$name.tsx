@@ -1,3 +1,4 @@
+// This file defines the domain page for the ViBeS Lab website. It uses the `@tanstack/react-router` library to create a route for the domain page, which is accessed via a dynamic URL parameter representing the research domain name. The page displays various sections such as global updates, projects, publications, conferences, and researchers associated with the specified domain. It fetches live updates from a backend API to display the latest news related to the domain and provides fallback updates if the live feed is unavailable. The page is styled using Tailwind CSS classes and includes responsive design elements for different screen sizes.
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowLeft,

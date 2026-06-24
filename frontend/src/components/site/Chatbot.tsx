@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MessageCircle, Send, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-
+// This file defines the Chatbot component for the frontend application. It includes a button to toggle the chatbot open or closed, a chat window that displays messages from the user and the bot, and an input field for the user to type their messages. The Chatbot component uses React state to manage the open/closed state of the chatbot, the list of messages, and the current input value. It also includes a set of predefined suggestions that the user can click to send as messages. The component is styled using Tailwind CSS classes and includes animations for opening and closing the chat window.
 type Msg = { id: number; from: "bot" | "you"; text: string };
 const seed: Msg[] = [
   {

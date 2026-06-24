@@ -1,3 +1,5 @@
+// purpose of importing Router from express is to create a new router object that can be used to define routes for handling HTTP requests related to authentication, such as user registration, login, and fetching the current user's profile. 
+// The router object allows us to modularize our route definitions and group them together for better organization and maintainability.  
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -8,6 +10,13 @@ import { authenticateToken, AuthRequest } from "../middleware/auth.js";
 const router = Router();
 
 // Register a new admin/user
+// The purpose of this route is to handle the registration of new users (admins or regular users) in the system. It performs several key functions:
+// 1. Input Validation: It checks if all required fields (name, email, password, role) are provided in the request body. If any field is missing, it returns a 400 Bad Request response with an appropriate message.
+// 2. Duplicate Email Check: It checks if the provided email is already registered in the system. If the email is found, it returns a 400 Bad Request response indicating that the email is already registered.
+// 3. Password Hashing: If the email is not already registered, it hashes the provided password using bcrypt to ensure secure storage of passwords in the database.
+// 4. User Creation: It creates a new user record in the database with the provided name, email, hashed password, and role.
+// 5. Person Record Creation: It automatically creates a corresponding Person record for the new user to ensure they appear on the public website. The Person record includes details such as role, category, designation, affiliation, and other relevant information.
+// 6. Response: If the registration is successful, it returns a 201 Created response with a success message. If any server error occurs during the process, it returns a 500 Internal Server Error response with an error message.  
 router.post("/register", async (req, res): Promise<any> => {
   try {
     const { name, email, password, role } = req.body;
@@ -84,6 +93,12 @@ router.post("/register", async (req, res): Promise<any> => {
 });
 
 // Admin Login
+// The purpose of this route is to handle the login process for users (admins or regular users) in the system. It performs several key functions:
+// 1. Input Validation: It checks if both email and password are provided in the request body. If either field is missing, it returns a 400 Bad Request response with an appropriate message.
+// 2. User Authentication: It checks if the provided email exists in the database. If the email is not found, it returns a 400 Bad Request response indicating invalid credentials. If the email is found, it compares the provided password with the stored hashed password using bcrypt. If the passwords do not match, it returns a 400 Bad Request response indicating invalid credentials.
+// 3. JWT Token Generation: If the authentication is successful, it generates a JSON Web Token (JWT) that includes the user's ID, email, and role. The token is signed using a secret key and has an expiration time of 1 day.
+// 4. Login Timestamp Update: It updates the user's last login timestamp in the database to keep track of user activity.
+// 5. Response: If the login is successful  
 router.post("/login", async (req, res): Promise<any> => {
   try {
     const { email, password } = req.body;
@@ -128,6 +143,10 @@ router.post("/login", async (req, res): Promise<any> => {
 });
 
 // Get Current User Profile
+// The purpose of this route is to retrieve the profile information of the currently authenticated user. It performs several key functions:
+// 1. Authentication: It uses the `authenticateToken` middleware to verify the JWT token provided in the request headers. If the token is invalid or missing, it returns a 401 Unauthorized response.
+// 2. User Retrieval: If the token is valid, it retrieves the user's information from the database using the user ID extracted from the token. It excludes the password field from the retrieved data for security reasons.
+// 3. Response: If the user is found, it returns a 200 OK response with the user's profile information. If the user is not found, it returns a 404 Not Found response. If any server error occurs during the process, it returns a 500 Internal Server Error response with an error message.  
 router.get("/me", authenticateToken, async (req: AuthRequest, res): Promise<any> => {
   try {
     const user = await User.findById(req.user.id).select("-password");
