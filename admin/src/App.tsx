@@ -1102,10 +1102,13 @@ export default function App() {
       newLinks = newLinks.filter((l: any) => l.label !== "Google Scholar");
     }
 
+    const selectedCategory = formData.get("category") as string;
+    const computedRole = selectedCategory === "Guide" ? "guide" : "scholar";
+
     const newPerson: Person = {
       id,
-      role: formData.get("role") as "guide" | "scholar",
-      category: formData.get("category") ? formData.get("category") as Person["category"] : undefined,
+      role: computedRole,
+      category: (selectedCategory && selectedCategory !== "Guide") ? selectedCategory as Person["category"] : undefined,
       name: formData.get("name") as string,
       designation: formData.get("designation") as string,
       affiliation: formData.get("affiliation") as string,
@@ -2461,7 +2464,25 @@ export default function App() {
                 </div>
                 
                 <button
-                  onClick={() => { setEditingPerson(null); setIsPersonModalOpen(true); }}
+                  onClick={() => { 
+                    setEditingPerson({
+                      id: "",
+                      role: "scholar",
+                      name: "",
+                      designation: "",
+                      affiliation: "ViBeS Lab, IIITDM Kancheepuram",
+                      email: "",
+                      joined: new Date().getFullYear(),
+                      domains: [],
+                      skills: [],
+                      education: [],
+                      publications: [],
+                      awards: [],
+                      conferences: [],
+                      links: []
+                    } as any); 
+                    setIsPersonModalOpen(true); 
+                  }}
                   className="flex items-center gap-2 px-4 py-1.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/95 transition shadow-sm"
                 >
                   <Plus size={16} />
@@ -3189,24 +3210,13 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Primary Role Type</label>
-                  <select
-                    name="role"
-                    defaultValue={editingPerson?.role || "scholar"}
-                    className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
-                  >
-                    <option value="scholar">Scholar (Student / Alumni)</option>
-                    <option value="guide">Guide (Lab lead / Faculty)</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col">
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Category Section</label>
                   <select
                     name="category"
-                    defaultValue={editingPerson?.category || "PhD"}
+                    defaultValue={(editingPerson?.role === "guide" && !editingPerson?.category) ? "Guide" : (editingPerson?.category || "PhD")}
                     className="px-3 py-2 text-sm rounded-lg border border-border bg-muted focus:outline-none focus:border-primary"
                   >
+                    <option value="Guide">Lab Head / Guide</option>
                     <option value="PhD">PhD Scholar</option>
                     <option value="PG">Postgraduate Student (PG)</option>
                     <option value="UG">Undergraduate Student (UG)</option>
