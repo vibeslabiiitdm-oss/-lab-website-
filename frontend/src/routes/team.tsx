@@ -1,20 +1,51 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { GraduationCap, Users, Clock } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { GraduationCap, Users, Clock, ArrowLeft } from "lucide-react";
 import { PeopleCard } from "@/components/site/PeopleCard";
 import { Reveal } from "@/components/site/Reveal";
-import { allPeople } from "@/data/lab";
+import { type Person } from "@/data/lab";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/team")({ component: TeamPage });
 
 function TeamPage() {
+  const [allPeople, setAllPeople] = useState<Person[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/people")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllPeople(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch people:", err);
+        setIsLoading(false);
+      });
+  }, []);
+
   const faculty = allPeople.filter((p) => p.role === "guide");
-  const phd = allPeople.filter((p) => p.category === "PhD");
-  const pg = allPeople.filter((p) => p.category === "PG");
-  const ug = allPeople.filter((p) => p.category === "UG");
-  const alumni = allPeople.filter((p) => p.category === "Alumni");
+  const phd = allPeople.filter((p) => p.category === "PhD" && p.role !== "guide");
+  const pg = allPeople.filter((p) => p.category === "PG" && p.role !== "guide");
+  const ug = allPeople.filter((p) => p.category === "UG" && p.role !== "guide");
+  const alumni = allPeople.filter((p) => p.category === "Alumni" && p.role !== "guide");
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <div className="text-muted-foreground animate-pulse">Loading team members...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-14">
+      <Link
+        to="/"
+        className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} /> Back to Home
+      </Link>
       <Reveal>
         <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Our People</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">

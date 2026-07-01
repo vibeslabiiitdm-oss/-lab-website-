@@ -1,0 +1,39 @@
+Person Profile: A Navaneeswar Reddy
+Name: A Navaneeswar Reddy
+Role: scholar
+Category / Level: Undergraduate (UG) Student
+Email: CS23B1022@iiitdm.ac.in
+Bio: B.Tech Student at ViBeS Lab.
+
+
+Person Profile: T. Ramkumar
+Name: T. Ramkumar
+Role: scholar
+Category / Level: Alumni / Former Member
+Email: CS23M1010@iiitdm.ac.in
+Bio: Project: Multi-Modal Cattle Biometrics.
+
+
+Person Profile: Arpit Singh
+Name: Arpit Singh
+Role: scholar
+Category / Level: Alumni / Former Member
+Email: CS21B2033@iiitdm.ac.in
+Bio: Project: DAKU: DUAL ATTENTION KNOWLEDGE U-NET.
+
+
+Person Profile: Pranav Singh
+Name: Pranav Singh
+Role: scholar
+Category / Level: Alumni / Former Member
+Email: CS22B1056@iiitdm.ac.in
+Bio: Project: Baby Dragon Hatchling for Amodal Instance Segmentation on the KINS Dataset.
+
+
+Person Profile: Mariyam Joory
+Name: Mariyam Joory
+Role: scholar
+Category / Level: Alumni / Former Member
+Email: CS20B1030@iiitdm.ac.in
+Bio: Alumni at ViBeS Lab.
+

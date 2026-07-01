@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Loader2 } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Mail, MapPin, Phone, Loader2, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 
@@ -44,8 +44,17 @@ function Contact() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-14 grid lg:grid-cols-2 gap-10">
-      <Reveal>
+    <div className="mx-auto max-w-7xl px-6 py-14">
+      <div className="col-span-full">
+        <Link
+          to="/"
+          className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+        >
+          <ArrowLeft size={16} /> Back to Home
+        </Link>
+      </div>
+      <div className="grid lg:grid-cols-2 gap-10">
+        <Reveal>
         <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Contact</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">
           Let's <span className="text-gradient">talk research</span>
@@ -58,10 +67,10 @@ function Contact() {
             <MapPin className="text-primary" size={16} /> IIITDM Kancheepuram, Chennai 600127
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <Mail className="text-primary" size={16} /> absl@iiitdm.ac.in
+            <Mail className="text-primary" size={16} /> vibeslab.iiitdm@gmail.com
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <Phone className="text-primary" size={16} /> +91 44 0000 0000
+            <Phone className="text-primary" size={16} /> +91 8763797907
           </div>
         </div>
       </Reveal>
@@ -133,6 +142,7 @@ function Contact() {
           )}
         </form>
       </Reveal>
+      </div>
     </div>
   );
 }

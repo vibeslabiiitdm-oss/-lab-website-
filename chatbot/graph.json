@@ -1,0 +1,872 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "Person",
+      "role": "guide",
+      "id": "Dr. Rahul Raman"
+    },
+    {
+      "type": "Domain",
+      "id": "Visual Surveillance"
+    },
+    {
+      "type": "Domain",
+      "id": "Biometrics"
+    },
+    {
+      "type": "Domain",
+      "id": "Computer Vision"
+    },
+    {
+      "type": "Domain",
+      "id": "Gen-AI"
+    },
+    {
+      "type": "Domain",
+      "id": "Machine Learning"
+    },
+    {
+      "type": "Domain",
+      "id": "Reinforcement Learning"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Sukesh Babu V S"
+    },
+    {
+      "type": "Category",
+      "id": "PhD"
+    },
+    {
+      "type": "Domain",
+      "id": "Deep Learning"
+    },
+    {
+      "type": "Domain",
+      "id": "Autonomous Systems"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Anu Jexline Joseph"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Devika K"
+    },
+    {
+      "type": "Category",
+      "id": "PG"
+    },
+    {
+      "type": "Domain",
+      "id": "Natural Language Processing"
+    },
+    {
+      "type": "Domain",
+      "id": "Anomaly Detection"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Tirukandyur Sowmith"
+    },
+    {
+      "type": "Domain",
+      "id": "Large Language Models"
+    },
+    {
+      "type": "Domain",
+      "id": "Data Science"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Laxmi Nivas"
+    },
+    {
+      "type": "Category",
+      "id": "UG"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "A Navaneeswar Reddy"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Deetya A Mehta"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Pakala Lohith"
+    },
+    {
+      "type": "Domain",
+      "id": "Full-Stack AI"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Sudarshan Sudhakar"
+    },
+    {
+      "type": "Domain",
+      "id": "Agentic Workflows"
+    },
+    {
+      "type": "Domain",
+      "id": "Software Engineering"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Janani V"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Rohit Kumar"
+    },
+    {
+      "type": "Domain",
+      "id": "High Performance Computing"
+    },
+    {
+      "type": "Domain",
+      "id": "Full-Stack Development"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Efanio Jens"
+    },
+    {
+      "type": "Domain",
+      "id": "Explainable AI"
+    },
+    {
+      "type": "Domain",
+      "id": "Multimodal Biometrics"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Vempali Sai Linisha"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Ambavaram Manasa Reddy"
+    },
+    {
+      "type": "Category",
+      "id": "Alumni"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "P. Sri Haindavi"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Vaagdevhi Varkkala"
+    },
+    {
+      "type": "Domain",
+      "id": "Cloud Computing"
+    },
+    {
+      "type": "Domain",
+      "id": "Transformers"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Varshitha Masaram"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Konkimalla Bala Sai Manvitha"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "P. Naga Sripada"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "T. Ramkumar"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Pawan Kumar Bamne"
+    },
+    {
+      "type": "Domain",
+      "id": "Web Development"
+    },
+    {
+      "type": "Domain",
+      "id": "Database Management Systems"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "J. S. Hilton Paul Tony Raj"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Vishnu Ram A. V."
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Basab Ghosh"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Girik Khullar"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Ananya M."
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Sahith Gundreddy"
+    },
+    {
+      "type": "Domain",
+      "id": "ADAS"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Samarth"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Arima"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Ramkumar R"
+    },
+    {
+      "type": "Domain",
+      "id": "Embedded Systems"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Vennela"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Soorya Narayanan R"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Vyshnav K"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Apurba Roy"
+    },
+    {
+      "type": "Domain",
+      "id": "Parallel Computing"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Mariyam Joory"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Nitin Koppera"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Rayasam Munirama Aneesh Deepak"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "E. Saileswara Reddy"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Tarra Venkata Sai"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Kunduru Noniesh Reddy"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Koneti Sai Dheeraj"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Arpit Singh"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Velide Sri Manaswini"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Dindigala Rahul"
+    },
+    {
+      "type": "Person",
+      "role": "scholar",
+      "id": "Pranav Singh"
+    },
+    {
+      "type": "Project",
+      "id": "Monocular Depth Analysis Controlled GPS Denied AGV Navigation"
+    },
+    {
+      "type": "Project",
+      "id": "Multi Biometric Analysis of Cattle"
+    }
+  ],
+  "edges": [
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Visual Surveillance"
+    },
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Biometrics"
+    },
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Gen-AI"
+    },
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Machine Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Dr. Rahul Raman",
+      "target": "Reinforcement Learning"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Sukesh Babu V S",
+      "target": "PhD"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sukesh Babu V S",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sukesh Babu V S",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sukesh Babu V S",
+      "target": "Autonomous Systems"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sukesh Babu V S",
+      "target": "Visual Surveillance"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Anu Jexline Joseph",
+      "target": "PhD"
+    },
+    {
+      "relation": "Researches",
+      "source": "Anu Jexline Joseph",
+      "target": "Biometrics"
+    },
+    {
+      "relation": "Researches",
+      "source": "Anu Jexline Joseph",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Anu Jexline Joseph",
+      "target": "Machine Learning"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Devika K",
+      "target": "PG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Devika K",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Devika K",
+      "target": "Natural Language Processing"
+    },
+    {
+      "relation": "Researches",
+      "source": "Devika K",
+      "target": "Anomaly Detection"
+    },
+    {
+      "relation": "Researches",
+      "source": "Devika K",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Tirukandyur Sowmith",
+      "target": "PG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Tirukandyur Sowmith",
+      "target": "Natural Language Processing"
+    },
+    {
+      "relation": "Researches",
+      "source": "Tirukandyur Sowmith",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Tirukandyur Sowmith",
+      "target": "Large Language Models"
+    },
+    {
+      "relation": "Researches",
+      "source": "Tirukandyur Sowmith",
+      "target": "Machine Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Tirukandyur Sowmith",
+      "target": "Data Science"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Laxmi Nivas",
+      "target": "UG"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "A Navaneeswar Reddy",
+      "target": "UG"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Deetya A Mehta",
+      "target": "UG"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Pakala Lohith",
+      "target": "UG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pakala Lohith",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pakala Lohith",
+      "target": "Machine Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pakala Lohith",
+      "target": "Full-Stack AI"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pakala Lohith",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Sudarshan Sudhakar",
+      "target": "UG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sudarshan Sudhakar",
+      "target": "Natural Language Processing"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sudarshan Sudhakar",
+      "target": "Agentic Workflows"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sudarshan Sudhakar",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sudarshan Sudhakar",
+      "target": "Software Engineering"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Janani V",
+      "target": "UG"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Rohit Kumar",
+      "target": "UG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Rohit Kumar",
+      "target": "High Performance Computing"
+    },
+    {
+      "relation": "Researches",
+      "source": "Rohit Kumar",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Rohit Kumar",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Rohit Kumar",
+      "target": "Full-Stack Development"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Efanio Jens",
+      "target": "UG"
+    },
+    {
+      "relation": "Researches",
+      "source": "Efanio Jens",
+      "target": "Explainable AI"
+    },
+    {
+      "relation": "Researches",
+      "source": "Efanio Jens",
+      "target": "Multimodal Biometrics"
+    },
+    {
+      "relation": "Researches",
+      "source": "Efanio Jens",
+      "target": "Full-Stack Development"
+    },
+    {
+      "relation": "Researches",
+      "source": "Efanio Jens",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Vempali Sai Linisha",
+      "target": "UG"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Ambavaram Manasa Reddy",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "P. Sri Haindavi",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Researches",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Cloud Computing"
+    },
+    {
+      "relation": "Researches",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Data Science"
+    },
+    {
+      "relation": "Researches",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Transformers"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Varshitha Masaram",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Konkimalla Bala Sai Manvitha",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "P. Naga Sripada",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "T. Ramkumar",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Pawan Kumar Bamne",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pawan Kumar Bamne",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pawan Kumar Bamne",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pawan Kumar Bamne",
+      "target": "Web Development"
+    },
+    {
+      "relation": "Researches",
+      "source": "Pawan Kumar Bamne",
+      "target": "Database Management Systems"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "J. S. Hilton Paul Tony Raj",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Vishnu Ram A. V.",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Basab Ghosh",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Girik Khullar",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Ananya M.",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Sahith Gundreddy",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sahith Gundreddy",
+      "target": "Visual Surveillance"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sahith Gundreddy",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Sahith Gundreddy",
+      "target": "ADAS"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Samarth",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Arima",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Ramkumar R",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Researches",
+      "source": "Ramkumar R",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Ramkumar R",
+      "target": "Deep Learning"
+    },
+    {
+      "relation": "Researches",
+      "source": "Ramkumar R",
+      "target": "Embedded Systems"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Vennela",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Soorya Narayanan R",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Vyshnav K",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Apurba Roy",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Researches",
+      "source": "Apurba Roy",
+      "target": "Biometrics"
+    },
+    {
+      "relation": "Researches",
+      "source": "Apurba Roy",
+      "target": "Computer Vision"
+    },
+    {
+      "relation": "Researches",
+      "source": "Apurba Roy",
+      "target": "Parallel Computing"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Mariyam Joory",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Nitin Koppera",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Rayasam Munirama Aneesh Deepak",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "E. Saileswara Reddy",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Tarra Venkata Sai",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Kunduru Noniesh Reddy",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Koneti Sai Dheeraj",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Arpit Singh",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Velide Sri Manaswini",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Dindigala Rahul",
+      "target": "Alumni"
+    },
+    {
+      "relation": "Belongs_To",
+      "source": "Pranav Singh",
+      "target": "Alumni"
+    }
+  ]
+}

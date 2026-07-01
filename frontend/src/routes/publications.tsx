@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { allPeople } from "@/data/lab";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/publications")({ component: PubsPage });
 
@@ -35,9 +35,15 @@ function PubsPage() {
     .sort((a, b) => b.year - a.year || b.month - a.month);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-14">
+    <div className="mx-auto max-w-5xl px-6 py-14">
+      <Link
+        to="/"
+        className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} /> Back to Home
+      </Link>
       <Reveal>
-        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Output</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Publications</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">Publications</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
           Browse {all.length} publications across the lab — filter by year, type, or search by

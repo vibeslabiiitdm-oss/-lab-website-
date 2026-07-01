@@ -91,9 +91,7 @@ const seedDatabase = async () => {
     console.log("Research projects seeded successfully.");
 
     // 4. Seed Achievements
-    console.log(`Seeding ${achievements.length} achievements/milestones...`);
-    await Achievement.insertMany(achievements);
-    console.log("Achievements seeded successfully.");
+    console.log(`Skipping achievement seeding (achievements are now managed exclusively via the Admin Panel)...`);
 
     // 5. Seed Supervised Thesis Projects
     console.log(`Seeding ${supervisedProjects.length} supervised projects...`);

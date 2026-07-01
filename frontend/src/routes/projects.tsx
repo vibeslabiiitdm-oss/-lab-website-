@@ -1,15 +1,46 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Rocket, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Rocket, CheckCircle2, ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { projects } from "@/data/lab";
+import { type Project } from "@/data/lab";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/projects")({ component: ProjectsPage });
 
 function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        setProjects(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch projects:", err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <div className="text-muted-foreground animate-pulse">Loading projects...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-14">
+      <Link
+        to="/"
+        className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} /> Back to Home
+      </Link>
       <Reveal>
-        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Work</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Our Projects</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">
           Projects in the <span className="text-gradient">lab</span>
         </h1>

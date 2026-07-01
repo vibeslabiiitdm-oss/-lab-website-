@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { Stat } from "@/components/site/StatsCounter";
 import { labStats, resources, labDomains } from "@/data/lab";
@@ -10,6 +11,12 @@ export const Route = createFileRoute("/about")({ component: About });
 function About() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-14">
+      <Link
+        to="/"
+        className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} /> Back to Home
+      </Link>
       <Reveal>
         <div className="text-xs uppercase tracking-[0.2em] text-primary/80">About</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">

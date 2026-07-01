@@ -939,7 +939,7 @@ export default function App() {
             showNotification("Achievement deleted successfully");
             addSessionNotification(`Achievement milestone deleted (ID: ${id})`, "warning");
           })
-          .catch(err => showNotification("Failed to delete achievement", "error"));
+          .catch(_err => showNotification("Failed to delete achievement", "error"));
       }
     );
   };
@@ -959,7 +959,7 @@ export default function App() {
             setLiveUpdates(liveUpdates.filter(u => u.id !== id));
             showNotification("Update deleted successfully");
           })
-          .catch(err => showNotification("Failed to delete update", "error"));
+          .catch(_err => showNotification("Failed to delete update", "error"));
       }
     );
   };
@@ -1811,11 +1811,16 @@ export default function App() {
                       messages.map((msg) => (
                         <div 
                           key={msg._id}
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
                             setSelectedMessage(msg);
                             setIsMessagesOpen(false);
                             // Mark as read in backend
                             if (!msg.read) {
+                              // Optimistic update
+                              setMessages(prev => prev.map(m => m._id === msg._id ? { ...m, read: true } : m));
+                              
                               const token = sessionStorage.getItem("auth_token");
                               fetch(`http://localhost:5000/api/contact/${msg._id}`, {
                                 method: "PUT",
@@ -1824,12 +1829,7 @@ export default function App() {
                                   "Authorization": `Bearer ${token}` 
                                 },
                                 body: JSON.stringify({ read: true })
-                              })
-                                .then(res => res.json())
-                                .then(updated => {
-                                  setMessages(prev => prev.map(m => m._id === msg._id ? updated : m));
-                                })
-                                .catch(err => console.error("Error marking read:", err));
+                              }).catch(err => console.error("Error marking read:", err));
                             }
                           }}
                           className={`p-3.5 hover:bg-muted/40 transition duration-150 cursor-pointer flex gap-3 items-start ${!msg.read ? "bg-primary/5 border-l-2 border-primary" : ""}`}
@@ -1852,15 +1852,26 @@ export default function App() {
                   </div>
                   
                   {/* Footer */}
-                  {messages.length > 0 && (
+                  {messages.some(m => !m.read) && (
                     <div className="p-2 border-t border-border/20 bg-muted/20 text-center">
                       <button 
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
                           // Mark all as read
                           const unread = messages.filter(m => !m.read);
-                          if (unread.length === 0) return;
+                          if (unread.length === 0) {
+                            setIsMessagesOpen(false);
+                            return;
+                          }
                           
                           const token = sessionStorage.getItem("auth_token");
+                          
+                          // Optimistic update
+                          setMessages(prev => prev.map(m => ({ ...m, read: true })));
+                          showNotification("All messages marked as read");
+                          setIsMessagesOpen(false);
+                          
                           Promise.all(unread.map(m => 
                             fetch(`http://localhost:5000/api/contact/${m._id}`, {
                               method: "PUT",
@@ -1870,16 +1881,7 @@ export default function App() {
                               },
                               body: JSON.stringify({ read: true })
                             }).then(res => res.json())
-                          ))
-                            .then(updatedList => {
-                              setMessages(prev => prev.map(m => {
-                                const match = updatedList.find((u: any) => u._id === m._id);
-                                return match ? match : m;
-                              }));
-                              showNotification("All messages marked as read");
-                              setIsMessagesOpen(false);
-                            })
-                            .catch(err => console.error("Error marking all read:", err));
+                          )).catch(err => console.error("Error marking all read:", err));
                         }}
                         className="text-[10px] font-bold text-primary hover:text-primary/95 transition w-full py-1 text-center cursor-pointer"
                       >
@@ -2510,7 +2512,7 @@ export default function App() {
                       const matchesSearch = p.name.toLowerCase().includes(teamSearch.toLowerCase()) || p.bio.toLowerCase().includes(teamSearch.toLowerCase()) || p.skills.some(s => s.toLowerCase().includes(teamSearch.toLowerCase()));
                       const matchesFilter = teamFilter === "All" ||
                         (teamFilter === "Faculty" && p.role === "guide") ||
-                        (p.category === teamFilter);
+                        (teamFilter !== "Faculty" && p.role !== "guide" && p.category === teamFilter);
                       return matchesSearch && matchesFilter;
                     })
                     .map((p) => (

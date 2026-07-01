@@ -1,26 +1,43 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Award, FileBadge, Sparkles, Target, Trophy } from "lucide-react";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Award, FileBadge, Sparkles, Target, Trophy, ArrowLeft } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
-import { achievements, type Achievement } from "@/data/lab";
+import { type Achievement } from "@/data/lab";
 
 export const Route = createFileRoute("/achievements")({ component: AchievementsPage });
 
 const cats = ["All", "Recognition", "Grant", "Patent", "Milestone"] as const;
 
-const iconFor = (c: Achievement["category"]) =>
+const iconFor = (c: Achievement["category"] | string) =>
   c === "Recognition" ? Trophy : c === "Grant" ? Sparkles : c === "Patent" ? FileBadge : Target;
 
 function AchievementsPage() {
   const [cat, setCat] = useState<(typeof cats)[number]>("All");
-  const list = achievements
+  const [dbAchievements, setDbAchievements] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/achievements")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDbAchievements(data);
+      })
+      .catch((err) => console.error("Error loading achievements:", err));
+  }, []);
+
+  const list = dbAchievements
     .filter((a) => (cat === "All" ? true : a.category === cat))
     .sort((a, b) => b.year - a.year);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-14">
+      <Link
+        to="/"
+        className="mb-8 flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} /> Back to Home
+      </Link>
       <Reveal>
-        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Milestones</div>
+        <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Achievements</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">
           Lab <span className="text-gradient">achievements</span>
         </h1>
@@ -45,11 +62,11 @@ function AchievementsPage() {
       <div className="mt-12 relative">
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
         <ol className="space-y-8">
-          {list.map((a, i) => {
+          {list.map((a: any, i) => {
             const Icon = iconFor(a.category);
             const left = i % 2 === 0;
             return (
-              <Reveal key={a.id} delay={i * 40}>
+              <Reveal key={a._id || a.id || i} delay={i * 40}>
                 <li
                   className={`relative grid md:grid-cols-2 gap-6 ${left ? "" : "md:[&>*:first-child]:order-2"}`}
                 >

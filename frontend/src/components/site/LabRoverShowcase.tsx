@@ -369,12 +369,12 @@ export default function LabRoverShowcase() {
                 Our mechanical blueprint folders and mounting assembly diagrams are hosted on the lab repository servers.
               </p>
             </div>
-            <a
-              href="mailto:vibes@iiitdm.ac.in"
-              className="inline-flex items-center gap-2 rounded-lg bg-secondary hover:bg-secondary/80 border border-border px-4 py-2 text-xs font-semibold"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-chatbot", { detail: "show me photos of hardware blueprint" }))}
+              className="inline-flex items-center gap-2 rounded-lg bg-secondary hover:bg-secondary/80 border border-border px-4 py-2 text-xs font-semibold cursor-pointer"
             >
               Request Hardware schematics
-            </a>
+            </button>
           </div>
         </div>
       )}

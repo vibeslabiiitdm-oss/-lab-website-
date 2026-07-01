@@ -8,7 +8,7 @@ const router = Router();
 // Handle form submission
 router.post("/", async (req, res): Promise<any> => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, subject, message } = req.body;
 
     // Validation
     if (!name || !email || !message) {
@@ -24,7 +24,7 @@ router.post("/", async (req, res): Promise<any> => {
     const port = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : 587;
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
-    const receiver = process.env.CONTACT_RECEIVER_EMAIL || "absl@iiitdm.ac.in";
+    const receiver = "vibeslab.iiitdm@gmail.com";
 
     let emailSent = false;
     let emailError = "";
@@ -46,12 +46,14 @@ router.post("/", async (req, res): Promise<any> => {
           to: receiver,
           replyTo: email,
           subject: `📬 New Contact Form Submission - ${name}`,
-          text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+          text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject || 'N/A'}\nSubmission Time: ${new Date().toLocaleString()}\n\nMessage:\n${message}`,
           html: `
             <div style="font-family: sans-serif; padding: 20px; color: #333; line-height: 1.6;">
               <h2 style="color: #0d9488; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Contact Form Submission</h2>
               <p><strong>Name:</strong> ${name}</p>
               <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+              ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
+              <p><strong>Submission Time:</strong> ${new Date().toLocaleString()}</p>
               <div style="background-color: #f9f9f9; border-left: 4px solid #0d9488; padding: 15px; margin-top: 15px; font-style: italic; white-space: pre-wrap;">${message}</div>
               <p style="margin-top: 20px; font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
                 Sent from the ViBeS Lab website contact form.

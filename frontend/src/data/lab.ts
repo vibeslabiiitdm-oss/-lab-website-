@@ -1915,7 +1915,7 @@ export let scholars: Person[] = [
     ],
     resume: "/resumes/ramkumar_r_resume.pdf",
     researchProject: {
-      title: "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking",
+      title: "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking (Hardware Blueprint)",
       abstract:
         "Developing navigation and tracking pipelines for AGVs in GPS-denied environments. Created a real-time 3-model pipeline leveraging YOLOv4, Deep-SORT, and a geometry-based ML model (PDM) for monocular object trajectory prediction.",
       datasets: ["TIHAAN AGV Dataset"],
@@ -2387,15 +2387,7 @@ export let projects: Project[] = [
   },
 ];
 
-export let achievements: Achievement[] = allPeople.flatMap(p => 
-  (p.awards || []).map((a, i) => ({
-    id: a.id || `${p.id}-award-${i}`,
-    title: a.title,
-    category: "Recognition",
-    year: a.year,
-    detail: `${p.name} received the ${a.title} from ${a.org}.`,
-  } as Achievement))
-).sort((a, b) => b.year - a.year);
+export let achievements: Achievement[] = [];
 
 export let labStats = {
   members: 1 + scholars.length,

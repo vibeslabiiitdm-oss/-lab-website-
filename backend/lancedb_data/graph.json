@@ -1,0 +1,952 @@
+{
+  "options": {
+    "type": "mixed",
+    "multi": false,
+    "allowSelfLoops": true
+  },
+  "attributes": {},
+  "nodes": [
+    {
+      "key": "Dr. Rahul Raman"
+    },
+    {
+      "key": "ViBeS Lab"
+    },
+    {
+      "key": "Position and time localization of occlusion between two objects using a static camera"
+    },
+    {
+      "key": "Beyond Estimating Discrete Directions of Walk: A Fuzzy Approach"
+    },
+    {
+      "key": "Kinesiology-inspired Estimation of Pedestrian Walk Direction for Smart Surveillance"
+    },
+    {
+      "key": "Spatiotemporal optical blob reconstruction for object detection in grayscale videos"
+    },
+    {
+      "key": "Direction Estimation for Pedestrian Monitoring System in Smart Cities: An HMM Based Approach"
+    },
+    {
+      "key": "Direction prediction for avoiding occlusion in visual surveillance"
+    },
+    {
+      "key": "Multi-camera Localization: A Review"
+    },
+    {
+      "key": "Occlusion Prediction Algorithm for Multi-camera Network"
+    },
+    {
+      "key": "Towards Optimized Placement of Cameras for Gait Pattern Recognition"
+    },
+    {
+      "key": "Lip Pattern Recognition Based on Local Feature Extraction"
+    },
+    {
+      "key": "A Novel Approach for Eye Gaze and Tilt Estimation through Sclera Detection"
+    },
+    {
+      "key": "Evaluation of Periocular over Face Biometric: A Case Study"
+    },
+    {
+      "key": "Large Scale Cloud for Biometric Identification"
+    },
+    {
+      "key": "Fast Approximate Eyelid Detection for Periocular Localization"
+    },
+    {
+      "key": "Detection of Web-Based Attacks by Analyzing Web Server Log Files"
+    },
+    {
+      "key": "Context-based Sarcasm Detection in Hindi Tweets"
+    },
+    {
+      "key": "Smart Surveillance through Multi-camera Networks"
+    },
+    {
+      "key": "Fusion of shape and texture features for lip biometry in mobile devices"
+    },
+    {
+      "key": "Score Level Fusion of SIFT and SURF for Iris"
+    },
+    {
+      "key": "A cognitive system for lip identification using convolution neural networks"
+    },
+    {
+      "key": "Acquisition and corpus description of a constrained lip database captured from handheld devices"
+    },
+    {
+      "key": "Acquisition and corpus description of NITR conscious walk dataset"
+    },
+    {
+      "key": "NITRLipV1: a constrained lip database captured in visible spectrum"
+    },
+    {
+      "key": "Pedestrian Walk Direction Estimation for Smart Surveillance"
+    },
+    {
+      "key": "Study on models for smart surveillance through multi-camera networks"
+    },
+    {
+      "key": "Sukesh Babu V S"
+    },
+    {
+      "key": "Robust Lightweight Pedestrian Detection Algorithm for Autonomous Mobile Robots (AMCR)"
+    },
+    {
+      "key": "Costaa YOLO: Convolutional Swin Transformer with Attention and Anchor Optimization for Robust Pedestrian Detection"
+    },
+    {
+      "key": "MECSA: Multi-scale Enhanced Channel and Spatial Attention for Robust Pedestrian Detection"
+    },
+    {
+      "key": "CamPedV2: A Diverse Real-Time Pedestrian Detection Dataset"
+    },
+    {
+      "key": "DECA-YOLO: Dual-Pooling Efficient Channel Attention for Robust Pedestrian Detection"
+    },
+    {
+      "key": "Enhancing Aerial Pedestrian Detection via High Resolution P2 Feature Integration in YOLOv12"
+    },
+    {
+      "key": "CamPedV2: A Comprehensive Dataset for Advancing Pedestrian Detection Models"
+    },
+    {
+      "key": "ROBUST PEDESTRIAN DETECTION VIA CURATED TRAINING ON CREATED DATASET"
+    },
+    {
+      "key": "ROBUST PEDESTRIAN DETECTION VIA ENRICHED DATASET"
+    },
+    {
+      "key": "Pedestrian Direction Estimation: An Approach via Perspective Distortion Patterns"
+    },
+    {
+      "key": "Self-Supervised Pretraining for Robust Pedestrian Detection"
+    },
+    {
+      "key": "BDH Vision: Context-Aware Feature Reasoning"
+    },
+    {
+      "key": "High-Fidelity Synthetic Iris Generation using Diffusion Models"
+    },
+    {
+      "key": "Multi-Scale Dilated Attention for Robust Pedestrian Detection in YOLO-based Models"
+    },
+    {
+      "key": "Deep Learning for Walking Direction Estimation"
+    },
+    {
+      "key": "Walking Direction Estimation using Silhouette and Skeletal Representations"
+    },
+    {
+      "key": "Anu Jexline Joseph"
+    },
+    {
+      "key": "Pose-Invariant Biometric Recognition of Cattle Using 2D Visual and 3D Structural Features"
+    },
+    {
+      "key": "Pose-Invariant 2D Face Verification by Combining MICA and 2D Features"
+    },
+    {
+      "key": "Devika K"
+    },
+    {
+      "key": "Clinical Decision Support System — Multi-Agent Distributed AI Platform"
+    },
+    {
+      "key": "Tirukandyur Sowmith"
+    },
+    {
+      "key": "Plant Disease Vision System: Classical ML to Transformers"
+    },
+    {
+      "key": "Pakala Lohith"
+    },
+    {
+      "key": "Text-Guided Brain Tumor Segmentation using Vision-Language Models"
+    },
+    {
+      "key": "Sudarshan Sudhakar"
+    },
+    {
+      "key": "Two-Stage FDI Attack Detector – Transformer & Sequence Modelling"
+    },
+    {
+      "key": "Rohit Kumar"
+    },
+    {
+      "key": "Efanio Jens"
+    },
+    {
+      "key": "Explainable Multimodal Biometrics for Continuous Authentication"
+    },
+    {
+      "key": "Ambavaram Manasa Reddy"
+    },
+    {
+      "key": "Identity-Aware Super-Resolution of Degraded Faces for Face Verification"
+    },
+    {
+      "key": "P. Sri Haindavi"
+    },
+    {
+      "key": "Enhancing Vehicle Safety on Roads: An AI-Driven Driver Assistance System with Dash Cameras"
+    },
+    {
+      "key": "Vaagdevhi Varkkala"
+    },
+    {
+      "key": "Monocular 3D Pedestrian Detection using Transformers"
+    },
+    {
+      "key": "Varshitha Masaram"
+    },
+    {
+      "key": "Cluster-Based Generation of Fingerprint and Iris Biometric Images"
+    },
+    {
+      "key": "Konkimalla Bala Sai Manvitha"
+    },
+    {
+      "key": "RepoSage: An AI-Based System for Natural Language Querying of Software Codebases"
+    },
+    {
+      "key": "P. Naga Sripada"
+    },
+    {
+      "key": "Study and Experimental Implementation of Mixture of Recursions (MoR) for Vision Tasks"
+    },
+    {
+      "key": "T. Ramkumar"
+    },
+    {
+      "key": "Multi-Modal Cattle Biometrics"
+    },
+    {
+      "key": "Pawan Kumar Bamne"
+    },
+    {
+      "key": "Robust Pedestrian Detection in Challenging Environments Using YOLO"
+    },
+    {
+      "key": "J. S. Hilton Paul Tony Raj"
+    },
+    {
+      "key": "Towards Robust Gait Recognition: Addressing Uncertainty Using Adversarial Learning, Multi-Task Learning and Bayesian Inference"
+    },
+    {
+      "key": "Vishnu Ram A. V."
+    },
+    {
+      "key": "Towards Improved Contrastive Learning with Adaptive Data Augmentation and Adversarial Training Paradigms"
+    },
+    {
+      "key": "Basab Ghosh"
+    },
+    {
+      "key": "Reducing imposter in Muzzle Biometrics"
+    },
+    {
+      "key": "Girik Khullar"
+    },
+    {
+      "key": "Beyond GANs: High-Fidelity Synthetic Iris Generation with Diffusion Models"
+    },
+    {
+      "key": "Ananya M."
+    },
+    {
+      "key": "Exploring Periocular Biometrics for Cattle Identification in the Visible Spectrum"
+    },
+    {
+      "key": "Sahith Gundreddy"
+    },
+    {
+      "key": "Visual Surveillance and ADAS Trajectory Prediction"
+    },
+    {
+      "key": "Perspective Distortion Model for Pedestrian Trajectory Prediction for Consumer Applications"
+    },
+    {
+      "key": "Ramkumar R"
+    },
+    {
+      "key": "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking (Hardware Blueprint)"
+    },
+    {
+      "key": "Apurba Roy"
+    },
+    {
+      "key": "Cattle Identification through Multi-Biometric Features and Edge Device"
+    },
+    {
+      "key": "Rayasam Munirama Aneesh Deepak"
+    },
+    {
+      "key": "Generative AI for 3D Pedestrian Detection"
+    },
+    {
+      "key": "E. Saileswara Reddy"
+    },
+    {
+      "key": "Forecasting Indian Agricultural Commodity Prices Using Deep Learning Methods"
+    },
+    {
+      "key": "Tarra Venkata Sai"
+    },
+    {
+      "key": "LLM-Driven Financial Market Analysis and Agentic Trading System"
+    },
+    {
+      "key": "Kunduru Noniesh Reddy"
+    },
+    {
+      "key": "AI-Powered Cattle Recognition and Assistance"
+    },
+    {
+      "key": "Koneti Sai Dheeraj"
+    },
+    {
+      "key": "Arpit Singh"
+    },
+    {
+      "key": "DAKU: DUAL ATTENTION KNOWLEDGE U-NET"
+    },
+    {
+      "key": "Velide Sri Manaswini"
+    },
+    {
+      "key": "Recursive Adaptive Backbone using Mixture of Recursions (MoR) for Robust Pedestrian Detection"
+    },
+    {
+      "key": "Dindigala Rahul"
+    },
+    {
+      "key": "From Language to Vision: Sparse Hebbian Linear Attention - Structural Analysis & Vision Adaptation"
+    },
+    {
+      "key": "Pranav Singh"
+    },
+    {
+      "key": "Baby Dragon Hatchling for Amodal Instance Segmentation on the KINS Dataset"
+    }
+  ],
+  "edges": [
+    {
+      "key": "geid_73_0",
+      "source": "Dr. Rahul Raman",
+      "target": "ViBeS Lab",
+      "attributes": {
+        "type": "LEADS"
+      }
+    },
+    {
+      "key": "geid_73_1",
+      "source": "Dr. Rahul Raman",
+      "target": "Position and time localization of occlusion between two objects using a static camera",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_2",
+      "source": "Dr. Rahul Raman",
+      "target": "Beyond Estimating Discrete Directions of Walk: A Fuzzy Approach",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_3",
+      "source": "Dr. Rahul Raman",
+      "target": "Kinesiology-inspired Estimation of Pedestrian Walk Direction for Smart Surveillance",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_4",
+      "source": "Dr. Rahul Raman",
+      "target": "Spatiotemporal optical blob reconstruction for object detection in grayscale videos",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_5",
+      "source": "Dr. Rahul Raman",
+      "target": "Direction Estimation for Pedestrian Monitoring System in Smart Cities: An HMM Based Approach",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_6",
+      "source": "Dr. Rahul Raman",
+      "target": "Direction prediction for avoiding occlusion in visual surveillance",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_7",
+      "source": "Dr. Rahul Raman",
+      "target": "Multi-camera Localization: A Review",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_8",
+      "source": "Dr. Rahul Raman",
+      "target": "Occlusion Prediction Algorithm for Multi-camera Network",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_9",
+      "source": "Dr. Rahul Raman",
+      "target": "Towards Optimized Placement of Cameras for Gait Pattern Recognition",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_10",
+      "source": "Dr. Rahul Raman",
+      "target": "Lip Pattern Recognition Based on Local Feature Extraction",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_11",
+      "source": "Dr. Rahul Raman",
+      "target": "A Novel Approach for Eye Gaze and Tilt Estimation through Sclera Detection",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_12",
+      "source": "Dr. Rahul Raman",
+      "target": "Evaluation of Periocular over Face Biometric: A Case Study",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_13",
+      "source": "Dr. Rahul Raman",
+      "target": "Large Scale Cloud for Biometric Identification",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_14",
+      "source": "Dr. Rahul Raman",
+      "target": "Fast Approximate Eyelid Detection for Periocular Localization",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_15",
+      "source": "Dr. Rahul Raman",
+      "target": "Detection of Web-Based Attacks by Analyzing Web Server Log Files",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_16",
+      "source": "Dr. Rahul Raman",
+      "target": "Context-based Sarcasm Detection in Hindi Tweets",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_17",
+      "source": "Dr. Rahul Raman",
+      "target": "Smart Surveillance through Multi-camera Networks",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_18",
+      "source": "Dr. Rahul Raman",
+      "target": "Fusion of shape and texture features for lip biometry in mobile devices",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_19",
+      "source": "Dr. Rahul Raman",
+      "target": "Score Level Fusion of SIFT and SURF for Iris",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_20",
+      "source": "Dr. Rahul Raman",
+      "target": "A cognitive system for lip identification using convolution neural networks",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_21",
+      "source": "Dr. Rahul Raman",
+      "target": "Acquisition and corpus description of a constrained lip database captured from handheld devices",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_22",
+      "source": "Dr. Rahul Raman",
+      "target": "Acquisition and corpus description of NITR conscious walk dataset",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_23",
+      "source": "Dr. Rahul Raman",
+      "target": "NITRLipV1: a constrained lip database captured in visible spectrum",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_24",
+      "source": "Dr. Rahul Raman",
+      "target": "Pedestrian Walk Direction Estimation for Smart Surveillance",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_25",
+      "source": "Dr. Rahul Raman",
+      "target": "Study on models for smart surveillance through multi-camera networks",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_26",
+      "source": "Sukesh Babu V S",
+      "target": "Robust Lightweight Pedestrian Detection Algorithm for Autonomous Mobile Robots (AMCR)",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_27",
+      "source": "Sukesh Babu V S",
+      "target": "Costaa YOLO: Convolutional Swin Transformer with Attention and Anchor Optimization for Robust Pedestrian Detection",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_28",
+      "source": "Sukesh Babu V S",
+      "target": "MECSA: Multi-scale Enhanced Channel and Spatial Attention for Robust Pedestrian Detection",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_29",
+      "source": "Sukesh Babu V S",
+      "target": "CamPedV2: A Diverse Real-Time Pedestrian Detection Dataset",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_30",
+      "source": "Sukesh Babu V S",
+      "target": "DECA-YOLO: Dual-Pooling Efficient Channel Attention for Robust Pedestrian Detection",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_31",
+      "source": "Sukesh Babu V S",
+      "target": "Enhancing Aerial Pedestrian Detection via High Resolution P2 Feature Integration in YOLOv12",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_32",
+      "source": "Sukesh Babu V S",
+      "target": "CamPedV2: A Comprehensive Dataset for Advancing Pedestrian Detection Models",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_33",
+      "source": "Sukesh Babu V S",
+      "target": "ROBUST PEDESTRIAN DETECTION VIA CURATED TRAINING ON CREATED DATASET",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_34",
+      "source": "Sukesh Babu V S",
+      "target": "ROBUST PEDESTRIAN DETECTION VIA ENRICHED DATASET",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_35",
+      "source": "Sukesh Babu V S",
+      "target": "Pedestrian Direction Estimation: An Approach via Perspective Distortion Patterns",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_36",
+      "source": "Sukesh Babu V S",
+      "target": "Self-Supervised Pretraining for Robust Pedestrian Detection",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_37",
+      "source": "Sukesh Babu V S",
+      "target": "BDH Vision: Context-Aware Feature Reasoning",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_38",
+      "source": "Sukesh Babu V S",
+      "target": "High-Fidelity Synthetic Iris Generation using Diffusion Models",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_39",
+      "source": "Sukesh Babu V S",
+      "target": "Multi-Scale Dilated Attention for Robust Pedestrian Detection in YOLO-based Models",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_40",
+      "source": "Sukesh Babu V S",
+      "target": "Deep Learning for Walking Direction Estimation",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_41",
+      "source": "Sukesh Babu V S",
+      "target": "Walking Direction Estimation using Silhouette and Skeletal Representations",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_42",
+      "source": "Anu Jexline Joseph",
+      "target": "Pose-Invariant Biometric Recognition of Cattle Using 2D Visual and 3D Structural Features",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_43",
+      "source": "Anu Jexline Joseph",
+      "target": "Pose-Invariant 2D Face Verification by Combining MICA and 2D Features",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_44",
+      "source": "Devika K",
+      "target": "Clinical Decision Support System — Multi-Agent Distributed AI Platform",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_45",
+      "source": "Tirukandyur Sowmith",
+      "target": "Plant Disease Vision System: Classical ML to Transformers",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_46",
+      "source": "Pakala Lohith",
+      "target": "Text-Guided Brain Tumor Segmentation using Vision-Language Models",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_47",
+      "source": "Sudarshan Sudhakar",
+      "target": "Two-Stage FDI Attack Detector – Transformer & Sequence Modelling",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_48",
+      "source": "Rohit Kumar",
+      "target": "Text-Guided Brain Tumor Segmentation using Vision-Language Models",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_49",
+      "source": "Efanio Jens",
+      "target": "Explainable Multimodal Biometrics for Continuous Authentication",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_50",
+      "source": "Ambavaram Manasa Reddy",
+      "target": "Identity-Aware Super-Resolution of Degraded Faces for Face Verification",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_51",
+      "source": "P. Sri Haindavi",
+      "target": "Enhancing Vehicle Safety on Roads: An AI-Driven Driver Assistance System with Dash Cameras",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_52",
+      "source": "Vaagdevhi Varkkala",
+      "target": "Monocular 3D Pedestrian Detection using Transformers",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_53",
+      "source": "Varshitha Masaram",
+      "target": "Cluster-Based Generation of Fingerprint and Iris Biometric Images",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_54",
+      "source": "Konkimalla Bala Sai Manvitha",
+      "target": "RepoSage: An AI-Based System for Natural Language Querying of Software Codebases",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_55",
+      "source": "P. Naga Sripada",
+      "target": "Study and Experimental Implementation of Mixture of Recursions (MoR) for Vision Tasks",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_56",
+      "source": "T. Ramkumar",
+      "target": "Multi-Modal Cattle Biometrics",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_57",
+      "source": "Pawan Kumar Bamne",
+      "target": "Robust Pedestrian Detection in Challenging Environments Using YOLO",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_58",
+      "source": "J. S. Hilton Paul Tony Raj",
+      "target": "Towards Robust Gait Recognition: Addressing Uncertainty Using Adversarial Learning, Multi-Task Learning and Bayesian Inference",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_59",
+      "source": "Vishnu Ram A. V.",
+      "target": "Towards Improved Contrastive Learning with Adaptive Data Augmentation and Adversarial Training Paradigms",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_60",
+      "source": "Basab Ghosh",
+      "target": "Reducing imposter in Muzzle Biometrics",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_61",
+      "source": "Girik Khullar",
+      "target": "Beyond GANs: High-Fidelity Synthetic Iris Generation with Diffusion Models",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_62",
+      "source": "Ananya M.",
+      "target": "Exploring Periocular Biometrics for Cattle Identification in the Visible Spectrum",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_63",
+      "source": "Sahith Gundreddy",
+      "target": "Visual Surveillance and ADAS Trajectory Prediction",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_64",
+      "source": "Sahith Gundreddy",
+      "target": "Perspective Distortion Model for Pedestrian Trajectory Prediction for Consumer Applications",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_65",
+      "source": "Ramkumar R",
+      "target": "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking (Hardware Blueprint)",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_66",
+      "source": "Ramkumar R",
+      "target": "Perspective Distortion Model for Pedestrian Trajectory Prediction for Consumer Applications",
+      "attributes": {
+        "type": "WROTE"
+      }
+    },
+    {
+      "key": "geid_73_67",
+      "source": "Apurba Roy",
+      "target": "Cattle Identification through Multi-Biometric Features and Edge Device",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_68",
+      "source": "Rayasam Munirama Aneesh Deepak",
+      "target": "Generative AI for 3D Pedestrian Detection",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_69",
+      "source": "E. Saileswara Reddy",
+      "target": "Forecasting Indian Agricultural Commodity Prices Using Deep Learning Methods",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_70",
+      "source": "Tarra Venkata Sai",
+      "target": "LLM-Driven Financial Market Analysis and Agentic Trading System",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_71",
+      "source": "Kunduru Noniesh Reddy",
+      "target": "AI-Powered Cattle Recognition and Assistance",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_72",
+      "source": "Koneti Sai Dheeraj",
+      "target": "AI-Powered Cattle Recognition and Assistance",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_73",
+      "source": "Arpit Singh",
+      "target": "DAKU: DUAL ATTENTION KNOWLEDGE U-NET",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_74",
+      "source": "Velide Sri Manaswini",
+      "target": "Recursive Adaptive Backbone using Mixture of Recursions (MoR) for Robust Pedestrian Detection",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_75",
+      "source": "Dindigala Rahul",
+      "target": "From Language to Vision: Sparse Hebbian Linear Attention - Structural Analysis & Vision Adaptation",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    },
+    {
+      "key": "geid_73_76",
+      "source": "Pranav Singh",
+      "target": "Baby Dragon Hatchling for Amodal Instance Segmentation on the KINS Dataset",
+      "attributes": {
+        "type": "RESEARCHES"
+      }
+    }
+  ]
+}

@@ -16,14 +16,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { DomainCard } from "@/components/site/DomainCard";
 import { PeopleCard } from "@/components/site/PeopleCard";
 import {
-  achievements,
-  guide,
   labDomains,
   labStats,
-  projects,
   resources,
-  scholars,
-  liveUpdates,
 } from "@/data/lab";
 import {
   Carousel,
@@ -36,37 +31,66 @@ import {
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  const topProjects = projects.slice(0, 3);
-  const topAchievements = achievements.slice(0, 4);
-
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
+  const [dbPeople, setDbPeople] = useState<any[]>([]);
   const [news, setNews] = useState<any[]>([]);
   const [newsLoading, setNewsLoading] = useState(true);
 
+  const [dbUpdates, setDbUpdates] = useState<any[]>([]);
+  const [dbAchievements, setDbAchievements] = useState<any[]>([]);
+
   useEffect(() => {
+    // Fetch Projects
+    fetch("http://localhost:5000/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDbProjects(data);
+      })
+      .catch((err) => console.error("Error loading projects:", err));
+
+    // Fetch People
+    fetch("http://localhost:5000/api/people")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDbPeople(data);
+      })
+      .catch((err) => console.error("Error loading people:", err));
+    // Fetch News
     fetch("http://localhost:5000/api/news")
       .then((res) => res.json())
       .then((data) => {
-        if (Array.isArray(data)) {
-          setNews(data);
-        }
+        if (Array.isArray(data)) setNews(data);
         setNewsLoading(false);
       })
       .catch((err) => {
         console.error("Error loading news feed:", err);
         setNewsLoading(false);
       });
+
+    // Fetch Live Updates
+    fetch("http://localhost:5000/api/updates")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDbUpdates(data);
+      })
+      .catch((err) => console.error("Error loading updates:", err));
+
+    // Fetch Achievements
+    fetch("http://localhost:5000/api/achievements")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDbAchievements(data);
+      })
+      .catch((err) => console.error("Error loading achievements:", err));
   }, []);
 
-  const updates = (liveUpdates || []).slice(0, 5).map((u) => {
-    return {
-      id: u.id,
-      date: u.date,
-      tag: u.tag,
-      title: u.title,
-      desc: u.desc,
-      link: u.link,
-    };
-  });
+  const displayUpdates = dbUpdates.slice(0, 5);
+  const displayAchievements = dbAchievements.slice(0, 4);
+  const topProjects = dbProjects.slice(0, 3);
+  
+  const guides = dbPeople.filter(p => p.role === "guide");
+  const otherScholars = dbPeople.filter(p => p.role !== "guide");
+  const displayPeople = [...guides, ...otherScholars.slice(0, 3)].slice(0, 4);
 
   return (
     <div>
@@ -155,53 +179,59 @@ function Home() {
                 </Link>
               </div>
 
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {updates.map((u) => (
-                    <CarouselItem key={u.id}>
-                      <div className="space-y-4 pr-1">
-                        <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted-foreground">
-                          <Calendar size={12} className="text-primary" /> {u.date}
-                          <span className="px-2 py-0.5 rounded-full border border-border/70">
-                            {u.tag}
-                          </span>
+              {displayUpdates.length > 0 ? (
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {displayUpdates.map((u: any) => (
+                      <CarouselItem key={u._id || u.id}>
+                        <div className="space-y-4 pr-1">
+                          <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+                            <Calendar size={12} className="text-primary" /> {u.date}
+                            <span className="px-2 py-0.5 rounded-full border border-border/70">
+                              {u.tag}
+                            </span>
+                          </div>
+                          <h3 className="font-display text-2xl font-bold leading-tight">{u.title}</h3>
+                          <p className="text-sm text-muted-foreground">{u.desc}</p>
+                          {u.link && u.link.startsWith("/") ? (
+                            <Link
+                              to={u.link}
+                              className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                            >
+                              Read more{" "}
+                              <ArrowRight
+                                size={14}
+                                className="group-hover:translate-x-1 transition-transform"
+                              />
+                            </Link>
+                          ) : u.link ? (
+                            <a
+                              href={u.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                            >
+                              Read more{" "}
+                              <ArrowRight
+                                size={14}
+                                className="group-hover:translate-x-1 transition-transform"
+                              />
+                            </a>
+                          ) : null}
                         </div>
-                        <h3 className="font-display text-2xl font-bold leading-tight">{u.title}</h3>
-                        <p className="text-sm text-muted-foreground">{u.desc}</p>
-                        {u.link.startsWith("/") ? (
-                          <Link
-                            to={u.link}
-                            className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
-                          >
-                            Read more{" "}
-                            <ArrowRight
-                              size={14}
-                              className="group-hover:translate-x-1 transition-transform"
-                            />
-                          </Link>
-                        ) : (
-                          <a
-                            href={u.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
-                          >
-                            Read more{" "}
-                            <ArrowRight
-                              size={14}
-                              className="group-hover:translate-x-1 transition-transform"
-                            />
-                          </a>
-                        )}
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <div className="mt-8 flex justify-end gap-2">
-                  <CarouselPrevious className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
-                  <CarouselNext className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="mt-8 flex justify-end gap-2">
+                    <CarouselPrevious className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
+                    <CarouselNext className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
+                  </div>
+                </Carousel>
+              ) : (
+                <div className="text-center text-sm text-muted-foreground py-10">
+                  No live updates at the moment.
                 </div>
-              </Carousel>
+              )}
             </div>
           </Reveal>
         </div>
@@ -329,8 +359,8 @@ function Home() {
           </div>
         </Reveal>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {[guide, ...scholars.slice(0, 3)].map((p, i) => (
-            <Reveal key={p.id} delay={i * 50}>
+          {displayPeople.map((p, i) => (
+            <Reveal key={p.id || p._id} delay={i * 50}>
               <PeopleCard p={p} />
             </Reveal>
           ))}
@@ -414,24 +444,30 @@ function Home() {
             </Link>
           </div>
         </Reveal>
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {topAchievements.map((a, i) => (
-            <Reveal key={a.id} delay={i * 50}>
-              <div className="rounded-2xl border border-border/60 glass p-5 h-full hover:border-accent/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="h-9 w-9 rounded-lg bg-accent/15 border border-accent/30 grid place-items-center text-accent">
-                    <Trophy size={16} />
+        {displayAchievements.length > 0 ? (
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {displayAchievements.map((a: any, i) => (
+              <Reveal key={a._id || a.id} delay={i * 50}>
+                <div className="rounded-2xl border border-border/60 glass p-5 h-full hover:border-accent/40 transition">
+                  <div className="flex items-center gap-2">
+                    <div className="h-9 w-9 rounded-lg bg-accent/15 border border-accent/30 grid place-items-center text-accent">
+                      <Trophy size={16} />
+                    </div>
+                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {a.category} · {a.year}
+                    </span>
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                    {a.category} · {a.year}
-                  </span>
+                  <div className="mt-3 font-display font-semibold leading-tight">{a.title}</div>
+                  <p className="mt-1.5 text-xs text-muted-foreground line-clamp-3">{a.detail}</p>
                 </div>
-                <div className="mt-3 font-display font-semibold leading-tight">{a.title}</div>
-                <p className="mt-1.5 text-xs text-muted-foreground line-clamp-3">{a.detail}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 text-center text-sm text-muted-foreground border border-dashed border-border/40 p-10 rounded-2xl">
+            No recent achievements to display.
+          </div>
+        )}
       </section>
 
       {/* RESOURCES */}

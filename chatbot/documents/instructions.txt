@@ -1,0 +1,1 @@
+Please place your PDF files in this folder before running the Document Embedding step in the app.
