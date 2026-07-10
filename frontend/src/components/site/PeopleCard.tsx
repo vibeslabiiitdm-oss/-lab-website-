@@ -26,7 +26,7 @@ export function PeopleCard({ p }: { p: Person }) {
       <div className="px-5 pb-5 -mt-10">
         {p.avatar ? (
           <img
-            src={p.avatar.startsWith('/uploads') ? `http://localhost:5000${p.avatar}` : p.avatar}
+            src={p.avatar.startsWith('/uploads') ? `${BASE_URL}${p.avatar}` : p.avatar}
             alt={p.name}
             className="h-20 w-20 rounded-2xl border border-border/70 object-cover bg-background relative z-10"
           />

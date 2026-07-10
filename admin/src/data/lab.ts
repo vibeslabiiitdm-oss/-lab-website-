@@ -2402,43 +2402,53 @@ export let labStats = {
 export let resources = [
   {
     name: "NVIDIA JETSON NANO DEV KIT (B01)",
-    detail: "Quad-core ARM Cortex-A57 CPU, 128-core Maxwell GPU, 4GB LPDDR4 RAM, 472 GFLOPS AI performance, dual CSI camera support, Gigabit Ethernet, HDMI/DisplayPort, USB 3.0, and 40-pin GPIO for AI, robotics, and IoT applications."
+    detail: "Quad-core ARM Cortex-A57 CPU, 128-core Maxwell GPU, 4GB LPDDR4 RAM, 472 GFLOPS AI performance, dual CSI camera support, Gigabit Ethernet, HDMI/DisplayPort, USB 3.0, and 40-pin GPIO for AI, robotics, and IoT applications.",
+    image: "/images/rover/3.jpg"
   },
   {
     name: "NVIDIA JETSON XAVIER NX (16 GB RAM)",
-    detail: "JETSON XAVIER NX MODULE, AVER MEDIA NX 215 CARRIER, HEAT SINK, 12V POWER ADAPTER"
+    detail: "JETSON XAVIER NX MODULE, AVER MEDIA NX 215 CARRIER, HEAT SINK, 12V POWER ADAPTER",
+    image: "/images/hardware/jetson_xavier.png"
   },
   {
     name: "HP MONITOR",
-    detail: "Full HD (1920x1080) display with HDMI/VGA connectivity and anti-glare LED panel."
+    detail: "Full HD (1920x1080) display with HDMI/VGA connectivity and anti-glare LED panel.",
+    image: "/images/hardware/hp_monitor.png"
   },
   {
     name: "DELL OPTIPLEX 500 DESKTOP PC",
-    detail: "Business desktop with Intel Core processor, DDR4/DDR5 RAM, SSD storage, and multiple USB, HDMI, and DisplayPort connectivity options."
+    detail: "Business desktop with Intel Core processor, DDR4/DDR5 RAM, SSD storage, and multiple USB, HDMI, and DisplayPort connectivity options.",
+    image: "/images/hardware/dell_optiplex.png"
   },
   {
     name: "3 TRIPODS",
-    detail: "Adjustable camera/mobile stands with stable legs for photography, videography, and project demonstrations."
+    detail: "Adjustable camera/mobile stands with stable legs for photography, videography, and project demonstrations.",
+    image: "/images/hardware/tripod.png"
   },
   {
     name: "AM ROBOTICS ROVER 4WDXL60R KIT",
-    detail: "Four-wheel drive robotic rover platform with DC motors, metal chassis, and support for AI, IoT, and autonomous robotics projects"
+    detail: "Four-wheel drive robotic rover platform with DC motors, metal chassis, and support for AI, IoT, and autonomous robotics projects",
+    image: "/images/rover/14.jpg"
   },
   {
     name: "LED MONITOR 60.4CM, ZEB-A24FHDLED",
-    detail: "Zebronics, Full HD 24-inch LED display with 1920x1080 resolution, HDMI/VGA connectivity, and wide viewing angles."
+    detail: "Zebronics, Full HD 24-inch LED display with 1920x1080 resolution, HDMI/VGA connectivity, and wide viewing angles.",
+    image: "/images/hardware/led_monitor.png"
   },
   {
     name: "PANASONIC VIDEO CAMERA (HC-V385):",
-    detail: "Video camera with adapter for high-quality recording and documentation."
+    detail: "Video camera with adapter for high-quality recording and documentation.",
+    image: "/images/hardware/panasonic_camera.png"
   },
   {
     name: "EPSON L130 PRINTER",
-    detail: "Ink tank printer for efficient, low-cost color and monochrome printing."
+    detail: "Ink tank printer for efficient, low-cost color and monochrome printing.",
+    image: "/images/hardware/epson_printer.png"
   },
   {
     name: "SONY A6100 CAMERA",
-    detail: "24.2 MP APS-C Exmor sensor camera with 425 autofocus points, 11 fps continuous shooting, and ISO range 100–32000 (with 64 GB SD card)."
+    detail: "24.2 MP APS-C Exmor sensor camera with 425 autofocus points, 11 fps continuous shooting, and ISO range 100–32000 (with 64 GB SD card).",
+    image: "/images/hardware/sony_camera.png"
   }
 ];
 

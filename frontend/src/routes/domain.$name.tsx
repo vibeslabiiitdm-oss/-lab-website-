@@ -19,6 +19,7 @@ import {
   getConferencesByDomain,
   getProjectsByDomain,
   getPublicationsByDomain,
+  BASE_URL 
 } from "@/data/lab";
 
 export const Route = createFileRoute("/domain/$name")({ component: DomainPage });
@@ -71,7 +72,7 @@ function DomainPage() {
 
   useEffect(() => {
     setNewsLoading(true);
-    fetch(`http://localhost:5000/api/news?q=${encodeURIComponent(domain)}`)
+    fetch(`${BASE_URL}/api/news?q=${encodeURIComponent(domain)}`)
       .then((res) => {
         if (!res.ok) throw new Error("Backend response error");
         return res.json();

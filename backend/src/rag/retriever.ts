@@ -64,7 +64,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         const response = await fetch("http://localhost:8000/retrieve", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ query, top_k: 3 })
+            body: JSON.stringify({ query, top_k: 10 })
         });
         
         if (!response.ok) {

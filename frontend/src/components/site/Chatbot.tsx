@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, Send, X, Sparkles, Paperclip, Image as ImageIcon, Maximize2, Minimize2, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { BASE_URL } from "@/data/lab";
 
 // This file defines the Chatbot component for the frontend application. It includes a button to toggle the chatbot open or closed, a chat window that displays messages from the user and the bot, and an input field for the user to type their messages. The Chatbot component uses React state to manage the open/closed state of the chatbot, the list of messages, and the current input value. It also includes a set of predefined suggestions that the user can click to send as messages. The component is styled using Tailwind CSS classes and includes animations for opening and closing the chat window.
 type Msg = { id: number; from: "bot" | "you"; text: string; image?: string };
@@ -22,7 +23,7 @@ const suggestions = [
 const MarkdownImage = ({ node, ...props }: any) => {
   const [error, setError] = useState(false);
   
-  if (error) {
+  if (error || !props.src || props.src.trim() === "") {
     return (
       <span className="inline-flex items-center gap-1.5 px-2 py-1 my-2 text-xs font-medium text-muted-foreground bg-muted/50 rounded border border-border/50">
         <ImageIcon size={12} />
@@ -102,7 +103,7 @@ export function Chatbot() {
         payload.image = imageToSend;
       }
 
-      const response = await fetch("http://localhost:5000/api/chat", {
+      const response = await fetch(`${BASE_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

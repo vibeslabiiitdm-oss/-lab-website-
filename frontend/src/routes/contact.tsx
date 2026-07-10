@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Loader2, ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
+import { BASE_URL } from "@/data/lab";
 
 export const Route = createFileRoute("/contact")({ component: Contact });
 
@@ -18,7 +19,7 @@ function Contact() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${BASE_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

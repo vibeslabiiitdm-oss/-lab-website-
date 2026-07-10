@@ -289,7 +289,7 @@
           "month": 2,
           "type": "Scientific Magazine",
           "domain": "Biometrics",
-          "abstract": "This report describes the NITR Conscious Walk Dataset which is constraint human walk database captured in visible spectrum. The database provides videos of 8 different walk directions. The 8 discrete directions spanning from 0° to 360° with respect to view axis of camera are equiangular from neighbouring directions. The video database is ideal for the estimation of pedestrian walk direction using both inter-frame and intra-frame properties, and can also be used for the further generaized study of object tracking, person reidentification, and studying gait features in different camera angles.",
+          "abstract": "This report describes the NITR Conscious Walk Dataset which is constraint human walk database captured in visible spectrum. The database provides videos of 8 different walk directions. The 8 discrete directions spanning from 0\u00b0 to 360\u00b0 with respect to view axis of camera are equiangular from neighbouring directions. The video database is ideal for the estimation of pedestrian walk direction using both inter-frame and intra-frame properties, and can also be used for the further generaized study of object tracking, person reidentification, and studying gait features in different camera angles.",
           "_id": "6a4276f4925f8fd3f33b3c5e"
         },
         {
@@ -415,7 +415,7 @@
       "role": "scholar",
       "category": "PhD",
       "name": "Sukesh Babu V S",
-      "designation": "PhD Research Scholar · Computer Vision & Deep Learning",
+      "designation": "PhD Research Scholar \u00b7 Computer Vision & Deep Learning",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "sukeshpdm@gmail.com",
       "bio": "PhD Research Scholar in Computer Vision and Deep Learning. Active researcher in pedestrian detection, attention mechanisms, and autonomous systems.",
@@ -744,7 +744,7 @@
       "role": "scholar",
       "category": "PhD",
       "name": "Anu Jexline Joseph",
-      "designation": "PhD Scholar · Cattle Biometrics & Face Recognition",
+      "designation": "PhD Scholar \u00b7 Cattle Biometrics & Face Recognition",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS24D0001@iiitdm.ac.in",
       "bio": "PhD scholar specializing in cattle biometrics, with research focused on the recognition and identification of cattle using biometric traits in real-world environments. Additionally experienced in pose-invariant human face identification, contributing to robust biometric solutions across both animal and human domains.",
@@ -772,7 +772,7 @@
         {
           "degree": "B.E.",
           "field": "Computer Science Engineering",
-          "institute": "St. Peter’s College of Engineering, Chennai",
+          "institute": "St. Peter\u2019s College of Engineering, Chennai",
           "year": "2001",
           "_id": "6a4276f4925f8fd3f33b3c8a"
         }
@@ -809,19 +809,19 @@
         {
           "role": "Lab Instructor",
           "org": "Mar Gregorious College of Arts and Science, Chennai",
-          "duration": "June 2021 — October 2021",
+          "duration": "June 2021 \u2014 October 2021",
           "_id": "6a4276f4925f8fd3f33b3c8d"
         },
         {
           "role": "Lecturer",
           "org": "CMRIT College of Technology, Bengaluru",
-          "duration": "September 2004 — October 2005",
+          "duration": "September 2004 \u2014 October 2005",
           "_id": "6a4276f4925f8fd3f33b3c8e"
         },
         {
           "role": "Lecturer",
           "org": "Magna Engineering College, Chennai",
-          "duration": "February 2002 — May 2004",
+          "duration": "February 2002 \u2014 May 2004",
           "_id": "6a4276f4925f8fd3f33b3c8f"
         }
       ],
@@ -855,7 +855,7 @@
       "role": "scholar",
       "category": "PG",
       "name": "Devika K",
-      "designation": "M.Tech Student · Data Science & AI",
+      "designation": "M.Tech Student \u00b7 Data Science & AI",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS25M1014@iiitdm.ac.in",
       "bio": "Software Engineer skilled in C, Python, and AI/ML with experience in real-time and distributed system design. Strong foundation in computer vision, embedded systems, Linux-based development, and SDLC practices. Focused on applying AI/ML and software engineering to power systems, control, and industrial automation.",
@@ -914,7 +914,7 @@
       "teaching": [],
       "experience": [],
       "projects": [
-        "Clinical Decision Support System — Multi-Agent Distributed AI Platform (FastAPI, Python, asyncio)",
+        "Clinical Decision Support System \u2014 Multi-Agent Distributed AI Platform (FastAPI, Python, asyncio)",
         "AI-Based Traffic Violation Detection System (OpenCV, YOLO)",
         "Real-Time Camera Disturbance & Monitoring System (Anomaly Detection, CV, ML)",
         "Malayalam OCR System (CNN + CRNN + CTC decoding, TensorFlow, Android)"
@@ -924,7 +924,7 @@
       "avatar": "/images/scholar-cs25m1014.jpg",
       "resume": "/resumes/scholar-cs25m1014_resume.pdf",
       "researchProject": {
-        "title": "Clinical Decision Support System — Multi-Agent Distributed AI Platform",
+        "title": "Clinical Decision Support System \u2014 Multi-Agent Distributed AI Platform",
         "abstract": "Designed a distributed 7-microservice system using Python and FastAPI with asynchronous communication for real-time workflows. Incorporates parallel multi-agent execution using asyncio, reducing latency, improving system responsiveness, and validating AI/ML models with validation, fallback logic, and reliability constraints.",
         "datasets": [],
         "results": [
@@ -947,7 +947,7 @@
       "role": "scholar",
       "category": "PG",
       "name": "Tirukandyur Sowmith",
-      "designation": "M.Tech Student · Data Science & AI",
+      "designation": "M.Tech Student \u00b7 Data Science & AI",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS25M1006@iiitdm.ac.in",
       "bio": "Detail-oriented AI Data Science M.Tech student specializing in building predictive models and data-driven systems. Strong foundation in Python, Deep Learning, and NLP, complemented by industry experience at Intel. Quick learner actively expanding into LLMs and advanced Computer Vision to solve complex, real-world problems.",
@@ -1124,7 +1124,7 @@
       "role": "scholar",
       "category": "UG",
       "name": "Pakala Lohith",
-      "designation": "B.Tech Student · Computer Science (AI Major)",
+      "designation": "B.Tech Student \u00b7 Computer Science (AI Major)",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS23B2030@iiitdm.ac.in",
       "bio": "Computer Science (AI) undergraduate at IIITDM Kancheepuram. Hands-on experience in machine learning, computer vision, and full-stack AI systems. Built real-world AI applications including intelligent surveillance, medical imaging, and local LLM tools.",
@@ -1219,7 +1219,7 @@
       "role": "scholar",
       "category": "UG",
       "name": "Sudarshan Sudhakar",
-      "designation": "B.Tech Student · Computer Science (AI Major)",
+      "designation": "B.Tech Student \u00b7 Computer Science (AI Major)",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS23B2007@iiitdm.ac.in",
       "bio": "B.Tech student in CSE (Artificial Intelligence) at IIITDM Kancheepuram. Active developer and AI researcher with internship experience as AI Engineer. Deployed microservices and built 15+ production agentic workflows with LangGraph and Claude Code.",
@@ -1259,7 +1259,7 @@
       "awards": [
         {
           "id": "award-sudarshan-1",
-          "title": "Top 100 Nationally – Amazon ML Challenge 2025 (70,000+ participants)",
+          "title": "Top 100 Nationally \u2013 Amazon ML Challenge 2025 (70,000+ participants)",
           "org": "Amazon",
           "year": 2025,
           "month": 8,
@@ -1267,7 +1267,7 @@
         },
         {
           "id": "award-sudarshan-2",
-          "title": "1st Runner-Up – ETHIndia Defy ’26 Hackathon (SafeKeeper SOLIDITY project)",
+          "title": "1st Runner-Up \u2013 ETHIndia Defy \u201926 Hackathon (SafeKeeper SOLIDITY project)",
           "org": "ETHIndia",
           "year": 2026,
           "month": 2,
@@ -1275,7 +1275,7 @@
         },
         {
           "id": "award-sudarshan-3",
-          "title": "Winner – AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model)",
+          "title": "Winner \u2013 AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model)",
           "org": "IIITDM Kancheepuram",
           "year": 2024,
           "month": 10,
@@ -1289,27 +1289,27 @@
         {
           "role": "Artificial Intelligence Intern",
           "org": "Yellow.ai (Abu Dhabi, UAE)",
-          "duration": "May 2025 – Jul 2025",
+          "duration": "May 2025 \u2013 Jul 2025",
           "_id": "6a4276f4925f8fd3f33b3ca8"
         },
         {
           "role": "AI Engineer Intern",
           "org": "SwitchIT (Remote)",
-          "duration": "Sep 2025 – Present",
+          "duration": "Sep 2025 \u2013 Present",
           "_id": "6a4276f4925f8fd3f33b3ca9"
         }
       ],
       "projects": [
-        "Two-Stage FDI Attack Detector – Transformer & Sequence Modelling (NARX + Attention Bi-LSTM, smart grid cyber security)",
-        "SwitchIT – Microservices Career Platform with Agentic AI Companion (Groq, pgvector, React, TypeScript)",
-        "SafeKeeper – On-Chain Liquidation Insurance Protocol (Solidity, Ethereum, ZK integration)"
+        "Two-Stage FDI Attack Detector \u2013 Transformer & Sequence Modelling (NARX + Attention Bi-LSTM, smart grid cyber security)",
+        "SwitchIT \u2013 Microservices Career Platform with Agentic AI Companion (Groq, pgvector, React, TypeScript)",
+        "SafeKeeper \u2013 On-Chain Liquidation Insurance Protocol (Solidity, Ethereum, ZK integration)"
       ],
       "professionalService": [],
       "outreachActivities": [],
       "avatar": "/images/scholar-cs23b2007.jpeg",
       "resume": "/resumes/scholar-cs23b2007_resume.pdf",
       "researchProject": {
-        "title": "Two-Stage FDI Attack Detector – Transformer & Sequence Modelling",
+        "title": "Two-Stage FDI Attack Detector \u2013 Transformer & Sequence Modelling",
         "abstract": "Developed a biologically motivated and transformer-based security model to detect False Data Injection (FDI) attacks in smart grids. Utilizes a NARX and Attention Bi-LSTM architecture with Isolation Forest and Cumulative Sum (CUSUM) control charts on time-series battery data to enable secure, real-time cyber-physical anomaly detection.",
         "datasets": [
           "ACN-Data-Static (85K+ sessions)"
@@ -1362,7 +1362,7 @@
       "role": "scholar",
       "category": "UG",
       "name": "Rohit Kumar",
-      "designation": "B.Tech Student · Computer Science (AI Major)",
+      "designation": "B.Tech Student \u00b7 Computer Science (AI Major)",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS23B2053@iiitdm.ac.in",
       "bio": "B.Tech. CSE (AI Major) student at IIITDM Kancheepuram passionate about building scalable software systems and intelligent AI solutions. Experienced in full-stack engineering, deep learning, and high-performance computing with hands-on projects in ML, computer vision, and distributed systems.",
@@ -1440,7 +1440,7 @@
       "projects": [
         "Bone Age Prediction from Hand Radiographs (PyTorch, ResNet34 regression + classification)",
         "Text-Guided Brain Tumor Segmentation using Vision-Language Models (TG-SwinUNet, BraTS 2020)",
-        "AttendX — Smart QR-based attendance management system (React, Express, MongoDB, JWT)"
+        "AttendX \u2014 Smart QR-based attendance management system (React, Express, MongoDB, JWT)"
       ],
       "professionalService": [],
       "outreachActivities": [],
@@ -1472,7 +1472,7 @@
       "role": "scholar",
       "category": "UG",
       "name": "Efanio Jens",
-      "designation": "B.Tech Student · Computer Science (AI Major)",
+      "designation": "B.Tech Student \u00b7 Computer Science (AI Major)",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS24B2051@iiitdm.ac.in",
       "bio": "B.Tech Computer Science and Engineering student majoring in AI at IIITDM Kancheepuram. Academic proficiency with a 9.63 CGPA. Experience in full-stack web development and explainable AI projects, currently researching explainable multimodal biometrics at ViBeS Lab.",
@@ -1518,7 +1518,7 @@
       "awards": [
         {
           "id": "award-efanio-1",
-          "title": "Inter IIIT Hackathon – Udbhav Finalist",
+          "title": "Inter IIIT Hackathon \u2013 Udbhav Finalist",
           "org": "Udbhav",
           "year": 2025,
           "month": 11,
@@ -1540,7 +1540,7 @@
         {
           "role": "Software Developer Intern",
           "org": "IIITDM Kancheepuram Hostel Office",
-          "duration": "July 2025 – August 2025",
+          "duration": "July 2025 \u2013 August 2025",
           "_id": "6a4276f4925f8fd3f33b3cb7"
         },
         {
@@ -1552,7 +1552,7 @@
       ],
       "projects": [
         "LingoLearn (Flask, HTML, CSS, JS, MySQL, Docker)",
-        "FX — Explainable AI Fitness Companion (Next.js, Tailwind, InterpretML, SHAP)"
+        "FX \u2014 Explainable AI Fitness Companion (Next.js, Tailwind, InterpretML, SHAP)"
       ],
       "professionalService": [],
       "outreachActivities": [],
@@ -1630,7 +1630,7 @@
       "resume": "/resumes/scholar-cs24m1013_resume.pdf",
       "researchProject": {
         "title": "Identity-Aware Super-Resolution of Degraded Faces for Face Verification",
-        "abstract": "Face verification systems perform remarkably well under controlled, high-quality conditions, but their accuracy drops considerably when the input images have been degraded by blur, noise, or JPEG compression. This situation is common in practice surveillance cameras, messaging applications, and budget-grade sensors all introduce some form of quality loss before a face reaches the verification pipeline. When this happens, the embedding model begins to drift away from the true identity representation of the individual, causing genuine pairs to appear less similar and, in some cases,making impostor pairs look deceptively close. This work investigates whether super resolution preprocessing, when trained explicitly to preserve biometric identity rather than just visual quality, can recover the verification signal lost to image degradation. We fine-tune CodeFormer—a codebook based blind face restoration network anchored to a frozen VQGAN face prior—on the Labeled Faces in the Wild (LFW) dataset using a three-component composite loss that combines pixel-level L1 reconstruction, a VGG-19 perceptual term, and a FaceNet- based identity penalty that directly discourages embedding drift. Training operates on a pool of 3,000 LFW images on a single NVIDIA T4 GPU. Before fine-tuning, we sweep three fidelity weight settings of the pretrained model on a balanced set of 6,000 pairs to characterise the quality-versus-identity trade-off. Biometric evaluation uses ArcFace embeddings assessed through ROC curves, AUC, Equal Error Rate (EER), and TAR at FAR = 0.1% on the full 6,000-pair official LFW benchmark. Results show that the identity-aware fine-tuned model closes the genuine-pair similarity gap and does so without inflating impostor similarity—the critical security constraint for any biometric deployment.",
+        "abstract": "Face verification systems perform remarkably well under controlled, high-quality conditions, but their accuracy drops considerably when the input images have been degraded by blur, noise, or JPEG compression. This situation is common in practice surveillance cameras, messaging applications, and budget-grade sensors all introduce some form of quality loss before a face reaches the verification pipeline. When this happens, the embedding model begins to drift away from the true identity representation of the individual, causing genuine pairs to appear less similar and, in some cases,making impostor pairs look deceptively close. This work investigates whether super resolution preprocessing, when trained explicitly to preserve biometric identity rather than just visual quality, can recover the verification signal lost to image degradation. We fine-tune CodeFormer\u2014a codebook based blind face restoration network anchored to a frozen VQGAN face prior\u2014on the Labeled Faces in the Wild (LFW) dataset using a three-component composite loss that combines pixel-level L1 reconstruction, a VGG-19 perceptual term, and a FaceNet- based identity penalty that directly discourages embedding drift. Training operates on a pool of 3,000 LFW images on a single NVIDIA T4 GPU. Before fine-tuning, we sweep three fidelity weight settings of the pretrained model on a balanced set of 6,000 pairs to characterise the quality-versus-identity trade-off. Biometric evaluation uses ArcFace embeddings assessed through ROC curves, AUC, Equal Error Rate (EER), and TAR at FAR = 0.1% on the full 6,000-pair official LFW benchmark. Results show that the identity-aware fine-tuned model closes the genuine-pair similarity gap and does so without inflating impostor similarity\u2014the critical security constraint for any biometric deployment.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -1686,7 +1686,7 @@
       "role": "scholar",
       "category": "Alumni",
       "name": "Vaagdevhi Varkkala",
-      "designation": "Alumni · M.Tech in Data Science & AI",
+      "designation": "Alumni \u00b7 M.Tech in Data Science & AI",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS24M1018@iiitdm.ac.in",
       "bio": "M.Tech Graduate from IIITDM Kancheepuram with a specialization in Data Science and Artificial Intelligence. Recipient of IndiaAI Research Fellowship for Monocular 3D Pedestrian Detection using Transformers. Experienced Cloud Systems Engineer with hands-on expertise in Microsoft Azure.",
@@ -1755,13 +1755,13 @@
         {
           "role": "Systems Engineer",
           "org": "Infosys Limited",
-          "duration": "Oct 2019 – Jun 2021",
+          "duration": "Oct 2019 \u2013 Jun 2021",
           "_id": "6a4276f4925f8fd3f33b3cc4"
         },
         {
           "role": "Data Science Intern",
           "org": "Sabudh Foundation (Remote)",
-          "duration": "Jul 2023 – May 2024",
+          "duration": "Jul 2023 \u2013 May 2024",
           "_id": "6a4276f4925f8fd3f33b3cc5"
         }
       ],
@@ -1815,7 +1815,7 @@
       "resume": "/resumes/scholar-cs22b1071_resume.pdf",
       "researchProject": {
         "title": "Cluster-Based Generation of Fingerprint and Iris Biometric Images",
-        "abstract": "Training and testing biometric recognition models require extensive and varied training and testing datasets. Real-world collection of such data poses various privacy risks and legal concerns, and the existing datasets are usually unbalanced with poor intra class variability. We propose a cascaded diffusion-based approach to create clustering synthetic fingerprint and iris image dataset. Each cluster contains many generated images of one synthetic identity that have similar features to each other while images from different clusters look visually very different. Our proposed pipeline consists of three stages: (1) a Random Network (RNet) trained to generate privacy-safe low resolution thumbnails using the DDPM approach; (2) an enhancement network for upscaling these thumbs upto full resolution; and (3) a Deterministic Network (DNet) conditioned on identity using class embeddings and classifier-free guidance (CFG) to produce clustered outputs. A contrastive learning loss is introduced in-between diffusion steps to strengthen inter-identity separation. Our experiment with a SOCOFing fingerprint dataset and MMU Iris Database showed that the generated images were realistic and formed coherent clusters measured via silhouette coefficient, Davies-Bouldin index, intra-cluster SSIM, and Fréchet Inception distance metrics. We tested our ap- proach with open source biometric matching algorithms, showing that ROC AUC for deep CNN matcher was larger than 0.80, and the synthetic identities were separable for real-world biometric recognition models.",
+        "abstract": "Training and testing biometric recognition models require extensive and varied training and testing datasets. Real-world collection of such data poses various privacy risks and legal concerns, and the existing datasets are usually unbalanced with poor intra class variability. We propose a cascaded diffusion-based approach to create clustering synthetic fingerprint and iris image dataset. Each cluster contains many generated images of one synthetic identity that have similar features to each other while images from different clusters look visually very different. Our proposed pipeline consists of three stages: (1) a Random Network (RNet) trained to generate privacy-safe low resolution thumbnails using the DDPM approach; (2) an enhancement network for upscaling these thumbs upto full resolution; and (3) a Deterministic Network (DNet) conditioned on identity using class embeddings and classifier-free guidance (CFG) to produce clustered outputs. A contrastive learning loss is introduced in-between diffusion steps to strengthen inter-identity separation. Our experiment with a SOCOFing fingerprint dataset and MMU Iris Database showed that the generated images were realistic and formed coherent clusters measured via silhouette coefficient, Davies-Bouldin index, intra-cluster SSIM, and Fr\u00e9chet Inception distance metrics. We tested our ap- proach with open source biometric matching algorithms, showing that ROC AUC for deep CNN matcher was larger than 0.80, and the synthetic identities were separable for real-world biometric recognition models.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -1891,7 +1891,7 @@
       "resume": "/resumes/scholar-cs22b1018_resume.pdf",
       "researchProject": {
         "title": "Study and Experimental Implementation of Mixture of Recursions (MoR) for Vision Tasks",
-        "abstract": "Transformers have completely revolutionized modern deep leaning, they became the dominanat architecture across Natural Language Processing and Computer Vision tasks. Their success led to the development of many advanced architectures such as Vision Transformers (ViTs), Recursive Transformers, Efficient Vision Models, and recent State Space models like Mamba. Despite their strong capabilities, most existing architectures, apply uniform computation across all tokens or image patches, regardless of the complexity or importance of different regions. This results in unnecessary computational overhead, especially in resource-constrained environments. This limitation was beautifully addressed by Google’s Mixture of Recursions (MoR) framework, which introduced adaptive token-level computation through recursive parameter sharing and dynamic recursion depth allocation. While MoR demonstrated promising results in language models, its adaptation to computer vision remains relatively unexplored. In this project, the principles of Mixture of Recursions were integrated into Vision Transformer architectures to develop and analyze multiple Vision-MoR implementations. The work began with a baseline Vision-MoR prototype, subsequently multiple improved versions were developed through architectural and parameter modifications. Comparative analyzes were performed across all implementations. In addition, a broader SOTA benchmark study was conducted by comparing vision-mor, with several modern post transformer and efficient vision architectures. The study highlights the effectiveness of Vision-MoR as a scalable and efficient vision framework and provides insights into the future direction of adaptive computation in computer vision systems.",
+        "abstract": "Transformers have completely revolutionized modern deep leaning, they became the dominanat architecture across Natural Language Processing and Computer Vision tasks. Their success led to the development of many advanced architectures such as Vision Transformers (ViTs), Recursive Transformers, Efficient Vision Models, and recent State Space models like Mamba. Despite their strong capabilities, most existing architectures, apply uniform computation across all tokens or image patches, regardless of the complexity or importance of different regions. This results in unnecessary computational overhead, especially in resource-constrained environments. This limitation was beautifully addressed by Google\u2019s Mixture of Recursions (MoR) framework, which introduced adaptive token-level computation through recursive parameter sharing and dynamic recursion depth allocation. While MoR demonstrated promising results in language models, its adaptation to computer vision remains relatively unexplored. In this project, the principles of Mixture of Recursions were integrated into Vision Transformer architectures to develop and analyze multiple Vision-MoR implementations. The work began with a baseline Vision-MoR prototype, subsequently multiple improved versions were developed through architectural and parameter modifications. Comparative analyzes were performed across all implementations. In addition, a broader SOTA benchmark study was conducted by comparing vision-mor, with several modern post transformer and efficient vision architectures. The study highlights the effectiveness of Vision-MoR as a scalable and efficient vision framework and provides insights into the future direction of adaptive computation in computer vision systems.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -1947,7 +1947,7 @@
       "role": "scholar",
       "category": "Alumni",
       "name": "Pawan Kumar Bamne",
-      "designation": "Alumni · M.Tech in Computer Science & Engineering",
+      "designation": "Alumni \u00b7 M.Tech in Computer Science & Engineering",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CS23M1013@iiitdm.ac.in",
       "bio": "M.Tech Graduate from IIITDM Kancheepuram specializing in Computer Science and Engineering. Experienced in robust pedestrian detection in challenging environments using YOLO models, web development, and academic teaching support.",
@@ -2017,7 +2017,7 @@
         {
           "role": "Teaching Assistant",
           "org": "IIITDM Kancheepuram",
-          "duration": "Aug 2023 – May 2025",
+          "duration": "Aug 2023 \u2013 May 2025",
           "_id": "6a4276f4925f8fd3f33b3cd4"
         }
       ],
@@ -2223,7 +2223,7 @@
       "resume": "/resumes/scholar-cs21b2013_resume.pdf",
       "researchProject": {
         "title": "Exploring Periocular Biometrics for Cattle Identification in the Visible Spectrum",
-        "abstract": "Biometric identification in livestock plays a crucial role in enhancing animal manage- ment, traceability. Traditional methods relying on muzzle patterns or coat textures often encounter limitations related to image quality, environmental conditions, and breed- specific characteristics. To address these challenges, this work draws upon advance- ments in human biometrics to explore a more scalable and consistent solution for cattle identification. Iris recognition, a well-established technique in human identification, commonly requires near-infrared imaging. However, such imaging is not feasible in typical farm environments, where only visible-light data is available. Recent studies have demon- strated that the periocular region—the area surrounding the eye—retains distinctive identity features even under visible-light conditions, offering a promising alternative. This study investigates the potential of using visible-spectrum periocular fea- tures for cattle identification by adapting deep learning models. Comparative anal- ysis revealed structural similarities between human and cattle periocular regions, sup- porting the applicability of human-centric models. A deep learning architecture based on ResNet50 was employed for feature extraction, while ArcFace was integrated to enhance inter-class separability and improve embedding compactness. The model was evaluated on both constrained and unconstrained cattle eye datasets, showing strong identification performance across varying conditions. Grad-CAM visu- alizations confirmed that the network consistently extracted relevant periocular features.",
+        "abstract": "Biometric identification in livestock plays a crucial role in enhancing animal manage- ment, traceability. Traditional methods relying on muzzle patterns or coat textures often encounter limitations related to image quality, environmental conditions, and breed- specific characteristics. To address these challenges, this work draws upon advance- ments in human biometrics to explore a more scalable and consistent solution for cattle identification. Iris recognition, a well-established technique in human identification, commonly requires near-infrared imaging. However, such imaging is not feasible in typical farm environments, where only visible-light data is available. Recent studies have demon- strated that the periocular region\u2014the area surrounding the eye\u2014retains distinctive identity features even under visible-light conditions, offering a promising alternative. This study investigates the potential of using visible-spectrum periocular fea- tures for cattle identification by adapting deep learning models. Comparative anal- ysis revealed structural similarities between human and cattle periocular regions, sup- porting the applicability of human-centric models. A deep learning architecture based on ResNet50 was employed for feature extraction, while ArcFace was integrated to enhance inter-class separability and improve embedding compactness. The model was evaluated on both constrained and unconstrained cattle eye datasets, showing strong identification performance across varying conditions. Grad-CAM visu- alizations confirmed that the network consistently extracted relevant periocular features.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -2241,7 +2241,7 @@
       "role": "scholar",
       "category": "Alumni",
       "name": "Sahith Gundreddy",
-      "designation": "Alumni · Software Engineer (R&D) at TVS Motor Company",
+      "designation": "Alumni \u00b7 Software Engineer (R&D) at TVS Motor Company",
       "affiliation": "ViBeS Lab, IIITDM & TVS Motor Company",
       "email": "srinivasgundreddysahith@gmail.com",
       "bio": "Software Engineer (R&D) at TVS Motor Company. Former Research Intern at ViBeS Lab specializing in deep learning, ADAS, and trajectory estimation.",
@@ -2422,7 +2422,7 @@
       "role": "scholar",
       "category": "Alumni",
       "name": "Ramkumar R",
-      "designation": "Alumni · M.Tech Student at IIT Madras",
+      "designation": "Alumni \u00b7 M.Tech Student at IIT Madras",
       "affiliation": "ViBeS Lab, IIITDM & IIT Madras",
       "email": "COE19B001@iiitdm.ac.in",
       "bio": "M.Tech Scholar at IIT Madras. Former Research Intern at ViBeS Lab specializing in monocular depth estimation and trajectory prediction.",
@@ -2614,7 +2614,7 @@
       "role": "scholar",
       "category": "Alumni",
       "name": "Apurba Roy",
-      "designation": "Alumni · Software Engineer at Trimble",
+      "designation": "Alumni \u00b7 Software Engineer at Trimble",
       "affiliation": "ViBeS Lab, IIITDM",
       "email": "CED19I053@iiitdm.ac.in",
       "bio": "Software Engineer at Trimble. Former Research Scholar at ViBeS Lab specializing in cattle biometrics and high-performance computing.",
@@ -2915,7 +2915,7 @@
       "resume": "/resumes/scholar-cs21b2032_resume.pdf",
       "researchProject": {
         "title": "AI-Powered Cattle Recognition and Assistance",
-        "abstract": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns—akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
+        "abstract": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns\u2014akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -2953,7 +2953,7 @@
       "resume": "/resumes/scholar-cs21b2021_resume.pdf",
       "researchProject": {
         "title": "AI-Powered Cattle Recognition and Assistance",
-        "abstract": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns—akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
+        "abstract": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns\u2014akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -3029,7 +3029,7 @@
       "resume": "/resumes/scholar-cs22b2030_resume.pdf",
       "researchProject": {
         "title": "Recursive Adaptive Backbone using Mixture of Recursions (MoR) for Robust Pedestrian Detection",
-        "abstract": "Detecting pedestrians in crowded scenes is genuinely difficult. When people overlap, are partially hidden, or appear at very small scales in the image, most detection models start making mistakes — merging two people into one box, missing smaller individuals, or producing uncertain predictions that get filtered during post-processing. A core reason is that standard detection backbones apply the same processing depth everywhere in the image regardless of how complex a scene region actually is. That uniform treatment is wasteful and limits what the model can do in dense crowds. This project proposes MoR-YOLOv8, a new detection architecture that modifies the YOLOv8 backbone by replacing the fixed-depth C2f blocks at the two deepest backbone stages with a recursive, weight-sharing module called MoR_C2f. Instead of stacking multiple independent convolutional blocks, one shared block is applied recursively three times, and a learned softmax-weighted mixture combines outputs from each pass. This gives the backbone deeper and more adaptive processing at the semantic stages that matter most for crowd scenes, without adding new unique parameters. The architecture is evaluated on the Crowd Human benchmark (15,000 training images, 4,370 validation images with dense pedestrian annotations) under identical 50 epoch training conditions. MoR-YOLOv8 achieves mAP@0.5 of 88.2% and mAP@0.5:0.95 of 56.8%, improving over YOLOv8L (87.2%, 56.0%) and YOLOv8X (87.2%, 56.5%) by +1.0 percentage point in the primary metric, while using fewer unique parameters than YOLOv8L. An ablation over n ? {1, 2, 3, 5, 7} recursive passes confirms n = 3 as the optimal accuracy-to-efficiency trade-off.",
+        "abstract": "Detecting pedestrians in crowded scenes is genuinely difficult. When people overlap, are partially hidden, or appear at very small scales in the image, most detection models start making mistakes \u2014 merging two people into one box, missing smaller individuals, or producing uncertain predictions that get filtered during post-processing. A core reason is that standard detection backbones apply the same processing depth everywhere in the image regardless of how complex a scene region actually is. That uniform treatment is wasteful and limits what the model can do in dense crowds. This project proposes MoR-YOLOv8, a new detection architecture that modifies the YOLOv8 backbone by replacing the fixed-depth C2f blocks at the two deepest backbone stages with a recursive, weight-sharing module called MoR_C2f. Instead of stacking multiple independent convolutional blocks, one shared block is applied recursively three times, and a learned softmax-weighted mixture combines outputs from each pass. This gives the backbone deeper and more adaptive processing at the semantic stages that matter most for crowd scenes, without adding new unique parameters. The architecture is evaluated on the Crowd Human benchmark (15,000 training images, 4,370 validation images with dense pedestrian annotations) under identical 50 epoch training conditions. MoR-YOLOv8 achieves mAP@0.5 of 88.2% and mAP@0.5:0.95 of 56.8%, improving over YOLOv8L (87.2%, 56.0%) and YOLOv8X (87.2%, 56.5%) by +1.0 percentage point in the primary metric, while using fewer unique parameters than YOLOv8L. An ablation over n ? {1, 2, 3, 5, 7} recursive passes confirms n = 3 as the optimal accuracy-to-efficiency trade-off.",
         "datasets": [],
         "results": [],
         "images": [],
@@ -3174,8 +3174,8 @@
     {
       "_id": "6a4276f4925f8fd3f33b3d14",
       "id": "award-sudarshan-2",
-      "title": "1st Runner-Up – ETHIndia Defy ’26 Hackathon (SafeKeeper SOLIDITY project)",
-      "detail": "Sudarshan Sudhakar received the 1st Runner-Up – ETHIndia Defy ’26 Hackathon (SafeKeeper SOLIDITY project) from ETHIndia.",
+      "title": "1st Runner-Up \u2013 ETHIndia Defy \u201926 Hackathon (SafeKeeper SOLIDITY project)",
+      "detail": "Sudarshan Sudhakar received the 1st Runner-Up \u2013 ETHIndia Defy \u201926 Hackathon (SafeKeeper SOLIDITY project) from ETHIndia.",
       "year": 2026,
       "category": "Recognition",
       "__v": 0,
@@ -3207,8 +3207,8 @@
     {
       "_id": "6a4276f4925f8fd3f33b3d17",
       "id": "award-sudarshan-1",
-      "title": "Top 100 Nationally – Amazon ML Challenge 2025 (70,000+ participants)",
-      "detail": "Sudarshan Sudhakar received the Top 100 Nationally – Amazon ML Challenge 2025 (70,000+ participants) from Amazon.",
+      "title": "Top 100 Nationally \u2013 Amazon ML Challenge 2025 (70,000+ participants)",
+      "detail": "Sudarshan Sudhakar received the Top 100 Nationally \u2013 Amazon ML Challenge 2025 (70,000+ participants) from Amazon.",
       "year": 2025,
       "category": "Recognition",
       "__v": 0,
@@ -3240,8 +3240,8 @@
     {
       "_id": "6a4276f4925f8fd3f33b3d1a",
       "id": "award-efanio-1",
-      "title": "Inter IIIT Hackathon – Udbhav Finalist",
-      "detail": "Efanio Jens received the Inter IIIT Hackathon – Udbhav Finalist from Udbhav.",
+      "title": "Inter IIIT Hackathon \u2013 Udbhav Finalist",
+      "detail": "Efanio Jens received the Inter IIIT Hackathon \u2013 Udbhav Finalist from Udbhav.",
       "year": 2025,
       "category": "Recognition",
       "__v": 0,
@@ -3273,8 +3273,8 @@
     {
       "_id": "6a4276f4925f8fd3f33b3d1d",
       "id": "award-sudarshan-3",
-      "title": "Winner – AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model)",
-      "detail": "Sudarshan Sudhakar received the Winner – AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model) from IIITDM Kancheepuram.",
+      "title": "Winner \u2013 AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model)",
+      "detail": "Sudarshan Sudhakar received the Winner \u2013 AI/ML Hackathon, IIITDM Kancheepuram 2024 (R2=0.998 forecasting model) from IIITDM Kancheepuram.",
       "year": 2024,
       "category": "Recognition",
       "__v": 0,
@@ -3446,7 +3446,7 @@
       "studentName": "Ananya M.",
       "rollNo": "CS21B2013",
       "title": "Exploring Periocular Biometrics for Cattle Identification in the Visible Spectrum",
-      "explanation": "Biometric identification in livestock plays a crucial role in enhancing animal manage- ment, traceability. Traditional methods relying on muzzle patterns or coat textures often encounter limitations related to image quality, environmental conditions, and breed- specific characteristics. To address these challenges, this work draws upon advance- ments in human biometrics to explore a more scalable and consistent solution for cattle identification. Iris recognition, a well-established technique in human identification, commonly requires near-infrared imaging. However, such imaging is not feasible in typical farm environments, where only visible-light data is available. Recent studies have demon- strated that the periocular region—the area surrounding the eye—retains distinctive identity features even under visible-light conditions, offering a promising alternative. This study investigates the potential of using visible-spectrum periocular fea- tures for cattle identification by adapting deep learning models. Comparative anal- ysis revealed structural similarities between human and cattle periocular regions, sup- porting the applicability of human-centric models. A deep learning architecture based on ResNet50 was employed for feature extraction, while ArcFace was integrated to enhance inter-class separability and improve embedding compactness. The model was evaluated on both constrained and unconstrained cattle eye datasets, showing strong identification performance across varying conditions. Grad-CAM visu- alizations confirmed that the network consistently extracted relevant periocular features.",
+      "explanation": "Biometric identification in livestock plays a crucial role in enhancing animal manage- ment, traceability. Traditional methods relying on muzzle patterns or coat textures often encounter limitations related to image quality, environmental conditions, and breed- specific characteristics. To address these challenges, this work draws upon advance- ments in human biometrics to explore a more scalable and consistent solution for cattle identification. Iris recognition, a well-established technique in human identification, commonly requires near-infrared imaging. However, such imaging is not feasible in typical farm environments, where only visible-light data is available. Recent studies have demon- strated that the periocular region\u2014the area surrounding the eye\u2014retains distinctive identity features even under visible-light conditions, offering a promising alternative. This study investigates the potential of using visible-spectrum periocular fea- tures for cattle identification by adapting deep learning models. Comparative anal- ysis revealed structural similarities between human and cattle periocular regions, sup- porting the applicability of human-centric models. A deep learning architecture based on ResNet50 was employed for feature extraction, while ArcFace was integrated to enhance inter-class separability and improve embedding compactness. The model was evaluated on both constrained and unconstrained cattle eye datasets, showing strong identification performance across varying conditions. Grad-CAM visu- alizations confirmed that the network consistently extracted relevant periocular features.",
       "type": "BTP",
       "status": "Completed",
       "__v": 0,
@@ -3459,7 +3459,7 @@
       "studentName": "Kunduru Noniesh Reddy, Koneti Sai Dheeraj",
       "rollNo": "CS21B2032, CS21B2021",
       "title": "AI-Powered Cattle Recognition and Assistance",
-      "explanation": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns—akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
+      "explanation": "The AI-Powered Cattle Recognition and Assistance system introduces an innovative solution for livestock management through state-of-the-art computer vision and ar- tificial intelligence. By leveraging intelligent algorithms to detect and analyze unique muzzle patterns\u2014akin to human fingerprints, the system provides a robust alterna- tive to conventional tagging methods, ensuring accurate and permanent identification of individual cattle. This biometric approach eliminates common issues like tag loss or damage, creat- ing secure digital identities for every animal in the herd. It ensures reliable traceability and record-keeping, critical for modern farming operations. Planned enhancements include machine learning-driven disease detection (iden- tifying early visual symptoms of common bovine illnesses), an AI-powered chatbot for instant veterinary guidance, and a comprehensive medical management system to track vaccinations, treatments, and health histories. These additions aim to enable proactive health monitoring and data-driven decision-making. By addressing identification errors, accelerating disease prevention, and streamlin- ing health management workflows, the system promises to improve herd health, boost productivity, and optimize resource utilization across farms of all scales.",
       "type": "BTP",
       "status": "Completed",
       "__v": 0,
@@ -3511,7 +3511,7 @@
       "studentName": "Ambavaram Manasa Reddy",
       "rollNo": "CS24M1013",
       "title": "Identity-Aware Super-Resolution of Degraded Faces for Face Verification",
-      "explanation": "Face verification systems perform remarkably well under controlled, high-quality conditions, but their accuracy drops considerably when the input images have been degraded by blur, noise, or JPEG compression. This situation is common in practice surveillance cameras, messaging applications, and budget-grade sensors all introduce some form of quality loss before a face reaches the verification pipeline. When this happens, the embedding model begins to drift away from the true identity representation of the individual, causing genuine pairs to appear less similar and, in some cases,making impostor pairs look deceptively close. This work investigates whether super resolution preprocessing, when trained explicitly to preserve biometric identity rather than just visual quality, can recover the verification signal lost to image degradation. We fine-tune CodeFormer—a codebook based blind face restoration network anchored to a frozen VQGAN face prior—on the Labeled Faces in the Wild (LFW) dataset using a three-component composite loss that combines pixel-level L1 reconstruction, a VGG-19 perceptual term, and a FaceNet- based identity penalty that directly discourages embedding drift. Training operates on a pool of 3,000 LFW images on a single NVIDIA T4 GPU. Before fine-tuning, we sweep three fidelity weight settings of the pretrained model on a balanced set of 6,000 pairs to characterise the quality-versus-identity trade-off. Biometric evaluation uses ArcFace embeddings assessed through ROC curves, AUC, Equal Error Rate (EER), and TAR at FAR = 0.1% on the full 6,000-pair official LFW benchmark. Results show that the identity-aware fine-tuned model closes the genuine-pair similarity gap and does so without inflating impostor similarity—the critical security constraint for any biometric deployment.",
+      "explanation": "Face verification systems perform remarkably well under controlled, high-quality conditions, but their accuracy drops considerably when the input images have been degraded by blur, noise, or JPEG compression. This situation is common in practice surveillance cameras, messaging applications, and budget-grade sensors all introduce some form of quality loss before a face reaches the verification pipeline. When this happens, the embedding model begins to drift away from the true identity representation of the individual, causing genuine pairs to appear less similar and, in some cases,making impostor pairs look deceptively close. This work investigates whether super resolution preprocessing, when trained explicitly to preserve biometric identity rather than just visual quality, can recover the verification signal lost to image degradation. We fine-tune CodeFormer\u2014a codebook based blind face restoration network anchored to a frozen VQGAN face prior\u2014on the Labeled Faces in the Wild (LFW) dataset using a three-component composite loss that combines pixel-level L1 reconstruction, a VGG-19 perceptual term, and a FaceNet- based identity penalty that directly discourages embedding drift. Training operates on a pool of 3,000 LFW images on a single NVIDIA T4 GPU. Before fine-tuning, we sweep three fidelity weight settings of the pretrained model on a balanced set of 6,000 pairs to characterise the quality-versus-identity trade-off. Biometric evaluation uses ArcFace embeddings assessed through ROC curves, AUC, Equal Error Rate (EER), and TAR at FAR = 0.1% on the full 6,000-pair official LFW benchmark. Results show that the identity-aware fine-tuned model closes the genuine-pair similarity gap and does so without inflating impostor similarity\u2014the critical security constraint for any biometric deployment.",
       "type": "MTP",
       "status": "Completed",
       "__v": 0,
@@ -3550,7 +3550,7 @@
       "studentName": "Velide Sri Manaswini",
       "rollNo": "CS22B2030",
       "title": "Recursive Adaptive Backbone using Mixture of Recursions (MoR) for Robust Pedestrian Detection",
-      "explanation": "Detecting pedestrians in crowded scenes is genuinely difficult. When people overlap, are partially hidden, or appear at very small scales in the image, most detection models start making mistakes — merging two people into one box, missing smaller individuals, or producing uncertain predictions that get filtered during post-processing. A core reason is that standard detection backbones apply the same processing depth everywhere in the image regardless of how complex a scene region actually is. That uniform treatment is wasteful and limits what the model can do in dense crowds. This project proposes MoR-YOLOv8, a new detection architecture that modifies the YOLOv8 backbone by replacing the fixed-depth C2f blocks at the two deepest backbone stages with a recursive, weight-sharing module called MoR_C2f. Instead of stacking multiple independent convolutional blocks, one shared block is applied recursively three times, and a learned softmax-weighted mixture combines outputs from each pass. This gives the backbone deeper and more adaptive processing at the semantic stages that matter most for crowd scenes, without adding new unique parameters. The architecture is evaluated on the Crowd Human benchmark (15,000 training images, 4,370 validation images with dense pedestrian annotations) under identical 50 epoch training conditions. MoR-YOLOv8 achieves mAP@0.5 of 88.2% and mAP@0.5:0.95 of 56.8%, improving over YOLOv8L (87.2%, 56.0%) and YOLOv8X (87.2%, 56.5%) by +1.0 percentage point in the primary metric, while using fewer unique parameters than YOLOv8L. An ablation over n ? {1, 2, 3, 5, 7} recursive passes confirms n = 3 as the optimal accuracy-to-efficiency trade-off.",
+      "explanation": "Detecting pedestrians in crowded scenes is genuinely difficult. When people overlap, are partially hidden, or appear at very small scales in the image, most detection models start making mistakes \u2014 merging two people into one box, missing smaller individuals, or producing uncertain predictions that get filtered during post-processing. A core reason is that standard detection backbones apply the same processing depth everywhere in the image regardless of how complex a scene region actually is. That uniform treatment is wasteful and limits what the model can do in dense crowds. This project proposes MoR-YOLOv8, a new detection architecture that modifies the YOLOv8 backbone by replacing the fixed-depth C2f blocks at the two deepest backbone stages with a recursive, weight-sharing module called MoR_C2f. Instead of stacking multiple independent convolutional blocks, one shared block is applied recursively three times, and a learned softmax-weighted mixture combines outputs from each pass. This gives the backbone deeper and more adaptive processing at the semantic stages that matter most for crowd scenes, without adding new unique parameters. The architecture is evaluated on the Crowd Human benchmark (15,000 training images, 4,370 validation images with dense pedestrian annotations) under identical 50 epoch training conditions. MoR-YOLOv8 achieves mAP@0.5 of 88.2% and mAP@0.5:0.95 of 56.8%, improving over YOLOv8L (87.2%, 56.0%) and YOLOv8X (87.2%, 56.5%) by +1.0 percentage point in the primary metric, while using fewer unique parameters than YOLOv8L. An ablation over n ? {1, 2, 3, 5, 7} recursive passes confirms n = 3 as the optimal accuracy-to-efficiency trade-off.",
       "type": "BTP",
       "status": "Completed",
       "__v": 0,
@@ -3602,7 +3602,7 @@
       "studentName": "Varshitha Masaram",
       "rollNo": "CS22B1071",
       "title": "Cluster-Based Generation of Fingerprint and Iris Biometric Images",
-      "explanation": "Training and testing biometric recognition models require extensive and varied training and testing datasets. Real-world collection of such data poses various privacy risks and legal concerns, and the existing datasets are usually unbalanced with poor intra class variability. We propose a cascaded diffusion-based approach to create clustering synthetic fingerprint and iris image dataset. Each cluster contains many generated images of one synthetic identity that have similar features to each other while images from different clusters look visually very different. Our proposed pipeline consists of three stages: (1) a Random Network (RNet) trained to generate privacy-safe low resolution thumbnails using the DDPM approach; (2) an enhancement network for upscaling these thumbs upto full resolution; and (3) a Deterministic Network (DNet) conditioned on identity using class embeddings and classifier-free guidance (CFG) to produce clustered outputs. A contrastive learning loss is introduced in-between diffusion steps to strengthen inter-identity separation. Our experiment with a SOCOFing fingerprint dataset and MMU Iris Database showed that the generated images were realistic and formed coherent clusters measured via silhouette coefficient, Davies-Bouldin index, intra-cluster SSIM, and Fréchet Inception distance metrics. We tested our ap- proach with open source biometric matching algorithms, showing that ROC AUC for deep CNN matcher was larger than 0.80, and the synthetic identities were separable for real-world biometric recognition models.",
+      "explanation": "Training and testing biometric recognition models require extensive and varied training and testing datasets. Real-world collection of such data poses various privacy risks and legal concerns, and the existing datasets are usually unbalanced with poor intra class variability. We propose a cascaded diffusion-based approach to create clustering synthetic fingerprint and iris image dataset. Each cluster contains many generated images of one synthetic identity that have similar features to each other while images from different clusters look visually very different. Our proposed pipeline consists of three stages: (1) a Random Network (RNet) trained to generate privacy-safe low resolution thumbnails using the DDPM approach; (2) an enhancement network for upscaling these thumbs upto full resolution; and (3) a Deterministic Network (DNet) conditioned on identity using class embeddings and classifier-free guidance (CFG) to produce clustered outputs. A contrastive learning loss is introduced in-between diffusion steps to strengthen inter-identity separation. Our experiment with a SOCOFing fingerprint dataset and MMU Iris Database showed that the generated images were realistic and formed coherent clusters measured via silhouette coefficient, Davies-Bouldin index, intra-cluster SSIM, and Fr\u00e9chet Inception distance metrics. We tested our ap- proach with open source biometric matching algorithms, showing that ROC AUC for deep CNN matcher was larger than 0.80, and the synthetic identities were separable for real-world biometric recognition models.",
       "type": "BTP",
       "status": "Completed",
       "__v": 0,
@@ -3615,7 +3615,7 @@
       "studentName": "P. Naga Sripada",
       "rollNo": "CS22B1018",
       "title": "Study and Experimental Implementation of Mixture of Recursions (MoR) for Vision Tasks",
-      "explanation": "Transformers have completely revolutionized modern deep leaning, they became the dominanat architecture across Natural Language Processing and Computer Vision tasks. Their success led to the development of many advanced architectures such as Vision Transformers (ViTs), Recursive Transformers, Efficient Vision Models, and recent State Space models like Mamba. Despite their strong capabilities, most existing architectures, apply uniform computation across all tokens or image patches, regardless of the complexity or importance of different regions. This results in unnecessary computational overhead, especially in resource-constrained environments. This limitation was beautifully addressed by Google’s Mixture of Recursions (MoR) framework, which introduced adaptive token-level computation through recursive parameter sharing and dynamic recursion depth allocation. While MoR demonstrated promising results in language models, its adaptation to computer vision remains relatively unexplored. In this project, the principles of Mixture of Recursions were integrated into Vision Transformer architectures to develop and analyze multiple Vision-MoR implementations. The work began with a baseline Vision-MoR prototype, subsequently multiple improved versions were developed through architectural and parameter modifications. Comparative analyzes were performed across all implementations. In addition, a broader SOTA benchmark study was conducted by comparing vision-mor, with several modern post transformer and efficient vision architectures. The study highlights the effectiveness of Vision-MoR as a scalable and efficient vision framework and provides insights into the future direction of adaptive computation in computer vision systems.",
+      "explanation": "Transformers have completely revolutionized modern deep leaning, they became the dominanat architecture across Natural Language Processing and Computer Vision tasks. Their success led to the development of many advanced architectures such as Vision Transformers (ViTs), Recursive Transformers, Efficient Vision Models, and recent State Space models like Mamba. Despite their strong capabilities, most existing architectures, apply uniform computation across all tokens or image patches, regardless of the complexity or importance of different regions. This results in unnecessary computational overhead, especially in resource-constrained environments. This limitation was beautifully addressed by Google\u2019s Mixture of Recursions (MoR) framework, which introduced adaptive token-level computation through recursive parameter sharing and dynamic recursion depth allocation. While MoR demonstrated promising results in language models, its adaptation to computer vision remains relatively unexplored. In this project, the principles of Mixture of Recursions were integrated into Vision Transformer architectures to develop and analyze multiple Vision-MoR implementations. The work began with a baseline Vision-MoR prototype, subsequently multiple improved versions were developed through architectural and parameter modifications. Comparative analyzes were performed across all implementations. In addition, a broader SOTA benchmark study was conducted by comparing vision-mor, with several modern post transformer and efficient vision architectures. The study highlights the effectiveness of Vision-MoR as a scalable and efficient vision framework and provides insights into the future direction of adaptive computation in computer vision systems.",
       "type": "BTP",
       "status": "Completed",
       "__v": 0,
@@ -3630,7 +3630,8 @@
       "detail": "Quad-core ARM Cortex-A57 CPU, 128-core Maxwell GPU, 4GB LPDDR4 RAM, 472 GFLOPS AI performance, dual CSI camera support, Gigabit Ethernet, HDMI/DisplayPort, USB 3.0, and 40-pin GPIO for AI, robotics, and IoT applications.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/rover/3.jpg"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d3c",
@@ -3638,7 +3639,8 @@
       "detail": "JETSON XAVIER NX MODULE, AVER MEDIA NX 215 CARRIER, HEAT SINK, 12V POWER ADAPTER",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/jetson_xavier.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d3d",
@@ -3646,7 +3648,8 @@
       "detail": "Full HD (1920x1080) display with HDMI/VGA connectivity and anti-glare LED panel.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/hp_monitor.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d3e",
@@ -3654,7 +3657,8 @@
       "detail": "Business desktop with Intel Core processor, DDR4/DDR5 RAM, SSD storage, and multiple USB, HDMI, and DisplayPort connectivity options.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/dell_optiplex.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d3f",
@@ -3662,7 +3666,8 @@
       "detail": "Adjustable camera/mobile stands with stable legs for photography, videography, and project demonstrations.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/tripod.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d40",
@@ -3670,7 +3675,8 @@
       "detail": "Four-wheel drive robotic rover platform with DC motors, metal chassis, and support for AI, IoT, and autonomous robotics projects",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/rover/14.jpg"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d41",
@@ -3678,7 +3684,8 @@
       "detail": "Zebronics, Full HD 24-inch LED display with 1920x1080 resolution, HDMI/VGA connectivity, and wide viewing angles.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/led_monitor.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d42",
@@ -3686,7 +3693,8 @@
       "detail": "Video camera with adapter for high-quality recording and documentation.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/panasonic_camera.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d43",
@@ -3694,15 +3702,107 @@
       "detail": "Ink tank printer for efficient, low-cost color and monochrome printing.",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/epson_printer.png"
     },
     {
       "_id": "6a4276f4925f8fd3f33b3d44",
       "name": "SONY A6100 CAMERA",
-      "detail": "24.2 MP APS-C Exmor sensor camera with 425 autofocus points, 11 fps continuous shooting, and ISO range 100–32000 (with 64 GB SD card).",
+      "detail": "24.2 MP APS-C Exmor sensor camera with 425 autofocus points, 11 fps continuous shooting, and ISO range 100\u201332000 (with 64 GB SD card).",
       "__v": 0,
       "createdAt": "2026-06-29T13:45:24.812Z",
-      "updatedAt": "2026-06-29T13:45:24.812Z"
+      "updatedAt": "2026-06-29T13:45:24.812Z",
+      "image": "/images/hardware/sony_camera.png"
+    },
+    {
+      "name": "ViBeS Rover Hardware Photo Gallery (All Images)",
+      "detail": "Collection of all hardware photos used in the lab projects, including the custom autonomous rover. When the user asks for hardware photos, return all these images.",
+      "images_list": [
+        {
+          "id": 1,
+          "file": "/images/rover/1.jpg",
+          "title": "Chassis Assembly",
+          "detail": "Structural frame of the custom 4-wheel drive rover platform."
+        },
+        {
+          "id": 2,
+          "file": "/images/rover/2.jpg",
+          "title": "LIDAR Integration",
+          "detail": "Mounting and testing the 360-degree laser rangefinder."
+        },
+        {
+          "id": 3,
+          "file": "/images/rover/3.jpg",
+          "title": "Jetson Orin Compute",
+          "detail": "High-performance AI edge board mounted on the main chassis."
+        },
+        {
+          "id": 4,
+          "file": "/images/rover/4.jpg",
+          "title": "Power Management Rig",
+          "detail": "Dual LiFePO4 batteries with custom charging and monitoring circuitry."
+        },
+        {
+          "id": 5,
+          "file": "/images/rover/5.jpg",
+          "title": "Stereo Camera Mount",
+          "detail": "Dual-lens spatial intelligence camera for depth perception."
+        },
+        {
+          "id": 6,
+          "file": "/images/rover/6.jpg",
+          "title": "Drive Motor Gearbox",
+          "detail": "High-torque brush-less DC motors for rough outdoor terrain."
+        },
+        {
+          "id": 7,
+          "file": "/images/rover/7.jpg",
+          "title": "Under-chassis Wiring",
+          "detail": "Clean routing of control wires and power distribution lines."
+        },
+        {
+          "id": 8,
+          "file": "/images/rover/8.jpg",
+          "title": "Calibration Rig",
+          "detail": "Setting up checkerboard calibration for stereo-vision alignment."
+        },
+        {
+          "id": 9,
+          "file": "/images/rover/9.jpg",
+          "title": "Full Assembly (Side View)",
+          "detail": "Completed rover assembly ready for initial indoor test runs."
+        },
+        {
+          "id": 10,
+          "file": "/images/rover/10.jpg",
+          "title": "Remote Controller Link",
+          "detail": "Configuring telemetry link and manual override controls."
+        },
+        {
+          "id": 11,
+          "file": "/images/rover/11.jpg",
+          "title": "Telemetry Screen",
+          "detail": "Monitoring ROS diagnostics and mapping status on remote monitor."
+        },
+        {
+          "id": 12,
+          "file": "/images/rover/12.jpg",
+          "title": "Field Test Prep",
+          "detail": "Verifying wheel alignment and sensor stability before deployment."
+        },
+        {
+          "id": 13,
+          "file": "/images/rover/13.jpg",
+          "title": "LiDAR Point Cloud",
+          "detail": "Visualization of the 3D point cloud scans from the lab interior."
+        },
+        {
+          "id": 14,
+          "file": "/images/rover/14.jpg",
+          "title": "Final Build (Front View)",
+          "detail": "ViBeS Rover in its final configuration with protective shell."
+        }
+      ]
     }
   ],
   "labStats": {

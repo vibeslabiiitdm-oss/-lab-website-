@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Rocket, CheckCircle2, ArrowLeft } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { type Project } from "@/data/lab";
+import { type Project , BASE_URL } from "@/data/lab";
 import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/projects")({ component: ProjectsPage });
@@ -11,7 +11,7 @@ function ProjectsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${BASE_URL}/api/projects`)
       .then((res) => res.json())
       .then((data) => {
         setProjects(data);

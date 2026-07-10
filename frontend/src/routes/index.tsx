@@ -19,6 +19,7 @@ import {
   labDomains,
   labStats,
   resources,
+  BASE_URL 
 } from "@/data/lab";
 import {
   Carousel,
@@ -41,7 +42,7 @@ function Home() {
 
   useEffect(() => {
     // Fetch Projects
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${BASE_URL}/api/projects`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setDbProjects(data);
@@ -49,14 +50,14 @@ function Home() {
       .catch((err) => console.error("Error loading projects:", err));
 
     // Fetch People
-    fetch("http://localhost:5000/api/people")
+    fetch(`${BASE_URL}/api/people`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setDbPeople(data);
       })
       .catch((err) => console.error("Error loading people:", err));
     // Fetch News
-    fetch("http://localhost:5000/api/news")
+    fetch(`${BASE_URL}/api/news`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setNews(data);
@@ -68,7 +69,7 @@ function Home() {
       });
 
     // Fetch Live Updates
-    fetch("http://localhost:5000/api/updates")
+    fetch(`${BASE_URL}/api/updates`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setDbUpdates(data);
@@ -76,7 +77,7 @@ function Home() {
       .catch((err) => console.error("Error loading updates:", err));
 
     // Fetch Achievements
-    fetch("http://localhost:5000/api/achievements")
+    fetch(`${BASE_URL}/api/achievements`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setDbAchievements(data);

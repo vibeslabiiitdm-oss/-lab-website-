@@ -25,6 +25,7 @@ import {
   allPeople,
   supervisedProjects,
   type SupervisedProject,
+  BASE_URL 
 } from "@/data/lab";
 
 export const Route = createFileRoute("/profile/$id")({ component: ProfilePage });
@@ -169,7 +170,7 @@ function ProfilePage() {
           <div className="px-6 md:px-10 pb-8 -mt-16 grid md:grid-cols-[auto_1fr_auto] gap-6 items-end">
             {p.avatar ? (
               <img
-                src={p.avatar.startsWith('/uploads') ? `http://localhost:5000${p.avatar}` : p.avatar}
+                src={p.avatar.startsWith('/uploads') ? `${BASE_URL}${p.avatar}` : p.avatar}
                 alt={p.name}
                 className="h-32 w-32 rounded-2xl border border-border/70 object-cover bg-background glow-ring relative z-10"
               />
@@ -199,7 +200,7 @@ function ProfilePage() {
             <div className="flex flex-wrap gap-2 items-center">
               {p.resume ? (
                 <a
-                  href={(p.resume.startsWith('/uploads') || p.resume.startsWith('/resumes')) ? `http://localhost:5000${p.resume}` : (!p.resume.startsWith('http') && !p.resume.startsWith('/')) ? `https://${p.resume}` : p.resume}
+                  href={(p.resume.startsWith('/uploads') || p.resume.startsWith('/resumes')) ? `${BASE_URL}${p.resume}` : (!p.resume.startsWith('http') && !p.resume.startsWith('/')) ? `https://${p.resume}` : p.resume}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs px-3 py-1.5 rounded-lg bg-primary/20 border border-primary/40 text-primary hover:bg-primary/30 flex items-center gap-1.5 font-medium transition"
@@ -866,7 +867,7 @@ function ProfilePage() {
                   <div className="flex items-start gap-4 relative z-10">
                     {scholar.avatar ? (
                       <img
-                        src={scholar.avatar.startsWith('/uploads') ? `http://localhost:5000${scholar.avatar}` : scholar.avatar}
+                        src={scholar.avatar.startsWith('/uploads') ? `${BASE_URL}${scholar.avatar}` : scholar.avatar}
                         alt={scholar.name}
                         className="h-12 w-12 rounded-xl object-cover border border-border/70 bg-background"
                       />

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Award, FileBadge, Sparkles, Target, Trophy, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
-import { type Achievement } from "@/data/lab";
+import { type Achievement , BASE_URL } from "@/data/lab";
 
 export const Route = createFileRoute("/achievements")({ component: AchievementsPage });
 
@@ -16,7 +16,7 @@ function AchievementsPage() {
   const [dbAchievements, setDbAchievements] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/achievements")
+    fetch(`${BASE_URL}/api/achievements`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setDbAchievements(data);

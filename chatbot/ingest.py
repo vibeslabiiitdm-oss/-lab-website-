@@ -100,6 +100,23 @@ def ingest_structured_data(graph, data_chunks):
         if avatar:
             profile_text += f"\n[Image Found]: {avatar}\n"
 
+        # Add Publications
+        pub_list = person.get("publications", [])
+        for pub in pub_list:
+            pub_title = pub.get("title", "")
+            pub_venue = pub.get("venue", "")
+            pub_year = pub.get("year", "")
+            pub_type = pub.get("type", "")
+            pub_abstract = pub.get("abstract", "")
+            pub_domain = pub.get("domain", "")
+            
+            pub_text = f"Publication by {name}\nTitle: {pub_title}\nVenue: {pub_venue} ({pub_year})\nType: {pub_type}\nDomain: {pub_domain}\nAbstract: {pub_abstract}"
+            
+            data_chunks.append({
+                "text": pub_text,
+                "metadata": json.dumps({"source_id": f"[Publication: {pub_title}]", "type": "publication", "author": name})
+            })
+
         data_chunks.append({
             "text": f"Person Profile: {name}\n" + profile_text,
             "metadata": json.dumps({"source_id": f"[Person Profile: {name}]", "type": "person", "name": name})
@@ -118,13 +135,24 @@ def ingest_structured_data(graph, data_chunks):
             "metadata": json.dumps({"source_id": f"[Project: {title}]", "type": "project", "title": title})
         })
 
-    # Add Lab Resources / Hardware
+        # Add Lab Resources / Hardware
     resources = data.get("resources", [])
     for r in resources:
         name = r.get("name", "")
         detail = r.get("detail", "")
+        image = r.get("image", "")
+        images_list = r.get("images_list", [])
+        
+        chunk_text = f"Lab Resource / Hardware: {name}\nDetails: {detail}"
+        if image:
+            chunk_text += f"\n![Image Found]({image})"
+            
+        for img_obj in images_list:
+            chunk_text += f"\n- {img_obj.get('title')}: {img_obj.get('detail')}"
+            chunk_text += f"\n![Image Found]({img_obj.get('file')})"
+            
         data_chunks.append({
-            "text": f"Lab Resource / Hardware: {name}\nDetails: {detail}",
+            "text": chunk_text,
             "metadata": json.dumps({"source_id": f"[Resource: {name}]", "type": "resource", "name": name})
         })
 

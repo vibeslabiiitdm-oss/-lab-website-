@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { GraduationCap, Users, Clock, ArrowLeft } from "lucide-react";
 import { PeopleCard } from "@/components/site/PeopleCard";
 import { Reveal } from "@/components/site/Reveal";
-import { type Person } from "@/data/lab";
+import { type Person, BASE_URL } from "@/data/lab";
 import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/team")({ component: TeamPage });
@@ -12,7 +12,7 @@ function TeamPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/people")
+    fetch(`${BASE_URL}/api/people`)
       .then((res) => res.json())
       .then((data) => {
         setAllPeople(data);
