@@ -68,7 +68,7 @@ function Contact() {
             <MapPin className="text-primary" size={16} /> IIITDM Kancheepuram, Chennai 600127
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <Mail className="text-primary" size={16} /> vibeslab.iiitdm@gmail.com
+            <Mail className="text-primary" size={16} /> vibes.iiitdm@gmail.com
           </div>
           <div className="flex items-center gap-3 text-sm">
             <Phone className="text-primary" size={16} /> +91 8763797907

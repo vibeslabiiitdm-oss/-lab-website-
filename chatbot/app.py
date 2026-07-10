@@ -88,7 +88,7 @@ If the context does not contain the answer, do not guess or rely on general know
 Whenever you provide an answer from the context, include the source citation at the end of the claim (e.g., [Person Profile: Dr. Rahul Raman] or [Project: Cattle Biometrics]).
 
 General Information (Always available):
-- Email: vibeslab.iiitdm@gmail.com
+- Email: vibes.iiitdm@gmail.com
 - Location: Indian Institute of Information Technology, Design & Manufacturing (IIITDM) Kancheepuram, Chennai 600127, India.
 - Phone: +91 8763797907
 """

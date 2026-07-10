@@ -88,7 +88,7 @@ Unless explicitly stated otherwise in the data, ALWAYS use gender-neutral pronou
 
 LAB CONTACT INFORMATION:
 - Address: IIITDM Kancheepuram, Chennai 600127
-- Email: vibeslab.iiitdm@gmail.com
+- Email: vibes.iiitdm@gmail.com
 - Phone: +91 8763797907
 
 <context>
