@@ -88,6 +88,12 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 // Serve existing frontend resumes statically
 app.use("/resumes", express.static(path.join(process.cwd(), "../frontend/public/resumes")));
 
+// Serve Admin Dashboard SPA
+app.use("/admin", express.static(path.join(process.cwd(), "../admin/dist")));
+app.get("/admin/*", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "../admin/dist/index.html"));
+});
+
 // Health check endpoint
 //check the health of the server and database connection. Returns a JSON response with status and database connection state.
 app.get("/health", (req, res) => {

@@ -135,7 +135,7 @@ function LoginForm({ onLoginSuccess, onNavigate, showNotification }: LoginFormPr
     if (!validate()) return;
 
     setIsLoading(true);
-    fetch("http://localhost:5000/api/auth/login", {
+    fetch("https://lab-website-tblf.onrender.com/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -301,7 +301,7 @@ function SignUpForm({ onNavigate, showNotification }: SignUpFormProps) {
     if (!validate()) return;
 
     setIsLoading(true);
-    fetch("http://localhost:5000/api/auth/register", {
+    fetch("https://lab-website-tblf.onrender.com/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password, role })
@@ -731,43 +731,43 @@ export default function App() {
 
 
       // Fetch People
-      fetch("http://localhost:5000/api/people")
+      fetch("https://lab-website-tblf.onrender.com/api/people")
         .then(res => res.json())
         .then(data => setPeople(data))
         .catch(err => console.error("Error fetching people:", err));
 
       // Fetch Projects
-      fetch("http://localhost:5000/api/projects")
+      fetch("https://lab-website-tblf.onrender.com/api/projects")
         .then(res => res.json())
         .then(data => setProjects(data))
         .catch(err => console.error("Error fetching projects:", err));
 
       // Fetch Achievements
-      fetch("http://localhost:5000/api/achievements")
+      fetch("https://lab-website-tblf.onrender.com/api/achievements")
         .then(res => res.json())
         .then(data => setAchievements(data))
         .catch(err => console.error("Error fetching achievements:", err));
 
       // Fetch Live Updates
-      fetch("http://localhost:5000/api/updates")
+      fetch("https://lab-website-tblf.onrender.com/api/updates")
         .then(res => res.json())
         .then(data => setLiveUpdates(data))
         .catch(err => console.error("Error fetching live updates:", err));
 
       // Fetch Supervised Projects
-      fetch("http://localhost:5000/api/supervised")
+      fetch("https://lab-website-tblf.onrender.com/api/supervised")
         .then(res => res.json())
         .then(data => setSupervisedProjects(data))
         .catch(err => console.error("Error fetching supervised projects:", err));
 
       // Fetch Resources
-      fetch("http://localhost:5000/api/resources")
+      fetch("https://lab-website-tblf.onrender.com/api/resources")
         .then(res => res.json())
         .then(data => setResources(data))
         .catch(err => console.error("Error fetching resources:", err));
 
       // Fetch Stats
-      fetch("http://localhost:5000/api/stats")
+      fetch("https://lab-website-tblf.onrender.com/api/stats")
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {
@@ -782,7 +782,7 @@ export default function App() {
 
       // Fetch Contact Messages
       const token = sessionStorage.getItem("auth_token");
-      fetch("http://localhost:5000/api/contact", {
+      fetch("https://lab-website-tblf.onrender.com/api/contact", {
         headers: { "Authorization": `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -866,7 +866,7 @@ export default function App() {
       "Are you sure you want to delete this team member from the directory roster?",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/people/${id}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/people/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -887,7 +887,7 @@ export default function App() {
       "Are you sure you want to delete this research project? This action cannot be undone.",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/projects/${id}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/projects/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -908,7 +908,7 @@ export default function App() {
       "Are you sure you want to delete this supervised project?",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/supervised/${sno}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/supervised/${sno}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -929,7 +929,7 @@ export default function App() {
       "Are you sure you want to delete this achievement milestone from the timeline?",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/achievements/${id}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/achievements/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -950,7 +950,7 @@ export default function App() {
       "Are you sure you want to delete this live update?",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/updates/${id}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/updates/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -972,7 +972,7 @@ export default function App() {
       "Are you sure you want to delete this hardware specification? This action cannot be undone.",
       () => {
         const token = sessionStorage.getItem("auth_token");
-        fetch(`http://localhost:5000/api/resources/${id}`, {
+        fetch(`https://lab-website-tblf.onrender.com/api/resources/${id}`, {
           method: "DELETE",
           headers: { "Authorization": `Bearer ${token}` }
         })
@@ -1000,7 +1000,7 @@ export default function App() {
 
     const token = sessionStorage.getItem("auth_token");
 
-    fetch("http://localhost:5000/api/resources", {
+    fetch("https://lab-website-tblf.onrender.com/api/resources", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1048,7 +1048,7 @@ export default function App() {
       const uploadData = new FormData();
       uploadData.append("file", avatarFile);
       try {
-        const uploadRes = await fetch("http://localhost:5000/api/upload", {
+        const uploadRes = await fetch("https://lab-website-tblf.onrender.com/api/upload", {
           method: "POST",
           headers: { "Authorization": `Bearer ${token}` },
           body: uploadData
@@ -1074,7 +1074,7 @@ export default function App() {
       const uploadData = new FormData();
       uploadData.append("file", resumeFile);
       try {
-        const uploadRes = await fetch("http://localhost:5000/api/upload", {
+        const uploadRes = await fetch("https://lab-website-tblf.onrender.com/api/upload", {
           method: "POST",
           headers: { "Authorization": `Bearer ${token}` },
           body: uploadData
@@ -1128,7 +1128,7 @@ export default function App() {
     };
 
     const isEditing = !!editingPerson?.id;
-    const url = isEditing ? `http://localhost:5000/api/people/${editingPerson.id}` : "http://localhost:5000/api/people";
+    const url = isEditing ? `https://lab-website-tblf.onrender.com/api/people/${editingPerson.id}` : "https://lab-website-tblf.onrender.com/api/people";
     const method = isEditing ? "PUT" : "POST";
 
     fetch(url, {
@@ -1183,7 +1183,7 @@ export default function App() {
 
     const token = sessionStorage.getItem("auth_token");
     const isEditing = !!editingProject?.id;
-    const url = isEditing ? `http://localhost:5000/api/projects/${editingProject.id}` : "http://localhost:5000/api/projects";
+    const url = isEditing ? `https://lab-website-tblf.onrender.com/api/projects/${editingProject.id}` : "https://lab-website-tblf.onrender.com/api/projects";
     const method = isEditing ? "PUT" : "POST";
 
     fetch(url, {
@@ -1234,7 +1234,7 @@ export default function App() {
 
     const token = sessionStorage.getItem("auth_token");
     const isEditing = !!editingSupervised?.sno;
-    const url = isEditing ? `http://localhost:5000/api/supervised/${editingSupervised.sno}` : "http://localhost:5000/api/supervised";
+    const url = isEditing ? `https://lab-website-tblf.onrender.com/api/supervised/${editingSupervised.sno}` : "https://lab-website-tblf.onrender.com/api/supervised";
     const method = isEditing ? "PUT" : "POST";
 
     fetch(url, {
@@ -1284,7 +1284,7 @@ export default function App() {
 
     const token = sessionStorage.getItem("auth_token");
     const isEditing = !!editingAchievement?.id;
-    const url = isEditing ? `http://localhost:5000/api/achievements/${editingAchievement.id}` : "http://localhost:5000/api/achievements";
+    const url = isEditing ? `https://lab-website-tblf.onrender.com/api/achievements/${editingAchievement.id}` : "https://lab-website-tblf.onrender.com/api/achievements";
     const method = isEditing ? "PUT" : "POST";
 
     fetch(url, {
@@ -1334,7 +1334,7 @@ export default function App() {
 
     const token = sessionStorage.getItem("auth_token");
     const isEditing = !!editingUpdate?.id;
-    const url = isEditing ? `http://localhost:5000/api/updates/${editingUpdate.id}` : "http://localhost:5000/api/updates";
+    const url = isEditing ? `https://lab-website-tblf.onrender.com/api/updates/${editingUpdate.id}` : "https://lab-website-tblf.onrender.com/api/updates";
     const method = isEditing ? "PUT" : "POST";
 
     fetch(url, {
@@ -1478,7 +1478,7 @@ export default function App() {
     }));
 
     const token = sessionStorage.getItem("auth_token");
-    fetch(`http://localhost:5000/api/stats/${key}`, {
+    fetch(`https://lab-website-tblf.onrender.com/api/stats/${key}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -1500,7 +1500,7 @@ export default function App() {
     }));
 
     const token = sessionStorage.getItem("auth_token");
-    fetch(`http://localhost:5000/api/stats/${key}`, {
+    fetch(`https://lab-website-tblf.onrender.com/api/stats/${key}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -1822,7 +1822,7 @@ export default function App() {
                               setMessages(prev => prev.map(m => m._id === msg._id ? { ...m, read: true } : m));
                               
                               const token = sessionStorage.getItem("auth_token");
-                              fetch(`http://localhost:5000/api/contact/${msg._id}`, {
+                              fetch(`https://lab-website-tblf.onrender.com/api/contact/${msg._id}`, {
                                 method: "PUT",
                                 headers: { 
                                   "Content-Type": "application/json",
@@ -1873,7 +1873,7 @@ export default function App() {
                           setIsMessagesOpen(false);
                           
                           Promise.all(unread.map(m => 
-                            fetch(`http://localhost:5000/api/contact/${m._id}`, {
+                            fetch(`https://lab-website-tblf.onrender.com/api/contact/${m._id}`, {
                               method: "PUT",
                               headers: { 
                                 "Content-Type": "application/json",
@@ -2521,7 +2521,7 @@ export default function App() {
                           <div className="flex items-center gap-3">
                             <div className="h-10 w-10 rounded-xl bg-card border border-border grid place-items-center font-display font-bold text-primary shrink-0 overflow-hidden">
                               {p.avatar ? (
-                                <img src={p.avatar.startsWith('/uploads') ? `http://localhost:5000${p.avatar}` : p.avatar} alt={p.name} className="h-full w-full object-cover" />
+                                <img src={p.avatar.startsWith('/uploads') ? `https://lab-website-tblf.onrender.com${p.avatar}` : p.avatar} alt={p.name} className="h-full w-full object-cover" />
                               ) : (
                                 p.name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase()
                               )}
@@ -3252,7 +3252,7 @@ export default function App() {
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Upload Profile Photo (Optional)</label>
                   {editingPerson?.avatar && (
                     <div className="mb-3 flex items-center gap-4">
-                      <img src={editingPerson.avatar.startsWith('/uploads') ? `http://localhost:5000${editingPerson.avatar}` : editingPerson.avatar} alt="Avatar preview" className="w-16 h-16 rounded-full object-cover border border-border" />
+                      <img src={editingPerson.avatar.startsWith('/uploads') ? `https://lab-website-tblf.onrender.com${editingPerson.avatar}` : editingPerson.avatar} alt="Avatar preview" className="w-16 h-16 rounded-full object-cover border border-border" />
                       <button 
                         type="button" 
                         onClick={() => {
@@ -3280,7 +3280,7 @@ export default function App() {
                   <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Upload Resume (Optional)</label>
                   {editingPerson?.resume && (
                     <div className="mb-3 flex items-center gap-4">
-                      <a href={(editingPerson.resume.startsWith('/uploads') || editingPerson.resume.startsWith('/resumes')) ? `http://localhost:5000${editingPerson.resume}` : (!editingPerson.resume.startsWith('http') && !editingPerson.resume.startsWith('/')) ? `https://${editingPerson.resume}` : editingPerson.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition">
+                      <a href={(editingPerson.resume.startsWith('/uploads') || editingPerson.resume.startsWith('/resumes')) ? `https://lab-website-tblf.onrender.com${editingPerson.resume}` : (!editingPerson.resume.startsWith('http') && !editingPerson.resume.startsWith('/')) ? `https://${editingPerson.resume}` : editingPerson.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition">
                         View Current Resume
                       </a>
                       <button 
@@ -4275,7 +4275,7 @@ export default function App() {
                     "Are you sure you want to permanently delete this message from the database?",
                     () => {
                       const token = sessionStorage.getItem("auth_token");
-                      fetch(`http://localhost:5000/api/contact/${selectedMessage._id}`, {
+                      fetch(`https://lab-website-tblf.onrender.com/api/contact/${selectedMessage._id}`, {
                         method: "DELETE",
                         headers: { "Authorization": `Bearer ${token}` }
                       })
@@ -4301,7 +4301,7 @@ export default function App() {
                   onClick={() => {
                     const nextReadState = !selectedMessage.read;
                     const token = sessionStorage.getItem("auth_token");
-                    fetch(`http://localhost:5000/api/contact/${selectedMessage._id}`, {
+                    fetch(`https://lab-website-tblf.onrender.com/api/contact/${selectedMessage._id}`, {
                       method: "PUT",
                       headers: { 
                         "Content-Type": "application/json",
