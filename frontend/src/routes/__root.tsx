@@ -12,6 +12,8 @@ import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Chatbot } from "@/components/site/Chatbot";
+import { useState, useEffect } from "react";
+import { allPeople, guide, scholars } from "@/data/lab";
 
 function NotFoundComponent() {
   return (
@@ -139,6 +141,33 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://lab-website-tblf.onrender.com/api/people")
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          allPeople.splice(0, allPeople.length, ...data);
+          const g = data.find(p => p.role === "guide");
+          if (g) Object.assign(guide, g);
+        }
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-sm font-medium text-muted-foreground animate-pulse">Loading ViBeS Lab...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
