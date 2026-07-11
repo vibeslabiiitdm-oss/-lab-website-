@@ -89,10 +89,16 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use("/resumes", express.static(path.join(process.cwd(), "../frontend/public/resumes")));
 
 // Serve Admin Dashboard SPA
-app.use("/admin", express.static(path.join(process.cwd(), "../admin/dist")));
-app.get("/admin/*", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "../admin/dist/index.html"));
+app.use("/admin", express.static(path.join(process.cwd(), "../admin/dist"), { index: false }));
+const clientLogs: string[] = [];
+app.get(["/admin", "/admin/*"], (req, res) => {
+  const fs = require("fs");
+  let html = fs.readFileSync(path.join(process.cwd(), "../admin/dist/index.html"), "utf8");
+  html = html.replace("<head>", "<head><script>window.onerror = function(m) { fetch('/api/log?msg=' + encodeURIComponent(m)); }; console.error = function(m) { fetch('/api/log?msg=' + encodeURIComponent(m)); };</script>");
+  res.send(html);
 });
+app.get("/api/log", (req, res) => { clientLogs.push(String(req.query.msg)); console.log("CLIENT ERROR:", req.query.msg); res.sendStatus(200); });
+app.get("/api/logs", (req, res) => { res.json(clientLogs); });
 
 // Health check endpoint
 //check the health of the server and database connection. Returns a JSON response with status and database connection state.
