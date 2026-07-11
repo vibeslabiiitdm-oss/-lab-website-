@@ -32,22 +32,7 @@ const allowedOrigins = process.env.CORS_ORIGINS
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      
-      // If we set CORS_ORIGINS=* in Render, allow everything
-      if (process.env.CORS_ORIGINS === "*") return callback(null, true);
-
-      // Allow any vercel deployment URL automatically
-      if (origin.endsWith(".vercel.app")) return callback(null, true);
-
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
+    origin: true,
     credentials: true,
   })
 );
