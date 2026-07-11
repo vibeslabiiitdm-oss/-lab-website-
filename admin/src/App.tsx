@@ -3487,14 +3487,6 @@ export default function App() {
                             </select>
                           </div>
                           
-                          <input
-                            type="url"
-                            placeholder="Link / URL (Optional)"
-                            value={pub.url || ""}
-                            onChange={(e) => updatePersonSubItemValue("publications", index, "url", e.target.value)}
-                            className="w-full px-2 py-1 text-xs rounded border border-border bg-card focus:outline-none mb-2"
-                          />
-
                           <div className="grid grid-cols-3 gap-2">
                             <input
                               type="text"

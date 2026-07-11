@@ -91,21 +91,7 @@ function ProfilePage() {
           >
             <div className="font-medium text-foreground hover:text-primary transition-colors">{pub.title}</div>
             <div className="text-xs text-muted-foreground mt-1">
-              {pub.venue} ·{" "}
-              {pub.url ? (
-                <a
-                  href={pub.url.startsWith("http") ? pub.url : `https://${pub.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {pub.type}
-                </a>
-              ) : (
-                <span className="text-foreground font-medium">{pub.type}</span>
-              )}{" "}
-              · {pub.year}
+              {pub.venue} · <span className="text-foreground font-medium">{pub.type}</span> · {pub.year}
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
