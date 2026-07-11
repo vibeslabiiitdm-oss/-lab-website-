@@ -30,24 +30,46 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         if (matchedPeople.length > 0) {
             context += "RELEVANT LAB MEMBERS:\n";
             matchedPeople.forEach(p => {
-                context += `- ${p.name}, ${p.designation} (${p.email}). ${p.bio || ""}\n`;
-                if (p.avatar) {
-                    context += `  Photo of ${p.name}: ![${p.name}](${p.avatar})\n`;
-                }
-                if (p.domains && p.domains.length > 0) {
-                    context += `  Research Domains: ${p.domains.join(", ")}\n`;
+                context += `\n### ${p.name}\n- Designation: ${p.designation}\n- Email: ${p.email}\n- Bio: ${p.bio || ""}\n`;
+                if (p.avatar) context += `- Photo: ![${p.name}](${p.avatar})\n`;
+                if (p.resume) context += `- Resume: [Download Resume](${p.resume})\n`;
+                if (p.domains && p.domains.length > 0) context += `- Research Domains: ${p.domains.join(", ")}\n`;
+                if (p.skills && p.skills.length > 0) context += `- Skills: ${p.skills.join(", ")}\n`;
+                if (p.education && p.education.length > 0) {
+                    context += `- Education:\n`;
+                    p.education.forEach((ed: any) => {
+                        context += `  * ${ed.degree} in ${ed.field}, ${ed.institute} (${ed.year})\n`;
+                    });
                 }
                 if (p.publications && p.publications.length > 0) {
-                    context += `  Publications:\n`;
+                    context += `- Publications:\n`;
                     p.publications.forEach((pub: any) => {
-                        context += `    - "${pub.title}" (${pub.venue} ${pub.year})\n`;
+                        context += `  * "${pub.title}" (${pub.venue} ${pub.year})\n`;
                     });
                 }
-                if (p.education && p.education.length > 0) {
-                    context += `  Education:\n`;
-                    p.education.forEach((ed: any) => {
-                        context += `    - ${ed.degree} in ${ed.field}, ${ed.institute} (${ed.year})\n`;
+                if (p.experience && p.experience.length > 0) {
+                    context += `- Experience:\n`;
+                    p.experience.forEach((exp: any) => {
+                        context += `  * ${exp.role} at ${exp.org} (${exp.duration})\n`;
                     });
+                }
+                if (p.awards && p.awards.length > 0) {
+                    context += `- Awards:\n`;
+                    p.awards.forEach((aw: any) => {
+                        context += `  * ${aw.title} from ${aw.org} (${aw.year})\n`;
+                    });
+                }
+                if (p.researchProject && p.researchProject.title) {
+                    context += `- Current Research Project: ${p.researchProject.title}\n`;
+                    context += `  * Abstract: ${p.researchProject.abstract}\n`;
+                    if (p.researchProject.results && p.researchProject.results.length > 0) {
+                        context += `  * Results: ${p.researchProject.results.join("; ")}\n`;
+                    }
+                    if (p.researchProject.images && p.researchProject.images.length > 0) {
+                        p.researchProject.images.forEach((img: string, i: number) => {
+                             context += `  * Hardware/Blueprint Photo ${i+1}: ![Blueprint ${i+1}](${img})\n`;
+                        });
+                    }
                 }
             });
         }
@@ -55,10 +77,21 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         if (matchedProjects.length > 0) {
             context += "\nRELEVANT RESEARCH PROJECTS:\n";
             matchedProjects.forEach(p => {
-                context += `- ${p.title}: ${p.description || ""}\n`;
-                if (p.image) {
-                    context += `  Project Image: ![${p.title}](${p.image})\n`;
+                context += `\n### ${p.title}\n`;
+                if (p.tagline) context += `- Tagline: ${p.tagline}\n`;
+                if (p.domain) context += `- Domain: ${p.domain}\n`;
+                if (p.status) context += `- Status: ${p.status} (Year: ${p.year})\n`;
+                if (p.purpose) context += `- Purpose: ${p.purpose}\n`;
+                if (p.description) context += `- Description: ${p.description}\n`;
+                if (p.tech && p.tech.length > 0) context += `- Technologies Used: ${p.tech.join(", ")}\n`;
+                if (p.collaborators && p.collaborators.length > 0) context += `- Collaborators: ${p.collaborators.join(", ")}\n`;
+                if (p.results && p.results.length > 0) {
+                    context += `- Key Results:\n`;
+                    p.results.forEach((res: string) => {
+                        context += `  * ${res}\n`;
+                    });
                 }
+                if (p.image) context += `- Project Image: ![${p.title}](${p.image})\n`;
             });
         }
         
