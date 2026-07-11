@@ -2521,7 +2521,7 @@ export default function App() {
                           <div className="flex items-center gap-3">
                             <div className="h-10 w-10 rounded-xl bg-card border border-border grid place-items-center font-display font-bold text-primary shrink-0 overflow-hidden">
                               {p.avatar ? (
-                                <img src={p.avatar.startsWith('/uploads') ? `https://lab-website-tblf.onrender.com${p.avatar}` : p.avatar} alt={p.name} className="h-full w-full object-cover" />
+                                <img src={p.avatar.startsWith('/uploads') ? `https://lab-website-tblf.onrender.com${p.avatar}` : (p.avatar.startsWith('/images') ? `/admin${p.avatar}` : p.avatar)} alt={p.name} className="h-full w-full object-cover" />
                               ) : (
                                 p.name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase()
                               )}
