@@ -1625,7 +1625,7 @@ export default function App() {
           <div className={`p-4 border-b border-border flex items-center ${sidebarOpen ? "justify-between" : "justify-center"} h-[73px]`}>
             {sidebarOpen && (
               <div className="flex items-center gap-2.5 overflow-hidden">
-                <img src="/logo.png" alt="ViBeS Lab" className="h-8 w-8 object-contain shrink-0" />
+                <img src="/admin/logo.png" alt="ViBeS Lab" className="h-8 w-8 object-contain shrink-0" />
                 <div className="flex flex-col text-left whitespace-nowrap">
                   <span className="font-display font-black text-sm leading-none tracking-tight text-foreground">{labName}</span>
                 </div>
