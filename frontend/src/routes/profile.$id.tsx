@@ -94,7 +94,7 @@ function ProfilePage() {
               {pub.venue} ·{" "}
               {pub.url ? (
                 <a
-                  href={pub.url}
+                  href={pub.url.startsWith("http") ? pub.url : `https://${pub.url}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:underline"
@@ -103,7 +103,7 @@ function ProfilePage() {
                   {pub.type}
                 </a>
               ) : (
-                <span className="text-primary">{pub.type}</span>
+                <span className="text-foreground font-medium">{pub.type}</span>
               )}{" "}
               · {pub.year}
             </div>
