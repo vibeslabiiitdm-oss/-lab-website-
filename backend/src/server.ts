@@ -92,7 +92,6 @@ app.use("/resumes", express.static(path.join(process.cwd(), "../frontend/public/
 app.use("/admin", express.static(path.join(process.cwd(), "../admin/dist"), { index: false }));
 const clientLogs: string[] = [];
 app.get(["/admin", "/admin/*"], (req, res) => {
-  const fs = require("fs");
   let html = fs.readFileSync(path.join(process.cwd(), "../admin/dist/index.html"), "utf8");
   html = html.replace("<head>", "<head><script>window.onerror = function(m) { fetch('/api/log?msg=' + encodeURIComponent(m)); }; console.error = function(m) { fetch('/api/log?msg=' + encodeURIComponent(m)); };</script>");
   res.send(html);
