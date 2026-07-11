@@ -8,7 +8,11 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         
         const queryLower = query.toLowerCase();
         // Keep all words length > 1 to allow matching 'PG', 'UG', 'AI', 'ML'
-        const stopWords = ['the', 'and', 'are', 'you', 'for', 'with', 'from', 'this', 'that', 'have', 'what', 'give', 'show', 'tell', 'about'];
+        const stopWords = [
+            'the', 'and', 'are', 'you', 'for', 'with', 'from', 'this', 'that', 'have', 'what', 
+            'give', 'show', 'tell', 'about', 'of', 'in', 'on', 'at', 'to', 'is', 'it', 'me', 
+            'my', 'as', 'by', 'an', 'or', 'be', 'do', 'we', 'can', 'how', 'who', 'where', 'why'
+        ];
         const keywords = queryLower.split(/\s+/).filter(w => w.length > 1 && !stopWords.includes(w));
         
         // If the query is just "hi", we don't need to attach the whole database
@@ -24,7 +28,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
             
             // Match if any keyword is in the search string, or if we should just include lab heads
             return p.designation.toLowerCase().includes('head') || keywords.some(kw => searchStr.includes(kw));
-        }).slice(0, 10); // Increased limit to 10 to include more students
+        }).slice(0, 5); // Reduced back to 5 to prevent exceeding 6000 TPM limit
         
         const matchedProjects = projects.filter(p => {
             let searchStr = `${p.title} ${p.description || ""} ${p.tagline || ""} ${p.domain || ""} ${p.purpose || ""}`.toLowerCase();
@@ -33,7 +37,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
             searchStr += " hardware photos blueprint images";
             
             return keywords.some(kw => searchStr.includes(kw));
-        }).slice(0, 5); // Increased limit to 5
+        }).slice(0, 3); // Reduced back to 3 to prevent exceeding 6000 TPM limit
         
         let context = "ViBeS LAB KNOWLEDGE BASE:\n\n";
         
