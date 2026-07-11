@@ -34,6 +34,21 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
                 if (p.avatar) {
                     context += `  Photo of ${p.name}: ![${p.name}](${p.avatar})\n`;
                 }
+                if (p.domains && p.domains.length > 0) {
+                    context += `  Research Domains: ${p.domains.join(", ")}\n`;
+                }
+                if (p.publications && p.publications.length > 0) {
+                    context += `  Publications:\n`;
+                    p.publications.forEach((pub: any) => {
+                        context += `    - "${pub.title}" (${pub.venue} ${pub.year})\n`;
+                    });
+                }
+                if (p.education && p.education.length > 0) {
+                    context += `  Education:\n`;
+                    p.education.forEach((ed: any) => {
+                        context += `    - ${ed.degree} in ${ed.field}, ${ed.institute} (${ed.year})\n`;
+                    });
+                }
             });
         }
         
