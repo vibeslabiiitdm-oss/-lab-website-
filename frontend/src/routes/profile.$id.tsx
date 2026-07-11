@@ -15,14 +15,12 @@ import {
   ExternalLink,
   Download,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProfileGraphs } from "@/components/site/ProfileGraphs";
 import { HoneycombGrid } from "@/components/site/HoneycombGrid";
 import { Reveal } from "@/components/site/Reveal";
 import {
-  getPerson,
   type Person,
-  allPeople,
   supervisedProjects,
   type SupervisedProject,
   BASE_URL 
@@ -52,7 +50,25 @@ type Tab =
 
 function ProfilePage() {
   const { id } = Route.useParams();
-  const p: Person | undefined = getPerson(id);
+  
+  const [p, setP] = useState<Person | undefined>(undefined);
+  const [allPeople, setAllPeople] = useState<Person[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    Promise.all([
+      fetch(`${BASE_URL}/api/people/${id}`).then(res => res.ok ? res.json() : null),
+      fetch(`${BASE_URL}/api/people`).then(res => res.ok ? res.json() : [])
+    ]).then(([personData, peopleData]) => {
+      if (personData) setP(personData);
+      if (peopleData) setAllPeople(peopleData);
+      setIsLoading(false);
+    }).catch(err => {
+      console.error(err);
+      setIsLoading(false);
+    });
+  }, [id]);
+
   const [tab, setTab] = useState<Tab>("overview");
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState<"All" | "BTP" | "MTP">("All");
@@ -134,6 +150,14 @@ function ProfilePage() {
           : []),
       ]
     : [];
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <div className="text-muted-foreground animate-pulse">Loading profile...</div>
+      </div>
+    );
+  }
 
   if (!p) {
     return (
