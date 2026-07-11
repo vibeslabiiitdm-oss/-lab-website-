@@ -25,7 +25,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Configure CORS origins
-//Allowing multiple origins for CORS by splitting the environment variable CORS_ORIGINS by commas. If not set, default to localhost origins for development.
+// Allowing multiple origins for CORS by splitting the environment variable CORS_ORIGINS by commas.
 const allowedOrigins = process.env.CORS_ORIGINS
   ? process.env.CORS_ORIGINS.split(",")
   : ["http://localhost:5173", "http://localhost:3000", "http://localhost:5174"];
@@ -34,8 +34,14 @@ app.use(
   cors({
     origin: (origin, callback) => {
       // allow requests with no origin (like mobile apps or curl requests)
-      //call back with true if the origin is in the allowedOrigins array, otherwise return an error message
       if (!origin) return callback(null, true);
+      
+      // If we set CORS_ORIGINS=* in Render, allow everything
+      if (process.env.CORS_ORIGINS === "*") return callback(null, true);
+
+      // Allow any vercel deployment URL automatically
+      if (origin.endsWith(".vercel.app")) return callback(null, true);
+
       if (allowedOrigins.indexOf(origin) === -1) {
         const msg = "The CORS policy for this site does not allow access from the specified Origin.";
         return callback(new Error(msg), false);
@@ -135,4 +141,3 @@ mongoose
     console.error("Full Error:");
     console.error(err);
   });
-// trigger restart 5
