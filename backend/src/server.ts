@@ -88,22 +88,10 @@ app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 // Serve existing frontend resumes statically
 app.use("/resumes", express.static(path.join(process.cwd(), "../frontend/public/resumes")));
 
-import { seedDatabase } from "./seed.js";
-
 // Health check endpoint
 //check the health of the server and database connection. Returns a JSON response with status and database connection state.
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK", database: mongoose.connection.readyState === 1 ? "Connected" : "Disconnected" });
-});
-
-// Seed endpoint to allow populating the database from Render
-app.get("/api/seed-database-now", async (req, res) => {
-  try {
-    await seedDatabase();
-    res.status(200).json({ message: "Database seeded successfully!" });
-  } catch (error) {
-    res.status(500).json({ message: "Seeding failed", error });
-  }
 });
 
 // Global Error Handler
