@@ -21,7 +21,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         }).slice(0, 5); // Limit to top 5 matches
         
         const matchedProjects = projects.filter(p => {
-            const searchStr = `${p.title} ${p.description || ""} ${p.abstract || ""}`.toLowerCase();
+            const searchStr = `${p.title} ${p.description || ""}`.toLowerCase();
             return keywords.some(kw => searchStr.includes(kw));
         }).slice(0, 3); // Limit to top 3 matches
         
@@ -40,7 +40,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         if (matchedProjects.length > 0) {
             context += "\nRELEVANT RESEARCH PROJECTS:\n";
             matchedProjects.forEach(p => {
-                context += `- ${p.title}: ${p.description || p.abstract || ""}\n`;
+                context += `- ${p.title}: ${p.description || ""}\n`;
                 if (p.image) {
                     context += `  Project Image: ![${p.title}](${p.image})\n`;
                 }
