@@ -13,7 +13,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Chatbot } from "@/components/site/Chatbot";
 import { useState, useEffect } from "react";
-import { allPeople, guide, scholars } from "@/data/lab";
+import { allPeople, guide, scholars, projects, achievements, updates, supervised, resources, stats } from "@/data/lab";
 
 function NotFoundComponent() {
   return (
@@ -144,17 +144,33 @@ function RootComponent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://lab-website-tblf.onrender.com/api/people")
-      .then(res => res.json())
-      .then(data => {
+    Promise.all([
+      fetch("https://lab-website-tblf.onrender.com/api/people").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/projects").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/achievements").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/updates").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/supervised").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/resources").then(r => r.catch(() => null)),
+      fetch("https://lab-website-tblf.onrender.com/api/stats").then(r => r.catch(() => null)),
+    ]).then(async ([pRes, prRes, aRes, uRes, sRes, rRes, stRes]) => {
+      if (pRes && pRes.ok) {
+        const data = await pRes.json();
         if (Array.isArray(data) && data.length > 0) {
           allPeople.splice(0, allPeople.length, ...data);
+          scholars.splice(0, scholars.length, ...data.filter(p => p.role === "scholar"));
           const g = data.find(p => p.role === "guide");
           if (g) Object.assign(guide, g);
         }
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+      }
+      if (prRes && prRes.ok) projects.splice(0, projects.length, ...(await prRes.json()));
+      if (aRes && aRes.ok) achievements.splice(0, achievements.length, ...(await aRes.json()));
+      if (uRes && uRes.ok) updates.splice(0, updates.length, ...(await uRes.json()));
+      if (sRes && sRes.ok) supervised.splice(0, supervised.length, ...(await sRes.json()));
+      if (rRes && rRes.ok) resources.splice(0, resources.length, ...(await rRes.json()));
+      if (stRes && stRes.ok) Object.assign(stats, await stRes.json());
+    })
+    .catch(console.error)
+    .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
