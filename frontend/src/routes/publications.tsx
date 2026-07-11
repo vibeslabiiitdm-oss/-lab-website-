@@ -97,7 +97,7 @@ function PubsPage() {
                 >
                   <div className="font-medium text-foreground hover:text-primary transition-colors">{p.title}</div>
                   <div className="text-xs text-muted-foreground mt-1">
-                    {p.venue} · <span className="text-primary">{p.type}</span> · {p.year} · by{" "}
+                    {p.venue} · <span className="text-foreground font-medium">{p.type}</span> · {p.year} · by{" "}
                     {p.author}
                   </div>
                 </div>
