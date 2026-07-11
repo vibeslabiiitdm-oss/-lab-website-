@@ -7,7 +7,9 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         const projects = await Project.find({});
         
         const queryLower = query.toLowerCase();
-        const keywords = queryLower.split(/\s+/).filter(w => w.length > 3);
+        // Keep all words length > 1 to allow matching 'PG', 'UG', 'AI', 'ML'
+        const stopWords = ['the', 'and', 'are', 'you', 'for', 'with', 'from', 'this', 'that', 'have', 'what', 'give', 'show', 'tell', 'about'];
+        const keywords = queryLower.split(/\s+/).filter(w => w.length > 1 && !stopWords.includes(w));
         
         // If the query is just "hi", we don't need to attach the whole database
         if (keywords.length === 0 && queryLower.length < 10) {
@@ -15,15 +17,23 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
         }
         
         const matchedPeople = people.filter(p => {
-            const searchStr = `${p.name} ${p.designation} ${p.bio || ""} ${p.affiliation}`.toLowerCase();
+            let searchStr = `${p.name} ${p.category || ""} ${p.designation} ${p.bio || ""} ${p.affiliation}`.toLowerCase();
+            if (p.domains) searchStr += ` ${p.domains.join(" ")}`.toLowerCase();
+            if (p.skills) searchStr += ` ${p.skills.join(" ")}`.toLowerCase();
+            if (p.researchProject && p.researchProject.title) searchStr += ` ${p.researchProject.title} ${p.researchProject.abstract} hardware photos blueprint images`.toLowerCase();
+            
             // Match if any keyword is in the search string, or if we should just include lab heads
             return p.designation.toLowerCase().includes('head') || keywords.some(kw => searchStr.includes(kw));
-        }).slice(0, 5); // Limit to top 5 matches
+        }).slice(0, 10); // Increased limit to 10 to include more students
         
         const matchedProjects = projects.filter(p => {
-            const searchStr = `${p.title} ${p.description || ""}`.toLowerCase();
+            let searchStr = `${p.title} ${p.description || ""} ${p.tagline || ""} ${p.domain || ""} ${p.purpose || ""}`.toLowerCase();
+            if (p.tech) searchStr += ` ${p.tech.join(" ")}`.toLowerCase();
+            if (p.results) searchStr += ` ${p.results.join(" ")}`.toLowerCase();
+            searchStr += " hardware photos blueprint images";
+            
             return keywords.some(kw => searchStr.includes(kw));
-        }).slice(0, 3); // Limit to top 3 matches
+        }).slice(0, 5); // Increased limit to 5
         
         let context = "ViBeS LAB KNOWLEDGE BASE:\n\n";
         
