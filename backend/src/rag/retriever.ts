@@ -31,6 +31,9 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
             context += "RELEVANT LAB MEMBERS:\n";
             matchedPeople.forEach(p => {
                 context += `- ${p.name}, ${p.designation} (${p.email}). ${p.bio || ""}\n`;
+                if (p.avatar) {
+                    context += `  Photo of ${p.name}: ![${p.name}](${p.avatar})\n`;
+                }
             });
         }
         
@@ -38,6 +41,9 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
             context += "\nRELEVANT RESEARCH PROJECTS:\n";
             matchedProjects.forEach(p => {
                 context += `- ${p.title}: ${p.description || p.abstract || ""}\n`;
+                if (p.image) {
+                    context += `  Project Image: ![${p.title}](${p.image})\n`;
+                }
             });
         }
         
