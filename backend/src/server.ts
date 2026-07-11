@@ -112,24 +112,6 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB");
     
-    // Start the Python Retriever API for the chatbot
-    console.log("Starting Python Retriever API...");
-    const pythonScript = path.resolve(process.cwd(), "../chatbot/api.py");
-    const venvPython = path.resolve(process.cwd(), "../chatbot/venv/Scripts/python.exe");
-    const pythonProcess = spawn(venvPython, [pythonScript], {
-      cwd: path.resolve(process.cwd(), "../chatbot"),
-      stdio: "inherit"
-    });
-    
-    pythonProcess.on("error", (err) => {
-        console.error("Failed to start Python Retriever API:", err);
-    });
-    
-    // Ensure Python process is killed when Node exits
-    process.on("exit", () => {
-        pythonProcess.kill();
-    });
-    
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });

@@ -1,5 +1,5 @@
 import express from "express";
-import { ChatOllama } from "@langchain/ollama";
+import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 
@@ -11,14 +11,11 @@ const router = express.Router();
 // 1. RESPONSE CACHE
 const responseCache = new Map<string, any>();
 
-// 2. LLM INITIALIZATION (Using Local Ollama)
-// Initialize outside the request to reuse the instance and maintain keepAlive
-const slm = new ChatOllama({
-  baseUrl: process.env.OLLAMA_BASE_URL || "http://localhost:11434",
-  model: process.env.OLLAMA_MODEL || "llama3.2",
+// 2. LLM INITIALIZATION (Using Cloud Groq for Production)
+const slm = new ChatGroq({
+  apiKey: process.env.GROQ_API_KEY,
+  modelName: "llama-3.1-8b-instant",
   temperature: 0.2,
-  numCtx: 4096, // Pre-allocate context window to prevent memory reallocation slowdowns
-  keepAlive: "24h", // Keep model loaded in memory for 24 hours
 });
 
 router.post("/", async (req, res) => {
