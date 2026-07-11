@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Mail } from "lucide-react";
 import type { Person } from "@/data/lab";
+import { BASE_URL } from "@/data/lab";
 
 function initials(name: string) {
   return name
