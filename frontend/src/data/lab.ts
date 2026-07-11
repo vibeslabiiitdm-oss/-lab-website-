@@ -2704,7 +2704,7 @@ export let liveUpdates: any[] = [
   },
 ];
 
-export const BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL) ? import.meta.env.VITE_API_URL : "http://localhost:5000";
+export const BASE_URL = "https://lab-website-tblf.onrender.com";
 const API_URL = `${BASE_URL}/api`;
 
 const isSeeding = typeof (globalThis as any).process !== "undefined" && (globalThis as any).process.argv && (globalThis as any).process.argv.some((arg: string) => arg.includes("seed") || arg.includes("check_db") || arg.includes("test_import"));
