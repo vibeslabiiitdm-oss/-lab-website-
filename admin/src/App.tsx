@@ -1538,7 +1538,7 @@ export default function App() {
       if (!prev) return prev;
       const arr = prev.customPublications ? [...prev.customPublications] : [];
       if (arr[catIndex] && arr[catIndex].items) {
-        arr[catIndex].items = arr[catIndex].items.filter((_, i) => i !== itemIndex);
+        arr[catIndex].items = arr[catIndex].items.filter((_: any, i: number) => i !== itemIndex);
       }
       return { ...prev, customPublications: arr };
     });

@@ -43,6 +43,7 @@ export type Person = {
   skills: string[];
   education: Education[];
   publications: Publication[];
+  customPublications?: { heading: string; items: string[] }[];
   awards: Award[];
   conferences: Conference[];
   links?: { label: string; href: string }[];
