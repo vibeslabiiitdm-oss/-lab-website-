@@ -51,25 +51,25 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
                 if (p.skills && p.skills.length > 0) context += `- Skills: ${p.skills.join(", ")}\n`;
                 if (p.education && p.education.length > 0) {
                     context += `- Education:\n`;
-                    p.education.forEach((ed: any) => {
+                    p.education.slice(0, 3).forEach((ed: any) => {
                         context += `  * ${ed.degree} in ${ed.field}, ${ed.institute} (${ed.year})\n`;
                     });
                 }
                 if (p.publications && p.publications.length > 0) {
                     context += `- Publications:\n`;
-                    p.publications.forEach((pub: any) => {
+                    p.publications.slice(0, 3).forEach((pub: any) => {
                         context += `  * "${pub.title}" (${pub.venue} ${pub.year})\n`;
                     });
                 }
                 if (p.experience && p.experience.length > 0) {
                     context += `- Experience:\n`;
-                    p.experience.forEach((exp: any) => {
+                    p.experience.slice(0, 3).forEach((exp: any) => {
                         context += `  * ${exp.role} at ${exp.org} (${exp.duration})\n`;
                     });
                 }
                 if (p.awards && p.awards.length > 0) {
                     context += `- Awards:\n`;
-                    p.awards.forEach((aw: any) => {
+                    p.awards.slice(0, 3).forEach((aw: any) => {
                         context += `  * ${aw.title} from ${aw.org} (${aw.year})\n`;
                     });
                 }
@@ -101,7 +101,7 @@ export async function retrieveContext(query: string, history: any[] = []): Promi
                 if (p.collaborators && p.collaborators.length > 0) context += `- Collaborators: ${p.collaborators.join(", ")}\n`;
                 if (p.results && p.results.length > 0) {
                     context += `- Key Results:\n`;
-                    p.results.forEach((res: string) => {
+                    p.results.slice(0, 3).forEach((res: string) => {
                         context += `  * ${res}\n`;
                     });
                 }
