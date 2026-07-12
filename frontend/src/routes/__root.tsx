@@ -13,7 +13,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Chatbot } from "@/components/site/Chatbot";
 import { useState, useEffect } from "react";
-import { allPeople, guide, scholars, projects, achievements, updates, supervised, resources, stats } from "@/data/lab";
+import { allPeople, guide, scholars, projects, achievements, liveUpdates, supervisedProjects, resources, labStats } from "@/data/lab";
 
 function NotFoundComponent() {
   return (
@@ -164,10 +164,10 @@ function RootComponent() {
       }
       if (prRes && prRes.ok) projects.splice(0, projects.length, ...(await prRes.json()));
       if (aRes && aRes.ok) achievements.splice(0, achievements.length, ...(await aRes.json()));
-      if (uRes && uRes.ok) updates.splice(0, updates.length, ...(await uRes.json()));
-      if (sRes && sRes.ok) supervised.splice(0, supervised.length, ...(await sRes.json()));
+      if (uRes && uRes.ok) liveUpdates.splice(0, liveUpdates.length, ...(await uRes.json()));
+      if (sRes && sRes.ok) supervisedProjects.splice(0, supervisedProjects.length, ...(await sRes.json()));
       if (rRes && rRes.ok) resources.splice(0, resources.length, ...(await rRes.json()));
-      if (stRes && stRes.ok) Object.assign(stats, await stRes.json());
+      if (stRes && stRes.ok) Object.assign(labStats, await stRes.json());
     })
     .catch(console.error)
     .finally(() => setLoading(false));
