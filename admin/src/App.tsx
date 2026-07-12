@@ -1125,6 +1125,11 @@ export default function App() {
       conferences: editingPerson?.conferences || [],
       links: newLinks,
       researchProject: editingPerson?.researchProject || undefined,
+      experience: editingPerson?.experience || [],
+      teaching: editingPerson?.teaching || [],
+      projects: editingPerson?.projects || [],
+      professionalService: editingPerson?.professionalService || [],
+      outreachActivities: editingPerson?.outreachActivities || [],
     };
 
     const isEditing = !!editingPerson?.id;
