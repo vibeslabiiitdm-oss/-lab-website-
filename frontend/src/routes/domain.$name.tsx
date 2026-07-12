@@ -265,14 +265,14 @@ function DomainPage() {
                       className={`flex-1 ${p.abstract ? "cursor-pointer select-none" : ""}`}
                       onClick={() => p.abstract && toggleExpand(p.id)}
                     >
-                      <div className="font-medium text-foreground hover:text-primary transition-colors">{p.title}</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {p.venue} · <span className="text-foreground font-medium">{p.type}</span> · {p.year} · by{" "}
+                      <div className="font-medium text-black dark:text-white transition-colors">{p.title}</div>
+                      <div className="text-xs text-black dark:text-white mt-1">
+                        {p.venue} · {p.type} · {p.year} · by{" "}
                         {p.author}
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-[10px] px-2 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent whitespace-nowrap">
+                      <span className="text-[10px] px-2 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-black dark:text-white whitespace-nowrap">
                         {p.domain}
                       </span>
                       {p.abstract && (

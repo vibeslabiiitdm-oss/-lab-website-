@@ -89,16 +89,16 @@ function ProfilePage() {
             className={`flex-1 ${pub.abstract ? "cursor-pointer select-none" : ""}`}
             onClick={() => pub.abstract && toggleExpand(pub.id)}
           >
-            <div className="font-medium text-foreground hover:text-primary transition-colors">{pub.title}</div>
-            <div className="text-xs text-muted-foreground mt-1">
-              {pub.venue} · <span className="text-foreground font-medium">{pub.type}</span> · {pub.year}
+            <div className="font-medium text-black dark:text-white transition-colors">{pub.title}</div>
+            <div className="text-xs text-black dark:text-white mt-1">
+              {pub.venue} · {pub.type} · {pub.year}
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <Link
               to="/domain/$name"
               params={{ name: encodeURIComponent(pub.domain) }}
-              className="text-[10px] px-2 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary whitespace-nowrap hover:bg-primary/20"
+              className="text-[10px] px-2 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-black dark:text-white whitespace-nowrap hover:bg-black/10 dark:hover:bg-white/20"
             >
               {pub.domain}
             </Link>
