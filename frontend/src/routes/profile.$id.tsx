@@ -621,7 +621,27 @@ function ProfilePage() {
                       {pubs.map((pub) => renderPublicationCard(pub))}
                     </div>
                   ))}
-                {p.publications.length === 0 && (
+                
+                {/* Render Custom Publications */}
+                {p.customPublications && p.customPublications.map((cat, idx) => (
+                  <div key={`custom-${idx}`} className="space-y-3">
+                    <h3 className="font-display text-xl font-bold mb-4">
+                      {cat.heading}{" "}
+                      <span className="text-muted-foreground text-sm font-normal">
+                        ({cat.items.length})
+                      </span>
+                    </h3>
+                    <div className="space-y-3">
+                      {cat.items.map((item, itemIdx) => (
+                        <div key={`item-${itemIdx}`} className="group rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition">
+                          <p className="text-sm text-black dark:text-white leading-relaxed">{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                {p.publications.length === 0 && (!p.customPublications || p.customPublications.length === 0) && (
                   <div className="text-sm text-muted-foreground">No publications listed yet.</div>
                 )}
               </div>

@@ -1489,6 +1489,73 @@ export default function App() {
     }));
   };
 
+  const addCustomPublicationCategory = () => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        customPublications: [...(prev.customPublications || []), { heading: "New Category", items: [] }]
+      };
+    });
+  };
+
+  const removeCustomPublicationCategory = (catIndex: number) => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      const arr = prev.customPublications ? [...prev.customPublications] : [];
+      arr.splice(catIndex, 1);
+      return { ...prev, customPublications: arr };
+    });
+  };
+
+  const updateCustomPublicationHeading = (catIndex: number, heading: string) => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      const arr = prev.customPublications ? [...prev.customPublications] : [];
+      if (arr[catIndex]) arr[catIndex].heading = heading;
+      return { ...prev, customPublications: arr };
+    });
+  };
+
+  const addCustomPublicationItem = (catIndex: number) => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      const arr = prev.customPublications ? [...prev.customPublications] : [];
+      if (arr[catIndex]) {
+        arr[catIndex].items = [...(arr[catIndex].items || []), "New Publication"];
+      }
+      return { ...prev, customPublications: arr };
+    });
+  };
+
+  const removeCustomPublicationItem = (catIndex: number, itemIndex: number) => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      const arr = prev.customPublications ? [...prev.customPublications] : [];
+      if (arr[catIndex] && arr[catIndex].items) {
+        arr[catIndex].items = arr[catIndex].items.filter((_, i) => i !== itemIndex);
+      }
+      return { ...prev, customPublications: arr };
+    });
+  };
+
+  const updateCustomPublicationItem = (catIndex: number, itemIndex: number, val: string) => {
+    if (!editingPerson) return;
+    setEditingPerson(prev => {
+      if (!prev) return prev;
+      const arr = prev.customPublications ? [...prev.customPublications] : [];
+      if (arr[catIndex] && arr[catIndex].items) {
+        arr[catIndex].items[itemIndex] = val;
+      }
+      return { ...prev, customPublications: arr };
+    });
+  };
+
   // Dynamic counter modification helpers
   const modifyStat = (key: keyof typeof stats, amount: number) => {
     const newValue = Math.max(0, (stats[key] || 0) + amount);
@@ -3539,6 +3606,57 @@ export default function App() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Custom Publications list */}
+                  <div className="space-y-4 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold text-sm text-foreground flex items-center gap-2">
+                        <FileText size={16} className="text-primary" />
+                        <span>Custom Publications</span>
+                      </h4>
+                      <button type="button" onClick={addCustomPublicationCategory} className="text-xs text-primary font-semibold hover:underline">
+                        + Add Category
+                      </button>
+                    </div>
+                    <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
+                      {editingPerson.customPublications?.map((cat, catIndex) => (
+                        <div key={catIndex} className="p-4 bg-card/50 rounded-xl border border-border space-y-3">
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="text"
+                              placeholder="Category Heading (e.g. Patent, Book)"
+                              value={cat.heading}
+                              onChange={(e) => updateCustomPublicationHeading(catIndex, e.target.value)}
+                              className="px-3 py-1.5 text-sm font-semibold rounded-lg border border-border bg-background focus:outline-none flex-1"
+                            />
+                            <button type="button" onClick={() => removeCustomPublicationCategory(catIndex)} className="p-1.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                          
+                          <div className="space-y-2 pl-2 border-l-2 border-border/50">
+                            {cat.items.map((item, itemIndex) => (
+                              <div key={itemIndex} className="flex gap-2 items-start">
+                                <textarea
+                                  placeholder="Publication Details..."
+                                  value={item}
+                                  onChange={(e) => updateCustomPublicationItem(catIndex, itemIndex, e.target.value)}
+                                  className="px-3 py-1.5 text-sm rounded-lg border border-border bg-background focus:outline-none flex-1 min-h-[60px]"
+                                />
+                                <button type="button" onClick={() => removeCustomPublicationItem(catIndex, itemIndex)} className="p-1.5 mt-0.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                                  <X size={16} />
+                                </button>
+                              </div>
+                            ))}
+                            <button type="button" onClick={() => addCustomPublicationItem(catIndex)} className="text-xs text-muted-foreground hover:text-primary transition flex items-center gap-1 pt-1">
+                              <Plus size={14} /> Add Item
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Experience */}
                   <div className="space-y-3 pt-4 border-t border-border">
                     <div className="flex items-center justify-between">

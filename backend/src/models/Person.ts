@@ -19,6 +19,11 @@ const PublicationSchema = new Schema({
   abstract: { type: String },
 });
 
+const CustomPublicationSchema = new Schema({
+  heading: { type: String, required: true },
+  items: [{ type: String, required: true }]
+});
+
 const AwardSchema = new Schema({
   id: { type: String, required: true },
   title: { type: String, required: true },
@@ -75,6 +80,7 @@ const PersonSchema = new Schema(
     skills: [{ type: String }],
     education: [EducationSchema],
     publications: [PublicationSchema],
+    customPublications: [CustomPublicationSchema],
     awards: [AwardSchema],
     conferences: [ConferenceSchema],
     links: [LinkSchema],
