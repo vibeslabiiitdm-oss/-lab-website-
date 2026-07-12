@@ -3602,6 +3602,15 @@ export default function App() {
                               </button>
                             </div>
                           </div>
+                          
+                          <div className="grid grid-cols-1">
+                            <textarea
+                              placeholder="Abstract (Optional)"
+                              value={pub.abstract || ""}
+                              onChange={(e) => updatePersonSubItemValue("publications", index, "abstract", e.target.value)}
+                              className="px-2 py-1 text-xs rounded border border-border bg-card focus:outline-none w-full min-h-[60px]"
+                            />
+                          </div>
                         </div>
                       ))}
                     </div>
