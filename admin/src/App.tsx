@@ -3672,6 +3672,56 @@ export default function App() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Awards & Achievements */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><Trophy size={16} className="text-primary" /> Awards & Recognitions</h4>
+                      <button type="button" onClick={() => addPersonSubItem("awards")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Award</button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4">
+                      {editingPerson.awards?.map((award, index) => (
+                        <div key={index} className="flex gap-2 items-start bg-muted/30 p-3 rounded-lg border border-border/50">
+                          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <input
+                              type="text"
+                              value={award.title}
+                              onChange={(e) => updatePersonSubItemValue("awards", index, "title", e.target.value)}
+                              placeholder="Award Title"
+                              className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none col-span-1 sm:col-span-2"
+                            />
+                            <input
+                              type="text"
+                              value={award.org}
+                              onChange={(e) => updatePersonSubItemValue("awards", index, "org", e.target.value)}
+                              placeholder="Organization"
+                              className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none"
+                            />
+                            <div className="flex gap-2">
+                              <input
+                                type="number"
+                                value={award.year}
+                                onChange={(e) => updatePersonSubItemValue("awards", index, "year", parseInt(e.target.value))}
+                                placeholder="Year"
+                                className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                              />
+                              <input
+                                type="number"
+                                value={award.month}
+                                onChange={(e) => updatePersonSubItemValue("awards", index, "month", parseInt(e.target.value))}
+                                placeholder="Month"
+                                min={1} max={12}
+                                className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                              />
+                            </div>
+                          </div>
+                          <button type="button" onClick={() => removePersonSubItem("awards", index)} className="p-1.5 mt-0.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
 
