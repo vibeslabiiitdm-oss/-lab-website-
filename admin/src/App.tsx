@@ -1412,7 +1412,7 @@ export default function App() {
   };
 
   // Sub-array item builders (Skills, publications, etc. inside Person Form)
-  const addPersonSubItem = (type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links") => {
+  const addPersonSubItem = (type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links" | "experience" | "teaching" | "projects" | "professionalService" | "outreachActivities") => {
     if (!editingPerson) return;
     const updated = { ...editingPerson };
 
@@ -1423,11 +1423,16 @@ export default function App() {
     if (type === "awards") updated.awards = [...(updated.awards || []), { id: generateId("award"), title: "", org: "", year: new Date().getFullYear(), month: 1 }];
     if (type === "conferences") updated.conferences = [...(updated.conferences || []), { id: generateId("conf"), name: "", place: "", year: new Date().getFullYear(), month: 1, role: "" }];
     if (type === "links") updated.links = [...(updated.links || []), { label: "", href: "" }];
+    if (type === "experience") updated.experience = [...(updated.experience || []), { role: "", org: "", duration: "" }];
+    if (type === "teaching") updated.teaching = [...(updated.teaching || []), "New Course"];
+    if (type === "projects") updated.projects = [...(updated.projects || []), "New Project"];
+    if (type === "professionalService") updated.professionalService = [...(updated.professionalService || []), "New Service"];
+    if (type === "outreachActivities") updated.outreachActivities = [...(updated.outreachActivities || []), "New Activity"];
 
     setEditingPerson(updated);
   };
 
-  const removePersonSubItem = (type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links", index: number) => {
+  const removePersonSubItem = (type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links" | "experience" | "teaching" | "projects" | "professionalService" | "outreachActivities", index: number) => {
     if (!editingPerson) return;
     const updated = { ...editingPerson };
 
@@ -1438,12 +1443,17 @@ export default function App() {
     if (type === "awards") updated.awards = updated.awards.filter((_, i) => i !== index);
     if (type === "conferences") updated.conferences = updated.conferences.filter((_, i) => i !== index);
     if (type === "links") updated.links = updated.links?.filter((_, i) => i !== index);
+    if (type === "experience") updated.experience = updated.experience?.filter((_, i) => i !== index);
+    if (type === "teaching") updated.teaching = updated.teaching?.filter((_, i) => i !== index);
+    if (type === "projects") updated.projects = updated.projects?.filter((_, i) => i !== index);
+    if (type === "professionalService") updated.professionalService = updated.professionalService?.filter((_, i) => i !== index);
+    if (type === "outreachActivities") updated.outreachActivities = updated.outreachActivities?.filter((_, i) => i !== index);
 
     setEditingPerson(updated);
   };
 
   const updatePersonSubItemValue = (
-    type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links",
+    type: "skills" | "domains" | "education" | "publications" | "awards" | "conferences" | "links" | "experience" | "teaching" | "projects" | "professionalService" | "outreachActivities",
     index: number,
     field: string,
     val: string | number
@@ -1458,6 +1468,11 @@ export default function App() {
     if (type === "awards") updated.awards[index] = { ...updated.awards[index], [field]: val };
     if (type === "conferences") updated.conferences[index] = { ...updated.conferences[index], [field]: val };
     if (type === "links" && updated.links) updated.links[index] = { ...updated.links[index], [field]: val };
+    if (type === "experience" && updated.experience) updated.experience[index] = { ...updated.experience[index], [field]: val };
+    if (type === "teaching" && updated.teaching) updated.teaching[index] = val as string;
+    if (type === "projects" && updated.projects) updated.projects[index] = val as string;
+    if (type === "professionalService" && updated.professionalService) updated.professionalService[index] = val as string;
+    if (type === "outreachActivities" && updated.outreachActivities) updated.outreachActivities[index] = val as string;
 
     setEditingPerson(updated);
   };
@@ -3519,7 +3534,139 @@ export default function App() {
                       ))}
                     </div>
                   </div>
+                  {/* Experience */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><FileText size={16} className="text-primary" /> Work Experience</h4>
+                      <button type="button" onClick={() => addPersonSubItem("experience")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Experience</button>
+                    </div>
+                    <div className="space-y-2">
+                      {editingPerson.experience?.map((exp, index) => (
+                        <div key={index} className="p-3 bg-muted/30 rounded-lg border border-border/40 space-y-2">
+                          <div className="grid grid-cols-2 gap-2">
+                            <input
+                              type="text"
+                              placeholder="Role"
+                              value={exp.role}
+                              onChange={(e) => updatePersonSubItemValue("experience", index, "role", e.target.value)}
+                              className="px-2 py-1 text-xs rounded border border-border bg-card focus:outline-none"
+                            />
+                            <input
+                              type="text"
+                              placeholder="Organization"
+                              value={exp.org}
+                              onChange={(e) => updatePersonSubItemValue("experience", index, "org", e.target.value)}
+                              className="px-2 py-1 text-xs rounded border border-border bg-card focus:outline-none"
+                            />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="text"
+                              placeholder="Duration"
+                              value={exp.duration}
+                              onChange={(e) => updatePersonSubItemValue("experience", index, "duration", e.target.value)}
+                              className="px-2 py-1 text-xs rounded border border-border bg-card focus:outline-none w-full"
+                            />
+                            <button type="button" onClick={() => removePersonSubItem("experience", index)} className="p-1 rounded text-muted-foreground hover:text-rose-500 hover:bg-muted">
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
+                  {/* Teaching */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><BookOpen size={16} className="text-primary" /> Teaching</h4>
+                      <button type="button" onClick={() => addPersonSubItem("teaching")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Course</button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2">
+                      {editingPerson.teaching?.map((course, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={course}
+                            onChange={(e) => updatePersonSubItemValue("teaching", index, "", e.target.value)}
+                            className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                          />
+                          <button type="button" onClick={() => removePersonSubItem("teaching", index)} className="p-1.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Projects */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><FolderGit2 size={16} className="text-primary" /> Projects & Grants</h4>
+                      <button type="button" onClick={() => addPersonSubItem("projects")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Project</button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2">
+                      {editingPerson.projects?.map((proj, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={proj}
+                            onChange={(e) => updatePersonSubItemValue("projects", index, "", e.target.value)}
+                            className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                          />
+                          <button type="button" onClick={() => removePersonSubItem("projects", index)} className="p-1.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Professional Service */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><Wrench size={16} className="text-primary" /> Professional Service</h4>
+                      <button type="button" onClick={() => addPersonSubItem("professionalService")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Service</button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2">
+                      {editingPerson.professionalService?.map((srv, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={srv}
+                            onChange={(e) => updatePersonSubItemValue("professionalService", index, "", e.target.value)}
+                            className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                          />
+                          <button type="button" onClick={() => removePersonSubItem("professionalService", index)} className="p-1.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Outreach Activities */}
+                  <div className="space-y-3 pt-4 border-t border-border">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground flex items-center gap-2"><Activity size={16} className="text-primary" /> Outreach & Invited Talks</h4>
+                      <button type="button" onClick={() => addPersonSubItem("outreachActivities")} className="text-xs flex items-center gap-1 text-primary hover:text-primary/80 transition"><Plus size={14} /> Add Activity</button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2">
+                      {editingPerson.outreachActivities?.map((act, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={act}
+                            onChange={(e) => updatePersonSubItemValue("outreachActivities", index, "", e.target.value)}
+                            className="px-3 py-1.5 text-sm rounded-lg border border-border bg-card focus:outline-none flex-1"
+                          />
+                          <button type="button" onClick={() => removePersonSubItem("outreachActivities", index)} className="p-1.5 rounded-lg text-muted-foreground hover:text-rose-500 hover:bg-muted transition">
+                            <X size={16} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
 
