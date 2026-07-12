@@ -3619,7 +3619,7 @@ export default function App() {
                       </button>
                     </div>
                     <div className="space-y-4 max-h-80 overflow-y-auto pr-1">
-                      {editingPerson.customPublications?.map((cat, catIndex) => (
+                      {editingPerson.customPublications?.map((cat: { heading: string, items: string[] }, catIndex: number) => (
                         <div key={catIndex} className="p-4 bg-card/50 rounded-xl border border-border space-y-3">
                           <div className="flex items-center gap-2">
                             <input
@@ -3635,7 +3635,7 @@ export default function App() {
                           </div>
                           
                           <div className="space-y-2 pl-2 border-l-2 border-border/50">
-                            {cat.items.map((item, itemIndex) => (
+                            {cat.items.map((item: string, itemIndex: number) => (
                               <div key={itemIndex} className="flex gap-2 items-start">
                                 <textarea
                                   placeholder="Publication Details..."
