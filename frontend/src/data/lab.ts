@@ -167,6 +167,7 @@ export const mkConfs = (seed: number, n: number): Conference[] =>
 
 export let guide: Person = {
   id: "guide-rahul-raman",
+  avatar: "/images/rahul_raman.jpg",
   resume: "/resumes/guide-rahul-raman_resume.pdf",
   role: "guide",
   name: "Dr. Rahul Raman",
