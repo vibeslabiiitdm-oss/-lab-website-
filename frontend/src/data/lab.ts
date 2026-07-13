@@ -270,7 +270,31 @@ export let guide: Person = {
     "Invited Talk: Applications of Generative AI Tools in Education and Research (SRM IST, 2025)",
     "Invited Talk: AI and Data Science for Healthcare (Vel Tech, 2025)",
   ],
-  publications: [
+  publications: [        {
+          id: "pub-j-new-1",
+          title: "MECSA: a multi-scale enhanced channel and spatial attention module for robust pedestrian detection",
+          venue: "Pattern Analysis and Applications, Springer London",
+          year: 2026,
+          month: 7,
+          type: "Journal",
+          domain: "Visual Surveillance",
+          url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
+          author: "V. S. Sukesh Babu, Rahul Raman",
+          authorId: "rahul_raman",
+        },
+        {
+          id: "pub-c-new-2",
+          title: "Enhancing Aerial Pedestrian Detection via High-Resolution P2 Feature Integration in YOLOv12",
+          venue: "AERO-HPR Workshop, CVPR 2026",
+          year: 2026,
+          month: 6,
+          type: "Conference",
+          domain: "Visual Surveillance",
+          url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
+          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
+          authorId: "rahul_raman",
+        },
+
     {
       id: "pub-pat-1",
       title:
@@ -581,7 +605,31 @@ export let scholars: Person[] = [
         year: "2007 (CGPA: 8.87)",
       },
     ],
-    publications: [
+    publications: [        {
+          id: "pub-j-new-1",
+          title: "MECSA: a multi-scale enhanced channel and spatial attention module for robust pedestrian detection",
+          venue: "Pattern Analysis and Applications, Springer London",
+          year: 2026,
+          month: 7,
+          type: "Journal",
+          domain: "Visual Surveillance",
+          url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
+          author: "V. S. Sukesh Babu, Rahul Raman",
+          authorId: "rahul_raman",
+        },
+        {
+          id: "pub-c-new-2",
+          title: "Enhancing Aerial Pedestrian Detection via High-Resolution P2 Feature Integration in YOLOv12",
+          venue: "AERO-HPR Workshop, CVPR 2026",
+          year: 2026,
+          month: 6,
+          type: "Conference",
+          domain: "Visual Surveillance",
+          url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
+          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
+          authorId: "rahul_raman",
+        },
+
       {
         id: "pub-sukesh-j1",
         title:

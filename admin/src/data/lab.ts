@@ -1,4 +1,3 @@
-// This file defines the data structures and utility functions for managing lab-related information such as publications, awards, conferences, education, and people. It includes TypeScript types for each entity and functions to generate mock data for publications, awards, and conferences based on a seed value. The data structures are used to represent the lab's research output, achievements, and team members in a structured format that can be easily consumed by the frontend application.
 export type Publication = {
   id: string;
   title: string;
@@ -54,6 +53,7 @@ export type Person = {
   outreachActivities?: string[];
   avatar?: string;
   resume?: string;
+  phone?: string;
   researchProject?: {
     title: string;
     abstract: string;
@@ -168,6 +168,7 @@ export const mkConfs = (seed: number, n: number): Conference[] =>
 
 export let guide: Person = {
   id: "guide-rahul-raman",
+  avatar: "/images/rahul_raman.jpg",
   resume: "/resumes/guide-rahul-raman_resume.pdf",
   role: "guide",
   name: "Dr. Rahul Raman",
@@ -244,6 +245,20 @@ export let guide: Person = {
     "Reviewer for ACM, Springer, Elsevier, IEEE Journals",
   ],
   outreachActivities: [
+    "Invited Talk: Introduction to AI and Deep Learning: Neural Networks & Optimization (IIITDM Kancheepuram, 23-Jun-25)",
+    "Invited Talk: Smart Traffic Management Systems (SRM Institute of Science and Technology, 24-Jul-25)",
+    "Invited Talk: Refresher Course on Network Security and Network Science (MMTTC at IIITDM Kancheepuram, 16-Jul-25)",
+    "Invited Talk: Workshop on Artificial Intelligence - Advanced Machine Learning (SRM Institute of Science and Technology, 07-Oct-25)",
+    "Invited Talk: Workshop on Artificial Intelligence (Foundations of Machine Learning, 06-Oct-25)",
+    "Invited Talk: FDP on Innovations in Forensic Science: The Role of ML, DL, and Biometrics in Cybersecurity (NIT Delhi, 18-Sep-25)",
+    "Invited Talk: FDP on Discriminative and Generative Models and Transformers (VIT Vellore, 24-Nov-25)",
+    "Invited Talk: FDP on AI and ML for Intelligent Robotics (SRM Institute of Science and Technology, 18-Nov-25)",
+    "Invited Talk: FDP on Generative AI (R.M.K College of Engineering and Technology, 20-Nov-25)",
+    "Invited Talk: FDP on Latest Trends on Artificial Intelligence (R.M.D. Engineering College, 04-Dec-25)",
+    "Invited Talk: Generative AI Models and Methods (SRMIST, 06-Dec-25)",
+    "Invited Talk: Generative AI Models and Methods (SRMIST, 03-Dec-25)",
+    "Invited Talk: Third FDP on Advanced AI: Tools and Algorithms (AATA-2026) (SSNCE Chennai, 02-Feb-26)",
+    "Invited Talk: Innovations in Forensic Science: The Role of ML, DL, and Biometrics in Cybersecurity (NIT Delhi)",
     "Invited Talk: Diving Deep into the Next Generation Intelligent Transportation Systems (SRM IST, 2025)",
     "Invited Talk: Network Security and Network Science (IIITDM Kancheepuram, 2025)",
     "Invited Talk: AI-Powered Image Processing (IIITDM Kancheepuram, 2025)",
@@ -255,7 +270,31 @@ export let guide: Person = {
     "Invited Talk: Applications of Generative AI Tools in Education and Research (SRM IST, 2025)",
     "Invited Talk: AI and Data Science for Healthcare (Vel Tech, 2025)",
   ],
-  publications: [
+  publications: [        {
+          id: "pub-j-new-1",
+          title: "MECSA: a multi-scale enhanced channel and spatial attention module for robust pedestrian detection",
+          venue: "Pattern Analysis and Applications, Springer London",
+          year: 2026,
+          month: 7,
+          type: "Journal",
+          domain: "Visual Surveillance",
+          url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
+          author: "V. S. Sukesh Babu, Rahul Raman",
+          authorId: "rahul_raman",
+        },
+        {
+          id: "pub-c-new-2",
+          title: "Enhancing Aerial Pedestrian Detection via High-Resolution P2 Feature Integration in YOLOv12",
+          venue: "AERO-HPR Workshop, CVPR 2026",
+          year: 2026,
+          month: 6,
+          type: "Conference",
+          domain: "Visual Surveillance",
+          url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
+          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
+          authorId: "rahul_raman",
+        },
+
     {
       id: "pub-pat-1",
       title:
@@ -566,7 +605,31 @@ export let scholars: Person[] = [
         year: "2007 (CGPA: 8.87)",
       },
     ],
-    publications: [
+    publications: [        {
+          id: "pub-j-new-1",
+          title: "MECSA: a multi-scale enhanced channel and spatial attention module for robust pedestrian detection",
+          venue: "Pattern Analysis and Applications, Springer London",
+          year: 2026,
+          month: 7,
+          type: "Journal",
+          domain: "Visual Surveillance",
+          url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
+          author: "V. S. Sukesh Babu, Rahul Raman",
+          authorId: "rahul_raman",
+        },
+        {
+          id: "pub-c-new-2",
+          title: "Enhancing Aerial Pedestrian Detection via High-Resolution P2 Feature Integration in YOLOv12",
+          venue: "AERO-HPR Workshop, CVPR 2026",
+          year: 2026,
+          month: 6,
+          type: "Conference",
+          domain: "Visual Surveillance",
+          url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
+          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
+          authorId: "rahul_raman",
+        },
+
       {
         id: "pub-sukesh-j1",
         title:
@@ -1856,7 +1919,7 @@ export let scholars: Person[] = [
     ],
     resume: "/resumes/ramkumar_r_resume.pdf",
     researchProject: {
-      title: "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking",
+      title: "Monocular Depth Analysis Controlled GPS Denied AGV Navigation for Seamless Tracking (Hardware Blueprint)",
       abstract:
         "Developing navigation and tracking pipelines for AGVs in GPS-denied environments. Created a real-time 3-model pipeline leveraging YOLOv4, Deep-SORT, and a geometry-based ML model (PDM) for monocular object trajectory prediction.",
       datasets: ["TIHAAN AGV Dataset"],
@@ -2618,16 +2681,45 @@ export let supervisedProjects: SupervisedProject[] = [
   }
 ];
 
-const API_URL = "http://localhost:5000/api";
+export let liveUpdates: any[] = [
+  {
+    id: 1,
+    date: "Oct 24, 2025",
+    tag: "Publication",
+    title: "New Paper Accepted at CVPR",
+    desc: "Our work on 'Cross-Spectral Iris Matching' has been accepted. We achieved a new state-of-the-art EER.",
+    link: "/publications",
+  },
+  {
+    id: 2,
+    date: "Sep 12, 2025",
+    tag: "Event",
+    title: "Keynote at IJCB Singapore",
+    desc: "Lab head delivered the opening keynote on edge-based surveillance challenges.",
+    link: "/achievements",
+  },
+  {
+    id: 3,
+    date: "Aug 05, 2025",
+    tag: "Infrastructure",
+    title: "Jetson Orin Cluster Deployed",
+    desc: "We just upgraded our edge testing capabilities with a 16-node Jetson Orin cluster.",
+    link: "/about",
+  },
+];
+
+export const BASE_URL = "https://lab-website-tblf.onrender.com";
+const API_URL = `${BASE_URL}/api`;
 
 const isSeeding = typeof (globalThis as any).process !== "undefined" && (globalThis as any).process.argv && (globalThis as any).process.argv.some((arg: string) => arg.includes("seed") || arg.includes("check_db") || arg.includes("test_import"));
 
 if (!isSeeding) {
   try {
-    const [peopleRes, projectsRes, achievementsRes, supervisedRes, resourcesRes, statsRes] = await Promise.all([
+    const [peopleRes, projectsRes, achievementsRes, updatesRes, supervisedRes, resourcesRes, statsRes] = await Promise.all([
       fetch(`${API_URL}/people`).catch(() => null),
       fetch(`${API_URL}/projects`).catch(() => null),
       fetch(`${API_URL}/achievements`).catch(() => null),
+      fetch(`${API_URL}/updates`).catch(() => null),
       fetch(`${API_URL}/supervised`).catch(() => null),
       fetch(`${API_URL}/resources`).catch(() => null),
       fetch(`${API_URL}/stats`).catch(() => null),
@@ -2645,28 +2737,35 @@ if (!isSeeding) {
 
     if (projectsRes && projectsRes.ok) {
       const fetchedProjects = await projectsRes.json();
-      if (Array.isArray(fetchedProjects)) {
+      if (Array.isArray(fetchedProjects) && fetchedProjects.length > 0) {
         projects = fetchedProjects;
       }
     }
 
     if (achievementsRes && achievementsRes.ok) {
       const fetchedAchievements = await achievementsRes.json();
-      if (Array.isArray(fetchedAchievements)) {
+      if (Array.isArray(fetchedAchievements) && fetchedAchievements.length > 0) {
         achievements = fetchedAchievements;
+      }
+    }
+
+    if (updatesRes && updatesRes.ok) {
+      const fetchedUpdates = await updatesRes.json();
+      if (Array.isArray(fetchedUpdates) && fetchedUpdates.length > 0) {
+        liveUpdates = fetchedUpdates;
       }
     }
 
     if (supervisedRes && supervisedRes.ok) {
       const fetchedSupervised = await supervisedRes.json();
-      if (Array.isArray(fetchedSupervised)) {
+      if (Array.isArray(fetchedSupervised) && fetchedSupervised.length > 0) {
         supervisedProjects = fetchedSupervised;
       }
     }
 
     if (resourcesRes && resourcesRes.ok) {
       const fetchedResources = await resourcesRes.json();
-      if (Array.isArray(fetchedResources)) {
+      if (Array.isArray(fetchedResources) && fetchedResources.length > 0) {
         resources = fetchedResources;
       }
     }
