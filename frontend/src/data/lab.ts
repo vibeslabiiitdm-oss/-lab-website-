@@ -53,6 +53,7 @@ export type Person = {
   outreachActivities?: string[];
   avatar?: string;
   resume?: string;
+  phone?: string;
   researchProject?: {
     title: string;
     abstract: string;

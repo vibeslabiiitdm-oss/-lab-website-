@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ProjectsRouteImport } from './routes/projects'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProfileIdRouteImport } from './routes/profile.$id'
 import { Route as DomainNameRouteImport } from './routes/domain.$name'
 
+const UpdatesRoute = UpdatesRouteImport.update({
+  id: '/updates',
+  path: '/updates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
+  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
+  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
+  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/publications'
     | '/team'
+    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/publications'
     | '/team'
+    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/publications'
     | '/team'
+    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   fileRoutesById: FileRoutesById
@@ -143,12 +155,20 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   PublicationsRoute: typeof PublicationsRoute
   TeamRoute: typeof TeamRoute
+  UpdatesRoute: typeof UpdatesRoute
   DomainNameRoute: typeof DomainNameRoute
   ProfileIdRoute: typeof ProfileIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/updates': {
+      id: '/updates'
+      path: '/updates'
+      fullPath: '/updates'
+      preLoaderRoute: typeof UpdatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   PublicationsRoute: PublicationsRoute,
   TeamRoute: TeamRoute,
+  UpdatesRoute: UpdatesRoute,
   DomainNameRoute: DomainNameRoute,
   ProfileIdRoute: ProfileIdRoute,
 }

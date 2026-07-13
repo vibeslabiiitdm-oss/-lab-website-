@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ExternalLink,
   Download,
+  Phone,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ProfileGraphs } from "@/components/site/ProfileGraphs";
@@ -75,6 +76,11 @@ function ProfilePage() {
   const [expandedPubs, setExpandedPubs] = useState<Record<string, boolean>>({});
   const toggleExpand = (id: string) => {
     setExpandedPubs((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+  // Feature 5: collapsible pub type groups — all collapsed by default
+  const [expandedPubGroups, setExpandedPubGroups] = useState<Record<string, boolean>>({});
+  const togglePubGroup = (type: string) => {
+    setExpandedPubGroups((prev) => ({ ...prev, [type]: !prev[type] }));
   };
 
   const renderPublicationCard = (pub: any) => {
@@ -218,6 +224,15 @@ function ProfilePage() {
                   <Mail size={12} />
                   {p.email}
                 </span>
+                {(p as any).phone && (
+                  <a
+                    href={`tel:${(p as any).phone}`}
+                    className="inline-flex items-center gap-1 hover:text-primary transition"
+                  >
+                    <Phone size={12} />
+                    {(p as any).phone}
+                  </a>
+                )}
                 <span>Since {p.joined}</span>
               </div>
             </div>
@@ -231,19 +246,13 @@ function ProfilePage() {
                 >
                   <FileText size={14} /> Resume
                 </a>
-              ) : (
-                <button
-                  disabled
-                  className="text-xs px-3 py-1.5 rounded-lg border border-border/60 text-muted-foreground bg-black/10 flex items-center gap-1.5 cursor-not-allowed"
-                  title="Resume upload pending"
-                >
-                  <FileText size={14} /> Resume (Pending)
-                </button>
-              )}
-              {p.links?.map((l) => (
+              ) : null}
+              {p.links?.filter(l => l.href && l.href !== "#" && l.href.trim() !== "").map((l) => (
                 <a
                   key={l.label}
                   href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs px-3 py-1.5 rounded-lg border border-border/70 hover:border-primary/40 transition"
                 >
                   {l.label}
@@ -607,39 +616,69 @@ function ProfilePage() {
             );
 
             return (
-              <div className="space-y-10">
+              <div className="space-y-6">
                 {Object.entries(groupedPubs)
                   .sort()
-                  .map(([type, pubs]) => (
-                    <div key={type} className="space-y-3">
-                      <h3 className="font-display text-xl font-bold mb-4">
-                        {type}s{" "}
-                        <span className="text-muted-foreground text-sm font-normal">
-                          ({pubs.length})
-                        </span>
-                      </h3>
-                      {pubs.map((pub) => renderPublicationCard(pub))}
-                    </div>
-                  ))}
+                  .map(([type, pubs]) => {
+                    const isGroupOpen = !!expandedPubGroups[type];
+                    return (
+                      <div key={type} className="rounded-2xl border border-border/60 glass overflow-hidden">
+                        <button
+                          onClick={() => togglePubGroup(type)}
+                          className="w-full flex items-center justify-between px-5 py-4 hover:bg-primary/5 transition"
+                        >
+                          <span className="font-display text-lg font-bold flex items-center gap-2">
+                            {type}s
+                            <span className="text-muted-foreground text-sm font-normal">({pubs.length})</span>
+                          </span>
+                          <ChevronDown
+                            size={18}
+                            className={`text-muted-foreground transform transition-transform duration-300 ${isGroupOpen ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                        {isGroupOpen && (
+                          <div className="px-5 pb-5 space-y-3 border-t border-border/40">
+                            <div className="pt-4 space-y-3">
+                              {pubs.map((pub) => renderPublicationCard(pub))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 
                 {/* Render Custom Publications */}
-                {p.customPublications && p.customPublications.map((cat, idx) => (
-                  <div key={`custom-${idx}`} className="space-y-3">
-                    <h3 className="font-display text-xl font-bold mb-4">
-                      {cat.heading}{" "}
-                      <span className="text-muted-foreground text-sm font-normal">
-                        ({cat.items.length})
-                      </span>
-                    </h3>
-                    <div className="space-y-3">
-                      {cat.items.map((item, itemIdx) => (
-                        <div key={`item-${itemIdx}`} className="group rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition">
-                          <p className="text-sm text-black dark:text-white leading-relaxed">{item}</p>
+                {p.customPublications && p.customPublications.map((cat, idx) => {
+                  const isGroupOpen = !!expandedPubGroups[`custom-${idx}`];
+                  return (
+                    <div key={`custom-${idx}`} className="rounded-2xl border border-border/60 glass overflow-hidden">
+                      <button
+                        onClick={() => togglePubGroup(`custom-${idx}`)}
+                        className="w-full flex items-center justify-between px-5 py-4 hover:bg-primary/5 transition"
+                      >
+                        <span className="font-display text-lg font-bold flex items-center gap-2">
+                          {cat.heading}
+                          <span className="text-muted-foreground text-sm font-normal">({cat.items.length})</span>
+                        </span>
+                        <ChevronDown
+                          size={18}
+                          className={`text-muted-foreground transform transition-transform duration-300 ${isGroupOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {isGroupOpen && (
+                        <div className="px-5 pb-5 border-t border-border/40">
+                          <div className="pt-4 space-y-3">
+                            {cat.items.map((item, itemIdx) => (
+                              <div key={`item-${itemIdx}`} className="group rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition">
+                                <p className="text-sm text-black dark:text-white leading-relaxed">{item}</p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      ))}
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
                 {p.publications.length === 0 && (!p.customPublications || p.customPublications.length === 0) && (
                   <div className="text-sm text-muted-foreground">No publications listed yet.</div>
