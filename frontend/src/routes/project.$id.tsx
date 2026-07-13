@@ -1,7 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, BookOpen, ExternalLink, Image as ImageIcon, Rocket, CheckCircle2 } from "lucide-react";
+﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowLeft, CheckCircle2, Rocket, Image as ImageIcon, BookOpen } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { type Project, allPeople, BASE_URL } from "@/data/lab";
+import { CollapsiblePubGroups } from "@/components/site/CollapsiblePubGroups";
+import { type Project, type Person, BASE_URL } from "@/data/lab";
 import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/project/$id")({ component: ProjectDetailPage });
@@ -10,31 +11,40 @@ function ProjectDetailPage() {
   const { id } = Route.useParams();
 
   const [project, setProject] = useState<Project | null>(null);
+  const [people, setPeople] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/projects`)
-      .then((res) => res.json())
-      .then((data: Project[]) => {
-        const found = data.find((p) => p.id === id);
-        setProject(found ?? null);
-        setIsLoading(false);
-      })
-      .catch(() => setIsLoading(false));
+    Promise.all([
+      fetch(`${BASE_URL}/api/projects`).then((r) => r.json()),
+      fetch(`${BASE_URL}/api/people`).then((r) => r.json()),
+    ]).then(([projects, peopleData]) => {
+      const found = Array.isArray(projects) ? projects.find((p: Project) => p.id === id) : null;
+      setProject(found ?? null);
+      if (Array.isArray(peopleData)) setPeople(peopleData);
+      setIsLoading(false);
+    }).catch(() => setIsLoading(false));
   }, [id]);
 
+  // Get all related publications (domain match) filtered of Under Review
   const relatedPubs = project
-    ? allPeople.flatMap((person) =>
-        person.publications
-          .filter((pub) => pub.domain === project.domain)
+    ? people.flatMap((person) =>
+        (person.publications || [])
+          .filter((pub) => {
+            const v = (pub.venue || "").toLowerCase();
+            const t = (pub.title || "").toLowerCase();
+            return pub.domain === project.domain
+              && !v.includes("under review")
+              && !t.includes("under review");
+          })
           .map((pub) => ({ ...pub, author: person.name, authorId: person.id }))
       )
     : [];
 
   const relatedPhotos: { src: string; personName: string }[] = project
-    ? allPeople.flatMap((person) => {
-        if (person.researchProject?.images && person.domains.includes(project.domain)) {
+    ? people.flatMap((person) => {
+        if (person.researchProject?.images && person.domains?.includes(project.domain)) {
           return person.researchProject.images.map((img) => ({
             src: img,
             personName: person.name,
@@ -157,7 +167,7 @@ function ProjectDetailPage() {
         </div>
       </Reveal>
 
-      {/* Related Publications */}
+      {/* Related Publications — collapsible by domain */}
       <Reveal delay={110}>
         <div className="mt-10">
           <div className="flex items-center gap-3 mb-5">
@@ -167,60 +177,15 @@ function ProjectDetailPage() {
             <div>
               <div className="font-semibold">Related Publications</div>
               <div className="text-xs text-muted-foreground">
-                Papers in the "{project.domain}" research domain
+                Click a category to expand its papers
               </div>
             </div>
             <span className="ml-auto text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">
-              {relatedPubs.length} papers
+              {relatedPubs.length} total paper{relatedPubs.length !== 1 ? "s" : ""}
             </span>
           </div>
 
-          {relatedPubs.length > 0 ? (
-            <div className="space-y-3">
-              {relatedPubs.map((pub) => (
-                <div
-                  key={pub.id}
-                  className="rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <div className="font-medium text-sm text-black dark:text-white">{pub.title}</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {pub.venue} · {pub.type} · {pub.year} ·{" "}
-                        <Link
-                          to="/profile/$id"
-                          params={{ id: pub.authorId }}
-                          className="text-primary hover:underline"
-                        >
-                          {pub.author}
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-black dark:text-white">
-                        {pub.domain}
-                      </span>
-                      {pub.url && (
-                        <a
-                          href={pub.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition"
-                          title="Open paper"
-                        >
-                          <ExternalLink size={14} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-sm text-muted-foreground border border-dashed border-border/40 p-8 rounded-xl text-center">
-              No publications tagged under this domain yet.
-            </div>
-          )}
+          <CollapsiblePubGroups pubs={relatedPubs} />
         </div>
       </Reveal>
 
@@ -280,7 +245,7 @@ function ProjectDetailPage() {
                     onClick={() => setSelectedPhoto(null)}
                     className="absolute top-4 right-4 text-white bg-black/40 rounded-full p-2 hover:bg-black/60 transition"
                   >
-                    ✕
+                    &times;
                   </button>
                 </div>
               )}
