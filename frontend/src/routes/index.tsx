@@ -153,7 +153,7 @@ function Home() {
                   <span className="text-sm font-semibold">Live Updates</span>
                 </div>
                 <Link
-                  to="/updates"
+                  to="/ai-vision-updates"
                   className="text-[11px] text-muted-foreground hover:text-primary transition"
                 >
                   View all
