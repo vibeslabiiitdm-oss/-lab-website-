@@ -9,22 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AiVisionUpdatesRouteImport } from './routes/ai-vision-updates'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProfileIdRouteImport } from './routes/profile.$id'
 import { Route as DomainNameRouteImport } from './routes/domain.$name'
 
-const UpdatesRoute = UpdatesRouteImport.update({
-  id: '/updates',
-  path: '/updates',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -43,6 +38,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiVisionUpdatesRoute = AiVisionUpdatesRouteImport.update({
+  id: '/ai-vision-updates',
+  path: '/ai-vision-updates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AchievementsRoute = AchievementsRouteImport.update({
@@ -75,11 +75,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/ai-vision-updates': typeof AiVisionUpdatesRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
-  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -87,11 +87,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/ai-vision-updates': typeof AiVisionUpdatesRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
-  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -100,11 +100,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/ai-vision-updates': typeof AiVisionUpdatesRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/publications': typeof PublicationsRoute
   '/team': typeof TeamRoute
-  '/updates': typeof UpdatesRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
 }
@@ -114,11 +114,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/ai-vision-updates'
     | '/contact'
     | '/projects'
     | '/publications'
     | '/team'
-    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -126,11 +126,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/ai-vision-updates'
     | '/contact'
     | '/projects'
     | '/publications'
     | '/team'
-    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   id:
@@ -138,11 +138,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/ai-vision-updates'
     | '/contact'
     | '/projects'
     | '/publications'
     | '/team'
-    | '/updates'
     | '/domain/$name'
     | '/profile/$id'
   fileRoutesById: FileRoutesById
@@ -151,24 +151,17 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
+  AiVisionUpdatesRoute: typeof AiVisionUpdatesRoute
   ContactRoute: typeof ContactRoute
   ProjectsRoute: typeof ProjectsRoute
   PublicationsRoute: typeof PublicationsRoute
   TeamRoute: typeof TeamRoute
-  UpdatesRoute: typeof UpdatesRoute
   DomainNameRoute: typeof DomainNameRoute
   ProfileIdRoute: typeof ProfileIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/updates': {
-      id: '/updates'
-      path: '/updates'
-      fullPath: '/updates'
-      preLoaderRoute: typeof UpdatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -195,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-vision-updates': {
+      id: '/ai-vision-updates'
+      path: '/ai-vision-updates'
+      fullPath: '/ai-vision-updates'
+      preLoaderRoute: typeof AiVisionUpdatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/achievements': {
@@ -239,24 +239,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
+  AiVisionUpdatesRoute: AiVisionUpdatesRoute,
   ContactRoute: ContactRoute,
   ProjectsRoute: ProjectsRoute,
   PublicationsRoute: PublicationsRoute,
   TeamRoute: TeamRoute,
-  UpdatesRoute: UpdatesRoute,
   DomainNameRoute: DomainNameRoute,
   ProfileIdRoute: ProfileIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

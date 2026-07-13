@@ -8,8 +8,16 @@ import {
   Rocket,
   Sparkles,
   Trophy,
+  Calendar,
   ChevronRight,
 } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Stat } from "@/components/site/StatsCounter";
 import { Reveal } from "@/components/site/Reveal";
 import { DomainCard } from "@/components/site/DomainCard";
@@ -27,48 +35,36 @@ export const Route = createFileRoute("/")({ component: Home });
 function Home() {
   const [dbProjects, setDbProjects] = useState<any[]>([]);
   const [dbPeople, setDbPeople] = useState<any[]>([]);
-  const [news, setNews] = useState<any[]>([]);
-  const [newsLoading, setNewsLoading] = useState(true);
+  const [dbUpdates, setDbUpdates] = useState<any[]>([]);
   const [dbAchievements, setDbAchievements] = useState<any[]>([]);
 
   useEffect(() => {
     // Fetch Projects
     fetch(`${BASE_URL}/api/projects`)
       .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setDbProjects(data);
-      })
+      .then((data) => { if (Array.isArray(data)) setDbProjects(data); })
       .catch((err) => console.error("Error loading projects:", err));
 
     // Fetch People
     fetch(`${BASE_URL}/api/people`)
       .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setDbPeople(data);
-      })
+      .then((data) => { if (Array.isArray(data)) setDbPeople(data); })
       .catch((err) => console.error("Error loading people:", err));
 
-    // Fetch News
-    fetch(`${BASE_URL}/api/news`)
+    // Fetch Live Updates
+    fetch(`${BASE_URL}/api/updates`)
       .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setNews(data);
-        setNewsLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error loading news feed:", err);
-        setNewsLoading(false);
-      });
+      .then((data) => { if (Array.isArray(data)) setDbUpdates(data); })
+      .catch((err) => console.error("Error loading updates:", err));
 
     // Fetch Achievements
     fetch(`${BASE_URL}/api/achievements`)
       .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setDbAchievements(data);
-      })
+      .then((data) => { if (Array.isArray(data)) setDbAchievements(data); })
       .catch((err) => console.error("Error loading achievements:", err));
   }, []);
 
+  const displayUpdates = dbUpdates.slice(0, 5);
   const displayAchievements = dbAchievements.slice(0, 4);
   const topProjects = dbProjects.slice(0, 3);
   
@@ -148,6 +144,71 @@ function Home() {
             </Reveal>
           </div>
 
+          {/* LIVE UPDATES CAROUSEL */}
+          <Reveal delay={100}>
+            <div className="relative rounded-2xl border border-border/60 glass p-6 md:p-8 w-full">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-primary pulse-dot" />
+                  <span className="text-sm font-semibold">Live Updates</span>
+                </div>
+                <Link
+                  to="/updates"
+                  className="text-[11px] text-muted-foreground hover:text-primary transition"
+                >
+                  View all
+                </Link>
+              </div>
+
+              {displayUpdates.length > 0 ? (
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {displayUpdates.map((u: any) => (
+                      <CarouselItem key={u._id || u.id}>
+                        <div className="space-y-4 pr-1">
+                          <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+                            <Calendar size={12} className="text-primary" /> {u.date}
+                            <span className="px-2 py-0.5 rounded-full border border-border/70">
+                              {u.tag}
+                            </span>
+                          </div>
+                          <h3 className="font-display text-2xl font-bold leading-tight">{u.title}</h3>
+                          <p className="text-sm text-muted-foreground">{u.desc}</p>
+                          {u.link && u.link.startsWith("/") ? (
+                            <Link
+                              to={u.link}
+                              className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                            >
+                              Read more{" "}
+                              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          ) : u.link ? (
+                            <a
+                              href={u.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-primary font-medium hover:underline group"
+                            >
+                              Read more{" "}
+                              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            </a>
+                          ) : null}
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="mt-8 flex justify-end gap-2">
+                    <CarouselPrevious className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
+                    <CarouselNext className="static translate-x-0 translate-y-0 h-9 w-9 bg-background/50 border border-border/70 hover:bg-primary/20 hover:text-primary hover:border-primary/40 transition-colors" />
+                  </div>
+                </Carousel>
+              ) : (
+                <div className="text-center text-sm text-muted-foreground py-10">
+                  No live updates at the moment.
+                </div>
+              )}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -279,65 +340,6 @@ function Home() {
             </Reveal>
           ))}
         </div>
-      </section>
-
-      {/* GLOBAL RESEARCH NEWS & AI UPDATES */}
-      <section className="mx-auto max-w-7xl px-6 mt-24">
-        <Reveal>
-          <div className="flex items-end justify-between gap-4 flex-wrap">
-            <div className="text-left">
-              <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Global Trends</div>
-              <h2 className="mt-2 font-display text-3xl md:text-4xl font-bold">
-                AI & Vision Research Updates
-              </h2>
-              <p className="text-xs text-muted-foreground mt-1.5">
-                Real-time headlines dynamically fetched from global scientific and tech feeds
-              </p>
-            </div>
-          </div>
-        </Reveal>
-
-        {newsLoading ? (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="rounded-2xl border border-border/40 glass p-5 h-36 animate-pulse bg-muted/10" />
-            ))}
-          </div>
-        ) : news.length > 0 ? (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {news.map((item, idx) => (
-              <Reveal key={idx} delay={idx * 50}>
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col justify-between rounded-2xl border border-border/60 glass p-5 h-full hover:border-primary/50 hover:shadow-neon-primary transition duration-300 relative group overflow-hidden"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="px-2 py-0.5 rounded-full border border-primary/30 text-primary text-[9px] font-bold uppercase tracking-wider bg-primary/10">
-                        {item.source}
-                      </span>
-                      <span className="text-[9px] text-muted-foreground font-mono">
-                        {item.pubDate ? new Date(item.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : ""}
-                      </span>
-                    </div>
-                    <div className="mt-3 font-display font-semibold text-sm leading-snug group-hover:text-primary transition duration-200 line-clamp-3 text-left">
-                      {item.title}
-                    </div>
-                  </div>
-                  <div className="mt-4 flex items-center gap-1 text-[10px] text-accent font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-200 text-left">
-                    Read Full Story <ArrowRight size={10} />
-                  </div>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-8 text-center text-sm text-muted-foreground border border-dashed border-border/40 p-10 rounded-2xl">
-            No global updates currently available.
-          </div>
-        )}
       </section>
 
       {/* ACHIEVEMENTS */}

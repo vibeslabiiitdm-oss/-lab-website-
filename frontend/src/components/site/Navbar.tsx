@@ -11,7 +11,7 @@ const links = [
   { to: "/publications", label: "Publications" },
   { to: "/achievements", label: "Achievements" },
   { to: "/about", label: "About" },
-  { to: "/updates", label: "Live Updates" },
+  { to: "/ai-vision-updates", label: "AI & Vision Updates" },
   { to: "/contact", label: "Contact" },
 ];
 
