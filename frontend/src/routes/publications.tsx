@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+ï»¿import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
-import { allPeople } from "@/data/lab";
+import { type Person, BASE_URL } from "@/data/lab";
 import { ChevronDown, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/publications")({ component: PubsPage });
@@ -10,13 +10,33 @@ export const Route = createFileRoute("/publications")({ component: PubsPage });
 const REFERENCE_PUB_IDS = ["pub-j-1", "pub-c-1"];
 
 function PubsPage() {
+  const [people, setPeople] = useState<Person[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/people`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setPeople(data);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
+  }, []);
+
   const all = useMemo(
     () =>
-      allPeople.flatMap((p) =>
-        p.publications.map((pub) => ({ ...pub, author: p.name, authorId: p.id })),
+      people.flatMap((p) =>
+        (p.publications || [])
+          .filter((pub) => {
+            const title = (pub.title || "").toLowerCase();
+            const venue = (pub.venue || "").toLowerCase();
+            return !title.includes("under review") && !venue.includes("under review");
+          })
+          .map((pub) => ({ ...pub, author: p.name, authorId: p.id })),
       ),
-    [],
+    [people],
   );
+
   const years = useMemo(
     () => Array.from(new Set(all.map((p) => p.year))).sort((a, b) => b - a),
     [all],
@@ -40,7 +60,6 @@ function PubsPage() {
     .filter((p) => (q ? p.title.toLowerCase().includes(q.toLowerCase()) : true))
     .sort((a, b) => b.year - a.year || b.month - a.month);
 
-  // Extract all unique domains to show topic filters
   const allDomains = useMemo(
     () => Array.from(new Set(all.map((p) => p.domain))).sort(),
     [all],
@@ -65,7 +84,6 @@ function PubsPage() {
       >
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            {/* Feature 1: reference papers get a clickable title link */}
             {isReference && p.url ? (
               <a
                 href={p.url}
@@ -80,14 +98,13 @@ function PubsPage() {
               <div className="font-medium text-black dark:text-white">{p.title}</div>
             )}
             <div className="text-xs text-black dark:text-white mt-1">
-              {p.venue} · {p.type} · {p.year} · by {p.author}
+              {p.venue} Â· {p.type} Â· {p.year} Â· by {p.author}
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <span className="text-[10px] px-2 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-black dark:text-white">
               {p.domain}
             </span>
-            {/* Feature 1: reference papers get explicit "Abstract" button; others get chevron */}
             {p.abstract && isReference ? (
               <button
                 onClick={() => toggleExpand(p.id)}
@@ -137,75 +154,82 @@ function PubsPage() {
         <div className="text-xs uppercase tracking-[0.2em] text-primary/80">Publications</div>
         <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold">Publications</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          Browse {all.length} publications across the lab — filter by year, type, or search by
+          Browse {all.length} publications across the lab â€” filter by year, type, or search by
           title.
         </p>
       </Reveal>
 
-      {/* Feature 4: Domain topic badges as filters */}
-      {allDomains.length > 0 && (
-        <div className="mt-6">
-          <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Browse by topic</div>
-          <div className="flex flex-wrap gap-2">
-            {allDomains.map((domain) => (
-              <button
-                key={domain}
-                onClick={() => setSelectedDomain(selectedDomain === domain ? "All" : domain)}
-                className={`text-xs px-3 py-1.5 rounded-full border transition font-medium ${
-                  selectedDomain === domain
-                    ? "bg-primary/20 border-primary/50 text-primary"
-                    : "border-border/70 text-muted-foreground hover:text-foreground hover:border-primary/40"
-                }`}
-              >
-                {domain}
-                <span className="ml-1.5 text-[10px] opacity-70">({domainCounts[domain] || 0})</span>
-              </button>
-            ))}
-          </div>
+      {isLoading && (
+        <div className="mt-10 text-center text-muted-foreground animate-pulse">
+          Loading publications...
         </div>
       )}
 
-      <div className="mt-6 flex flex-wrap gap-3 items-center">
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Search title…"
-          className="bg-background border border-border/70 rounded-md px-3 py-2 text-sm w-72"
-        />
-        <select
-          value={year}
-          onChange={(e) => setYear(e.target.value === "All" ? "All" : Number(e.target.value))}
-          className="bg-background border border-border/70 rounded-md px-2 py-2 text-sm"
-        >
-          <option>All</option>
-          {years.map((y) => (
-            <option key={y}>{y}</option>
-          ))}
-        </select>
-        <div className="inline-flex rounded-md border border-border/70 overflow-hidden">
-          {types.map((t) => (
-            <button
-              key={t}
-              onClick={() => setType(t)}
-              className={`px-3 py-2 text-xs ${type === t ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"}`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-        <span className="text-xs text-muted-foreground">{filtered.length} results</span>
-      </div>
+      {!isLoading && (
+        <>
+          {allDomains.length > 0 && (
+            <div className="mt-6">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Browse by topic</div>
+              <div className="flex flex-wrap gap-2">
+                {allDomains.map((domain) => (
+                  <button
+                    key={domain}
+                    onClick={() => setSelectedDomain(selectedDomain === domain ? "All" : domain)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition font-medium ${
+                      selectedDomain === domain
+                        ? "bg-primary/20 border-primary/50 text-primary"
+                        : "border-border/70 text-muted-foreground hover:text-foreground hover:border-primary/40"
+                    }`}
+                  >
+                    {domain}
+                    <span className="ml-1.5 text-[10px] opacity-70">({domainCounts[domain] || 0})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Flat List of Publications */}
-      <div className="mt-8 space-y-3">
-        {filtered.map((p) => renderPubCard(p))}
-        
-        {filtered.length === 0 && (
-          <div className="text-sm text-muted-foreground text-center py-10 border border-dashed border-border/40 rounded-xl">
-            No publications match your filters.
+          <div className="mt-6 flex flex-wrap gap-3 items-center">
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search title..."
+              className="bg-background border border-border/70 rounded-md px-3 py-2 text-sm w-72"
+            />
+            <select
+              value={year}
+              onChange={(e) => setYear(e.target.value === "All" ? "All" : Number(e.target.value))}
+              className="bg-background border border-border/70 rounded-md px-2 py-2 text-sm"
+            >
+              <option>All</option>
+              {years.map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </select>
+            <div className="inline-flex rounded-md border border-border/70 overflow-hidden">
+              {types.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setType(t)}
+                  className={`px-3 py-2 text-xs ${type === t ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+            <span className="text-xs text-muted-foreground">{filtered.length} results</span>
           </div>
-        )}
-      </div>
+
+          <div className="mt-8 space-y-3">
+            {filtered.map((p) => renderPubCard(p))}
+            {filtered.length === 0 && (
+              <div className="text-sm text-muted-foreground text-center py-10 border border-dashed border-border/40 rounded-xl">
+                No publications match your filters.
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
