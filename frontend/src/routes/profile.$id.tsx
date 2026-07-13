@@ -73,18 +73,26 @@ function ProfilePage() {
     setExpandedPubGroups((prev) => ({ ...prev, [type]: !prev[type] }));
   };
 
+  const filterUnderReview = (pubs: any[]) =>
+    pubs.filter((pub) => {
+      const title = (pub.title || "").toLowerCase();
+      const venue = (pub.venue || "").toLowerCase();
+      return !title.includes("under review") && !venue.includes("under review");
+    });
+
   const displayPubs = useMemo(() => {
     if (!p) return [];
     if (p.role === "guide" || p.id === "rahul_raman" || p.id === "rahul-raman") {
-      const allPubs = allPeople.flatMap(person => 
+      const allPubs = allPeople.flatMap(person =>
         person.publications.map(pub => ({ ...pub, author: person.name, authorId: person.id }))
       );
-      // Remove duplicates by pub ID
+      // Remove duplicates by pub ID, then filter Under Review
       const uniquePubs = Array.from(new Map(allPubs.map(pub => [pub.id, pub])).values());
-      return uniquePubs.sort((a, b) => b.year - a.year || b.month - a.month);
+      return filterUnderReview(uniquePubs).sort((a, b) => b.year - a.year || b.month - a.month);
     }
-    return p.publications;
+    return filterUnderReview(p.publications);
   }, [p, allPeople]);
+
 
   const renderPublicationCard = (pub: any) => {
     const isExpanded = !!expandedPubs[pub.id];
