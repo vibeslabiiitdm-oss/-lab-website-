@@ -15,7 +15,7 @@ import {
   ExternalLink,
   Download,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ProfileGraphs } from "@/components/site/ProfileGraphs";
 import { HoneycombGrid } from "@/components/site/HoneycombGrid";
 import { Reveal } from "@/components/site/Reveal";
@@ -82,6 +82,19 @@ function ProfilePage() {
     setExpandedPubGroups((prev) => ({ ...prev, [type]: !prev[type] }));
   };
 
+  const displayPubs = useMemo(() => {
+    if (!p) return [];
+    if (p.role === "guide" || p.id === "rahul_raman" || p.id === "rahul-raman") {
+      const allPubs = allPeople.flatMap(person => 
+        person.publications.map(pub => ({ ...pub, author: person.name, authorId: person.id }))
+      );
+      // Remove duplicates by pub ID
+      const uniquePubs = Array.from(new Map(allPubs.map(pub => [pub.id, pub])).values());
+      return uniquePubs.sort((a, b) => b.year - a.year || b.month - a.month);
+    }
+    return p.publications;
+  }, [p, allPeople]);
+
   const renderPublicationCard = (pub: any) => {
     const isExpanded = !!expandedPubs[pub.id];
     return (
@@ -132,9 +145,9 @@ function ProfilePage() {
   };
 
   const confCount = p
-    ? p.conferences.length + p.publications.filter((pub) => pub.type === "Conference").length
+    ? p.conferences.length + displayPubs.filter((pub) => pub.type === "Conference").length
     : 0;
-  const journalCount = p ? p.publications.filter((pub) => pub.type === "Journal").length : 0;
+  const journalCount = p ? displayPubs.filter((pub) => pub.type === "Journal").length : 0;
 
   const tabs: { k: Tab; l: string }[] = p
     ? [
@@ -143,7 +156,7 @@ function ProfilePage() {
           ? [{ k: "experience" as Tab, l: "Experience & Service" }]
           : []),
         { k: "education", l: `Education · ${p.education.length}` },
-        { k: "publications", l: `Publications · ${p.publications.length}` },
+        { k: "publications", l: `Publications · ${displayPubs.length}` },
         ...(journalCount > 0 ? [{ k: "journals" as Tab, l: `Journals · ${journalCount}` }] : []),
         { k: "conferences", l: `Conferences · ${confCount}` },
         ...(p.role === "guide"
@@ -451,7 +464,7 @@ function ProfilePage() {
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div>
                       <div className="font-display text-2xl font-bold text-primary">
-                        {p.publications.length}
+                        {displayPubs.length}
                       </div>
                       <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
                         Pubs
@@ -599,13 +612,13 @@ function ProfilePage() {
 
         {tab === "publications" &&
           (() => {
-            const groupedPubs = p.publications.reduce(
+            const groupedPubs = displayPubs.reduce(
               (acc, pub) => {
                 acc[pub.type] = acc[pub.type] || [];
                 acc[pub.type].push(pub);
                 return acc;
               },
-              {} as Record<string, typeof p.publications>,
+              {} as Record<string, typeof displayPubs>,
             );
 
             return (
@@ -673,7 +686,7 @@ function ProfilePage() {
                   );
                 })}
 
-                {p.publications.length === 0 && (!p.customPublications || p.customPublications.length === 0) && (
+                {displayPubs.length === 0 && (!p.customPublications || p.customPublications.length === 0) && (
                   <div className="text-sm text-muted-foreground">No publications listed yet.</div>
                 )}
               </div>
@@ -682,7 +695,7 @@ function ProfilePage() {
 
         {tab === "journals" &&
           (() => {
-            const journalPubs = p.publications.filter((pub) => pub.type === "Journal");
+            const journalPubs = displayPubs.filter((pub) => pub.type === "Journal");
             return (
               <div className="space-y-10">
                 {journalPubs.length > 0 ? (
@@ -725,7 +738,7 @@ function ProfilePage() {
 
         {tab === "conferences" &&
           (() => {
-            const confPubs = p.publications.filter((pub) => pub.type === "Conference");
+            const confPubs = displayPubs.filter((pub) => pub.type === "Conference");
 
             return (
               <div className="space-y-10">
