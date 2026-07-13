@@ -58,9 +58,13 @@ export function PeopleCard({ p }: { p: Person }) {
           ))}
         </div>
         <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] text-muted-foreground">
-          <span className="inline-flex items-center gap-1">
+          <a
+            href={`mailto:${p.email}`}
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 hover:text-primary transition"
+          >
             <Mail size={12} /> {p.email}
-          </span>
+          </a>
           <span>Since {p.joined}</span>
         </div>
       </div>

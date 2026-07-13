@@ -14,7 +14,6 @@ import {
   ChevronDown,
   ExternalLink,
   Download,
-  Phone,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ProfileGraphs } from "@/components/site/ProfileGraphs";
@@ -220,19 +219,13 @@ function ProfilePage() {
                   <MapPin size={12} />
                   {p.affiliation}
                 </span>
-                <span className="inline-flex items-center gap-1">
+                <a
+                  href={`mailto:${p.email}`}
+                  className="inline-flex items-center gap-1 hover:text-primary transition"
+                >
                   <Mail size={12} />
                   {p.email}
-                </span>
-                {(p as any).phone && (
-                  <a
-                    href={`tel:${(p as any).phone}`}
-                    className="inline-flex items-center gap-1 hover:text-primary transition"
-                  >
-                    <Phone size={12} />
-                    {(p as any).phone}
-                  </a>
-                )}
+                </a>
                 <span>Since {p.joined}</span>
               </div>
             </div>
