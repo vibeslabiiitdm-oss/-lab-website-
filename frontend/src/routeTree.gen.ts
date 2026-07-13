@@ -17,6 +17,7 @@ import { Route as AiVisionUpdatesRouteImport } from './routes/ai-vision-updates'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectIdRouteImport } from './routes/project.$id'
 import { Route as ProfileIdRouteImport } from './routes/profile.$id'
 import { Route as DomainNameRouteImport } from './routes/domain.$name'
 
@@ -60,6 +61,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectIdRoute = ProjectIdRouteImport.update({
+  id: '/project/$id',
+  path: '/project/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileIdRoute = ProfileIdRouteImport.update({
   id: '/profile/$id',
   path: '/profile/$id',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/team': typeof TeamRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
+  '/project/$id': typeof ProjectIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/team': typeof TeamRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
+  '/project/$id': typeof ProjectIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/team': typeof TeamRoute
   '/domain/$name': typeof DomainNameRoute
   '/profile/$id': typeof ProfileIdRoute
+  '/project/$id': typeof ProjectIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/domain/$name'
     | '/profile/$id'
+    | '/project/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/domain/$name'
     | '/profile/$id'
+    | '/project/$id'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/domain/$name'
     | '/profile/$id'
+    | '/project/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   TeamRoute: typeof TeamRoute
   DomainNameRoute: typeof DomainNameRoute
   ProfileIdRoute: typeof ProfileIdRoute
+  ProjectIdRoute: typeof ProjectIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/project/$id': {
+      id: '/project/$id'
+      path: '/project/$id'
+      fullPath: '/project/$id'
+      preLoaderRoute: typeof ProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile/$id': {
       id: '/profile/$id'
       path: '/profile/$id'
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeamRoute: TeamRoute,
   DomainNameRoute: DomainNameRoute,
   ProfileIdRoute: ProfileIdRoute,
+  ProjectIdRoute: ProjectIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
