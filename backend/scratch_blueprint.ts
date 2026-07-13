@@ -5,10 +5,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function run() {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(process.env.MONGODB_URI as string);
   
   const people = await Person.find({}, '-createdAt -updatedAt -__v -_id').lean();
-  const allBlueprints = [];
+  const allBlueprints: string[] = [];
 
   people.forEach((p) => {
     if (p.researchProject) {

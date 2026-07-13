@@ -56,8 +56,9 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-border/60 py-5 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} ViBeS Lab — IIITDM Kancheepuram. Built with care.
+      <div className="border-t border-border/60 py-5 text-center text-xs text-muted-foreground flex flex-col md:flex-row justify-center items-center gap-1">
+        <span>© {new Date().getFullYear()} ViBeS Lab — IIITDM Kancheepuram.</span>
+        <span>Designed & Developed by Sai Linisha Vempali.</span>
       </div>
     </footer>
   );
