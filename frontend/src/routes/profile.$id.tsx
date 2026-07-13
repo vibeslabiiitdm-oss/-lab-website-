@@ -37,16 +37,7 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-type Tab =
-  | "overview"
-  | "experience"
-  | "education"
-  | "publications"
-  | "journals"
-  | "awards"
-  | "conferences"
-  | "stats"
-  | "supervised";
+type Tab = string;
 
 function ProfilePage() {
   const { id } = Route.useParams();
@@ -149,6 +140,10 @@ function ProfilePage() {
     : 0;
   const journalCount = p ? displayPubs.filter((pub) => pub.type === "Journal").length : 0;
 
+  const dynamicPubTypes = Array.from(new Set(displayPubs.map(p => p.type)))
+    .filter(t => t !== "Journal" && t !== "Conference")
+    .sort();
+
   const tabs: { k: Tab; l: string }[] = p
     ? [
         { k: "overview", l: "Overview" },
@@ -162,6 +157,10 @@ function ProfilePage() {
         ...(p.role === "guide"
           ? [{ k: "supervised" as Tab, l: `Supervised Projects · ${supervisedProjects.length}` }]
           : []),
+        ...dynamicPubTypes.map(type => ({
+          k: `pubtype-${type}`, 
+          l: `${type}${type.endsWith('s') ? '' : 's'} · ${displayPubs.filter((pub) => pub.type === type).length}`
+        })),
         { k: "awards", l: `Awards · ${p.awards.length}` },
         ...((p.role === "guide" || p.category === "PhD")
           ? [{ k: "stats" as Tab, l: "Statistics" }]
@@ -749,26 +748,24 @@ function ProfilePage() {
                       {p.conferences.map((c) => (
                         <div
                           key={c.id}
-                          className="rounded-xl border border-border/60 glass p-5 flex items-start gap-3 hover:border-primary/40 transition"
+                          className="rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition"
                         >
-                          <div className="h-10 w-10 rounded-lg bg-primary/15 border border-primary/30 grid place-items-center text-primary shrink-0">
-                            <Mic size={18} />
-                          </div>
-                          <div>
-                            <div className="font-medium">
-                              {c.name}{" "}
-                              <span className="text-xs text-muted-foreground">· {c.role}</span>
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <div className="font-medium text-black dark:text-white">{c.name}</div>
+                              <div className="text-xs text-muted-foreground mt-1">
+                                {c.place} · {c.year}
+                              </div>
                             </div>
-                            <div className="text-xs text-muted-foreground">
-                              {c.place} · {c.year}
-                            </div>
+                            <span className="text-[10px] px-2 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent whitespace-nowrap">
+                              {c.role}
+                            </span>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
-
                 {confPubs.length > 0 && (
                   <div>
                     <h3 className="font-display text-xl font-bold mb-4">Conference Publications</h3>
@@ -780,6 +777,26 @@ function ProfilePage() {
 
                 {p.conferences.length === 0 && confPubs.length === 0 && (
                   <div className="text-sm text-muted-foreground">No conferences listed yet.</div>
+                )}
+              </div>
+            );
+          })()}
+
+        {tab.startsWith("pubtype-") &&
+          (() => {
+            const typeName = tab.replace("pubtype-", "");
+            const specificPubs = displayPubs.filter((pub) => pub.type === typeName);
+            return (
+              <div className="space-y-10">
+                {specificPubs.length > 0 ? (
+                  <div>
+                    <h3 className="font-display text-xl font-bold mb-4">{typeName}{typeName.endsWith('s') ? '' : 's'}</h3>
+                    <div className="space-y-3">
+                      {specificPubs.map((pub) => renderPublicationCard(pub))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-sm text-muted-foreground">No {typeName}s listed yet.</div>
                 )}
               </div>
             );
