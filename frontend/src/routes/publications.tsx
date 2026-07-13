@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState, useRef } from "react";
+import { useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { allPeople } from "@/data/lab";
 import { ChevronDown, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
@@ -26,47 +26,33 @@ function PubsPage() {
   const [q, setQ] = useState("");
   const [year, setYear] = useState<number | "All">("All");
   const [type, setType] = useState<(typeof types)[number]>("All");
+  const [selectedDomain, setSelectedDomain] = useState<string>("All");
   const [expandedPubs, setExpandedPubs] = useState<Record<string, boolean>>({});
-  // Feature 4: expanded domain groups — all collapsed by default
-  const [expandedDomains, setExpandedDomains] = useState<Record<string, boolean>>({});
-  const domainRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const toggleExpand = (id: string) => {
     setExpandedPubs((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const toggleDomain = (domain: string) => {
-    setExpandedDomains((prev) => {
-      const next = { ...prev, [domain]: !prev[domain] };
-      // Scroll to domain heading when opening
-      if (!prev[domain] && domainRefs.current[domain]) {
-        setTimeout(() => {
-          domainRefs.current[domain]?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 80);
-      }
-      return next;
-    });
-  };
-
   const filtered = all
     .filter((p) => (year === "All" ? true : p.year === year))
     .filter((p) => (type === "All" ? true : p.type === type))
+    .filter((p) => (selectedDomain === "All" ? true : p.domain === selectedDomain))
     .filter((p) => (q ? p.title.toLowerCase().includes(q.toLowerCase()) : true))
     .sort((a, b) => b.year - a.year || b.month - a.month);
 
-  // Feature 4: group filtered results by domain
-  const domains = useMemo(
-    () => Array.from(new Set(filtered.map((p) => p.domain))).sort(),
-    [filtered],
+  // Extract all unique domains to show topic filters
+  const allDomains = useMemo(
+    () => Array.from(new Set(all.map((p) => p.domain))).sort(),
+    [all],
   );
-  const byDomain = useMemo(() => {
-    const map: Record<string, typeof filtered> = {};
-    filtered.forEach((p) => {
-      map[p.domain] = map[p.domain] || [];
-      map[p.domain].push(p);
+
+  const domainCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    all.forEach((p) => {
+      counts[p.domain] = (counts[p.domain] || 0) + 1;
     });
-    return map;
-  }, [filtered]);
+    return counts;
+  }, [all]);
 
   const renderPubCard = (p: (typeof filtered)[number]) => {
     const isExpanded = !!expandedPubs[p.id];
@@ -156,23 +142,23 @@ function PubsPage() {
         </p>
       </Reveal>
 
-      {/* Feature 4: Domain topic badges — click to scroll/expand that domain group */}
-      {domains.length > 0 && (
+      {/* Feature 4: Domain topic badges as filters */}
+      {allDomains.length > 0 && (
         <div className="mt-6">
           <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Browse by topic</div>
           <div className="flex flex-wrap gap-2">
-            {domains.map((domain) => (
+            {allDomains.map((domain) => (
               <button
                 key={domain}
-                onClick={() => toggleDomain(domain)}
+                onClick={() => setSelectedDomain(selectedDomain === domain ? "All" : domain)}
                 className={`text-xs px-3 py-1.5 rounded-full border transition font-medium ${
-                  expandedDomains[domain]
+                  selectedDomain === domain
                     ? "bg-primary/20 border-primary/50 text-primary"
                     : "border-border/70 text-muted-foreground hover:text-foreground hover:border-primary/40"
                 }`}
               >
                 {domain}
-                <span className="ml-1.5 text-[10px] opacity-70">({byDomain[domain]?.length ?? 0})</span>
+                <span className="ml-1.5 text-[10px] opacity-70">({domainCounts[domain] || 0})</span>
               </button>
             ))}
           </div>
@@ -210,42 +196,12 @@ function PubsPage() {
         <span className="text-xs text-muted-foreground">{filtered.length} results</span>
       </div>
 
-      {/* Feature 4: Grouped by domain sections */}
-      <div className="mt-8 space-y-5">
-        {domains.map((domain) => {
-          const pubs = byDomain[domain] || [];
-          const isOpen = !!expandedDomains[domain];
-          return (
-            <div
-              key={domain}
-              ref={(el) => { domainRefs.current[domain] = el; }}
-              className="rounded-2xl border border-border/60 glass overflow-hidden"
-            >
-              <button
-                onClick={() => toggleDomain(domain)}
-                className="w-full flex items-center justify-between px-5 py-4 hover:bg-primary/5 transition"
-              >
-                <span className="font-display text-lg font-bold flex items-center gap-2">
-                  {domain}
-                  <span className="text-muted-foreground text-sm font-normal">({pubs.length})</span>
-                </span>
-                <ChevronDown
-                  size={18}
-                  className={`text-muted-foreground transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              {isOpen && (
-                <div className="px-5 pb-5 border-t border-border/40">
-                  <div className="pt-4 space-y-3">
-                    {pubs.map((p) => renderPubCard(p))}
-                  </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
+      {/* Flat List of Publications */}
+      <div className="mt-8 space-y-3">
+        {filtered.map((p) => renderPubCard(p))}
+        
         {filtered.length === 0 && (
-          <div className="text-sm text-muted-foreground text-center py-10">
+          <div className="text-sm text-muted-foreground text-center py-10 border border-dashed border-border/40 rounded-xl">
             No publications match your filters.
           </div>
         )}
