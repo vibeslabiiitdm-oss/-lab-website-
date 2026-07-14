@@ -21,7 +21,17 @@ staticPeople.forEach((p) => {
 });
 
 function findUrlByKeywords(title: string): string {
+  if (!title) return "";
   const lower = title.toLowerCase();
+  
+  // Explicit overrides for known papers to guarantee links work
+  if (lower.includes("mecsa") && lower.includes("attention")) {
+    return "https://link.springer.com/article/10.1007/s10044-026-01634-x";
+  }
+  if (lower.includes("enhancing aerial pedestrian detection") || lower.includes("yolov12")) {
+    return "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf";
+  }
+
   for (const entry of KEYWORD_URL_ENTRIES) {
     if (entry.keywords.every((k) => lower.includes(k))) return entry.url;
   }
