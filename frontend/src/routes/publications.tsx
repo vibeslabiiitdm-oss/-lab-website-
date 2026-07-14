@@ -1,8 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
-import { type Person, BASE_URL } from "@/data/lab";
+import { type Person, BASE_URL, allPeople as staticPeople } from "@/data/lab";
 import { ChevronDown, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
+
+// Build a URL lookup from the static data so backend results can be supplemented
+const STATIC_URL_MAP: Record<string, string> = {};
+staticPeople.forEach((p) => {
+  (p.publications || []).forEach((pub) => {
+    if (pub.url && pub.title) STATIC_URL_MAP[pub.title.toLowerCase().trim()] = pub.url;
+  });
+});
 
 export const Route = createFileRoute("/publications")({ component: PubsPage });
 
@@ -31,7 +39,13 @@ function PubsPage() {
             const venue = (pub.venue || "").toLowerCase();
             return !title.includes("under review") && !venue.includes("under review");
           })
-          .map((pub) => ({ ...pub, author: p.name, authorId: p.id })),
+          .map((pub) => ({
+            ...pub,
+            // Supplement missing URL from static data
+            url: pub.url || STATIC_URL_MAP[pub.title?.toLowerCase().trim() ?? ""] || "",
+            author: p.name,
+            authorId: p.id,
+          })),
       ),
     [people],
   );
