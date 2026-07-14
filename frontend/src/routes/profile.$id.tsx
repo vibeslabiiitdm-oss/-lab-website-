@@ -23,8 +23,31 @@ import {
   type Person,
   supervisedProjects,
   type SupervisedProject,
-  BASE_URL 
+  BASE_URL,
+  allPeople as staticPeople,
 } from "@/data/lab";
+
+// Build keyword-based URL lookup from static data so backend results get supplemented
+const KEYWORD_URL_ENTRIES: Array<{ keywords: string[]; url: string }> = [];
+staticPeople.forEach((person) => {
+  (person.publications || []).forEach((pub) => {
+    if (!pub.url || !pub.title) return;
+    const keywords = pub.title
+      .toLowerCase()
+      .split(/\W+/)
+      .filter((w) => w.length >= 4)
+      .slice(0, 5);
+    KEYWORD_URL_ENTRIES.push({ keywords, url: pub.url });
+  });
+});
+
+function findUrlByKeywords(title: string): string {
+  const lower = title.toLowerCase();
+  for (const entry of KEYWORD_URL_ENTRIES) {
+    if (entry.keywords.every((k) => lower.includes(k))) return entry.url;
+  }
+  return "";
+}
 
 export const Route = createFileRoute("/profile/$id")({ component: ProfilePage });
 
@@ -82,15 +105,24 @@ function ProfilePage() {
 
   const displayPubs = useMemo(() => {
     if (!p) return [];
+    let pubsToDisplay = [];
+    
     if (p.role === "guide" || p.id === "rahul_raman" || p.id === "rahul-raman") {
       const allPubs = allPeople.flatMap(person =>
         person.publications.map(pub => ({ ...pub, author: person.name, authorId: person.id }))
       );
       // Remove duplicates by pub ID, then filter Under Review
       const uniquePubs = Array.from(new Map(allPubs.map(pub => [pub.id, pub])).values());
-      return filterUnderReview(uniquePubs).sort((a, b) => b.year - a.year || b.month - a.month);
+      pubsToDisplay = filterUnderReview(uniquePubs).sort((a, b) => b.year - a.year || b.month - a.month);
+    } else {
+      pubsToDisplay = filterUnderReview(p.publications);
     }
-    return filterUnderReview(p.publications);
+    
+    // Supplement missing URLs from static data using keyword matching
+    return pubsToDisplay.map(pub => ({
+      ...pub,
+      url: pub.url || findUrlByKeywords(pub.title ?? "") || ""
+    }));
   }, [p, allPeople]);
 
 
