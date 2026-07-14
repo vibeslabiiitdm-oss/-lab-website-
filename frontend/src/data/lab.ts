@@ -279,8 +279,7 @@ export let guide: Person = {
           type: "Journal",
           domain: "Visual Surveillance",
           url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
-          author: "V. S. Sukesh Babu, Rahul Raman",
-          authorId: "rahul_raman",
+          abstract: "Pedestrian detection remains a challenging task in computer vision due to frequent issues such as occlusion, scale variation, and low illumination. This work proposes YOLOv7-MECSA, an enhanced variant of YOLOv7 integrating a novel Multi-scale Enhanced Channel and Spatial Attention (MECSA) module into its backbone. The module strengthens both channel and spatial feature representations using multiscale pooling, adaptive 1D convolution-based channel attention, and lightweight spatial attention. Experiments on WiderPerson, COCO-Person, Enriched CamPed, and INRIA datasets show consistent mAP@50 gains of up to 6.9% over baseline YOLOv7, while maintaining real-time inference and minimal parameter overhead.",
         },
         {
           id: "pub-c-new-2",
@@ -291,8 +290,6 @@ export let guide: Person = {
           type: "Conference",
           domain: "Visual Surveillance",
           url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
-          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
-          authorId: "rahul_raman",
         },
 
     {
@@ -614,8 +611,7 @@ export let scholars: Person[] = [
           type: "Journal",
           domain: "Visual Surveillance",
           url: "https://link.springer.com/article/10.1007/s10044-026-01634-x",
-          author: "V. S. Sukesh Babu, Rahul Raman",
-          authorId: "rahul_raman",
+          abstract: "Pedestrian detection remains a challenging task in computer vision due to frequent issues such as occlusion, scale variation, and low illumination. This work proposes YOLOv7-MECSA, an enhanced variant of YOLOv7 integrating a novel Multi-scale Enhanced Channel and Spatial Attention (MECSA) module into its backbone. The module strengthens both channel and spatial feature representations using multiscale pooling, adaptive 1D convolution-based channel attention, and lightweight spatial attention. Experiments on WiderPerson, COCO-Person, Enriched CamPed, and INRIA datasets show consistent mAP@50 gains of up to 6.9% over baseline YOLOv7, while maintaining real-time inference and minimal parameter overhead.",
         },
         {
           id: "pub-c-new-2",
@@ -626,8 +622,6 @@ export let scholars: Person[] = [
           type: "Conference",
           domain: "Visual Surveillance",
           url: "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
-          author: "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
-          authorId: "rahul_raman",
         },
 
       {
