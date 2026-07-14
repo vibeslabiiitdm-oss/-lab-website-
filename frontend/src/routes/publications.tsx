@@ -4,13 +4,29 @@ import { Reveal } from "@/components/site/Reveal";
 import { type Person, BASE_URL, allPeople as staticPeople } from "@/data/lab";
 import { ChevronDown, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
 
-// Build a URL lookup from the static data so backend results can be supplemented
-const STATIC_URL_MAP: Record<string, string> = {};
+// Build keyword-based URL lookup from static data so backend results get supplemented
+// Uses keyword matching to handle title variations (casing, articles like 'a', hyphens etc.)
+const KEYWORD_URL_ENTRIES: Array<{ keywords: string[]; url: string }> = [];
 staticPeople.forEach((p) => {
   (p.publications || []).forEach((pub) => {
-    if (pub.url && pub.title) STATIC_URL_MAP[pub.title.toLowerCase().trim()] = pub.url;
+    if (!pub.url || !pub.title) return;
+    // Build keywords: meaningful words (length >= 4) from the title
+    const keywords = pub.title
+      .toLowerCase()
+      .split(/\W+/)
+      .filter((w) => w.length >= 4)
+      .slice(0, 5); // use first 5 significant words as fingerprint
+    KEYWORD_URL_ENTRIES.push({ keywords, url: pub.url });
   });
 });
+
+function findUrlByKeywords(title: string): string {
+  const lower = title.toLowerCase();
+  for (const entry of KEYWORD_URL_ENTRIES) {
+    if (entry.keywords.every((k) => lower.includes(k))) return entry.url;
+  }
+  return "";
+}
 
 export const Route = createFileRoute("/publications")({ component: PubsPage });
 
@@ -41,8 +57,8 @@ function PubsPage() {
           })
           .map((pub) => ({
             ...pub,
-            // Supplement missing URL from static data
-            url: pub.url || STATIC_URL_MAP[pub.title?.toLowerCase().trim() ?? ""] || "",
+            // Supplement missing URL from static data using keyword matching
+            url: pub.url || findUrlByKeywords(pub.title ?? "") || "",
             author: p.name,
             authorId: p.id,
           })),
