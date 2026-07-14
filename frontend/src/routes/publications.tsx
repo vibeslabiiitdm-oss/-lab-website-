@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { type Person, BASE_URL } from "@/data/lab";
@@ -6,8 +6,7 @@ import { ChevronDown, ArrowLeft, ExternalLink, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/publications")({ component: PubsPage });
 
-// Feature 1: The two reference papers with title-link + explicit Abstract button
-const REFERENCE_PUB_IDS = ["pub-j-1", "pub-c-1"];
+// Every publication with a URL gets a clickable title link.
 
 function PubsPage() {
   const [people, setPeople] = useState<Person[]>([]);
@@ -75,7 +74,7 @@ function PubsPage() {
 
   const renderPubCard = (p: (typeof filtered)[number]) => {
     const isExpanded = !!expandedPubs[p.id];
-    const isReference = REFERENCE_PUB_IDS.includes(p.id);
+    const hasAbstract = !!(p.abstract && p.abstract.trim().length > 0);
 
     return (
       <div
@@ -84,7 +83,8 @@ function PubsPage() {
       >
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            {isReference && p.url ? (
+            {/* Title — always a link if URL is present */}
+            {p.url ? (
               <a
                 href={p.url}
                 target="_blank"
@@ -105,7 +105,8 @@ function PubsPage() {
             <span className="text-[10px] px-2 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-black dark:text-white">
               {p.domain}
             </span>
-            {p.abstract && isReference ? (
+            {/* Abstract button — always shown; disabled with tooltip if no abstract yet */}
+            {hasAbstract ? (
               <button
                 onClick={() => toggleExpand(p.id)}
                 className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 transition"
@@ -118,21 +119,18 @@ function PubsPage() {
                   className={`transform transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
                 />
               </button>
-            ) : p.abstract ? (
-              <button
-                onClick={() => toggleExpand(p.id)}
-                className="p-1 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
-                title="Toggle Abstract"
+            ) : (
+              <span
+                className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-muted border border-border/40 text-muted-foreground cursor-not-allowed"
+                title="Abstract not yet available"
               >
-                <ChevronDown
-                  size={16}
-                  className={`transform transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-                />
-              </button>
-            ) : null}
+                <BookOpen size={11} />
+                Coming soon
+              </span>
+            )}
           </div>
         </div>
-        {p.abstract && isExpanded && (
+        {hasAbstract && isExpanded && (
           <div className="mt-1 text-xs text-muted-foreground/90 border-t border-border/40 pt-3 leading-relaxed">
             <div className="font-semibold text-[10px] uppercase tracking-wider text-accent/95 mb-1">Abstract</div>
             {p.abstract}

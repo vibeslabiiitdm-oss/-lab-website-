@@ -96,17 +96,28 @@ function ProfilePage() {
 
   const renderPublicationCard = (pub: any) => {
     const isExpanded = !!expandedPubs[pub.id];
+    const hasAbstract = !!(pub.abstract && pub.abstract.trim().length > 0);
     return (
       <div
         key={pub.id}
         className="group rounded-xl border border-border/60 glass p-4 hover:border-primary/40 transition flex flex-col gap-3"
       >
         <div className="flex items-start justify-between gap-4">
-          <div
-            className={`flex-1 ${pub.abstract ? "cursor-pointer select-none" : ""}`}
-            onClick={() => pub.abstract && toggleExpand(pub.id)}
-          >
-            <div className="font-medium text-black dark:text-white transition-colors">{pub.title}</div>
+          <div className="flex-1 min-w-0">
+            {/* Title — clickable link when URL is available */}
+            {pub.url ? (
+              <a
+                href={pub.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors inline-flex items-start gap-1 group"
+              >
+                <span>{pub.title}</span>
+                <ExternalLink size={13} className="shrink-0 mt-0.5 opacity-60 group-hover:opacity-100 transition" />
+              </a>
+            ) : (
+              <div className="font-medium text-black dark:text-white">{pub.title}</div>
+            )}
             <div className="text-xs text-black dark:text-white mt-1">
               {pub.venue} · {pub.type} · {pub.year}
             </div>
@@ -119,21 +130,32 @@ function ProfilePage() {
             >
               {pub.domain}
             </Link>
-            {pub.abstract && (
+            {/* Abstract button — always shown; disabled if no abstract */}
+            {hasAbstract ? (
               <button
                 onClick={() => toggleExpand(pub.id)}
-                className="p-1 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 transition"
                 title="Toggle Abstract"
               >
+                <BookOpen size={11} />
+                Abstract
                 <ChevronDown
-                  size={16}
+                  size={11}
                   className={`transform transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
                 />
               </button>
+            ) : (
+              <span
+                className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-muted border border-border/40 text-muted-foreground cursor-not-allowed"
+                title="Abstract not yet available"
+              >
+                <BookOpen size={11} />
+                Coming soon
+              </span>
             )}
           </div>
         </div>
-        {pub.abstract && isExpanded && (
+        {hasAbstract && isExpanded && (
           <div className="mt-1 text-xs text-muted-foreground/90 border-t border-border/40 pt-3 leading-relaxed transition-all duration-300">
             <div className="font-semibold text-[10px] uppercase tracking-wider text-accent/95 mb-1">Abstract</div>
             {pub.abstract}
@@ -142,6 +164,7 @@ function ProfilePage() {
       </div>
     );
   };
+
 
   const confCount = p
     ? p.conferences.length + displayPubs.filter((pub) => pub.type === "Conference").length

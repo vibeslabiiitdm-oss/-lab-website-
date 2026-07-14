@@ -89,6 +89,7 @@ export function CollapsiblePubGroups({ pubs }: Props) {
               <div className="border-t border-border/40 px-4 pb-4 pt-3 space-y-3">
                 {items.map((pub) => {
                   const expanded = !!expandedPubs[pub.id];
+                  const hasAbstract = !!(pub.abstract && pub.abstract.trim().length > 0);
                   return (
                     <div
                       key={pub.id}
@@ -96,9 +97,22 @@ export function CollapsiblePubGroups({ pubs }: Props) {
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium text-sm text-black dark:text-white leading-snug">
-                            {pub.title}
-                          </div>
+                          {/* Title — clickable link if URL present */}
+                          {pub.url ? (
+                            <a
+                              href={pub.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium text-sm text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors inline-flex items-start gap-1 group leading-snug"
+                            >
+                              <span>{pub.title}</span>
+                              <ExternalLink size={12} className="shrink-0 mt-0.5 opacity-60 group-hover:opacity-100 transition" />
+                            </a>
+                          ) : (
+                            <div className="font-medium text-sm text-black dark:text-white leading-snug">
+                              {pub.title}
+                            </div>
+                          )}
                           <div className="text-xs text-muted-foreground mt-1">
                             {pub.venue} · {pub.type} · {pub.year} ·{" "}
                             <Link
@@ -111,31 +125,28 @@ export function CollapsiblePubGroups({ pubs }: Props) {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          {pub.url && (
-                            <a
-                              href={pub.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-muted-foreground hover:text-primary transition"
-                              title="Open paper"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink size={13} />
-                            </a>
-                          )}
-                          {pub.abstract && (
+                          {/* Abstract button — always shown */}
+                          {hasAbstract ? (
                             <button
                               onClick={() => togglePub(pub.id)}
-                              className="p-1 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
-                              title="Toggle abstract"
+                              className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 transition"
+                              title="Toggle Abstract"
                             >
+                              <BookOpen size={11} />
+                              Abstract
                               <ChevronDown
-                                size={15}
-                                className={`transform transition-transform duration-300 ${
-                                  expanded ? "rotate-180" : ""
-                                }`}
+                                size={11}
+                                className={`transform transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
                               />
                             </button>
+                          ) : (
+                            <span
+                              className="flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-muted border border-border/40 text-muted-foreground cursor-not-allowed"
+                              title="Abstract not yet available"
+                            >
+                              <BookOpen size={11} />
+                              Coming soon
+                            </span>
                           )}
                         </div>
                       </div>

@@ -2,25 +2,27 @@
   {
     "id": "pub-j-new-1",
     "title": "MECSA: a multi-scale enhanced channel and spatial attention module for robust pedestrian detection",
+    "authors": "V. S. Sukesh Babu, Rahul Raman",
     "venue": "Pattern Analysis and Applications, Springer London",
     "year": 2026,
     "month": 7,
     "type": "Journal",
     "domain": "Visual Surveillance",
     "url": "https://link.springer.com/article/10.1007/s10044-026-01634-x",
-    "author": "V. S. Sukesh Babu, Rahul Raman",
+    "abstract": "Pedestrian detection remains a challenging task in computer vision due to frequent issues such as occlusion, scale variation, and low illumination. This work proposes YOLOv7-MECSA, an enhanced variant of YOLOv7 integrating a novel Multi-scale Enhanced Channel and Spatial Attention (MECSA) module into its backbone. The module strengthens both channel and spatial feature representations using multiscale pooling, adaptive 1D convolution-based channel attention, and lightweight spatial attention. Experiments on WiderPerson, COCO-Person, Enriched CamPed, and INRIA datasets show consistent mAP@50 gains of up to 6.9% over baseline YOLOv7, while maintaining real-time inference and minimal parameter overhead.",
     "authorId": "rahul_raman"
   },
   {
     "id": "pub-c-new-2",
     "title": "Enhancing Aerial Pedestrian Detection via High-Resolution P2 Feature Integration in YOLOv12",
+    "authors": "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
     "venue": "AERO-HPR Workshop, CVPR 2026",
     "year": 2026,
     "month": 6,
     "type": "Conference",
     "domain": "Visual Surveillance",
     "url": "https://openaccess.thecvf.com/content/CVPR2026W/AERO-HPR/papers/S_Enhancing_Aerial_Pedestrian_Detection_via_High-Resolution_P2_Feature_Integration_in_CVPRW_2026_paper.pdf",
-    "author": "Sukesh Babu V S, Rahul Raman, Sambit Bakshi",
+    "abstract": "",
     "authorId": "rahul_raman"
   }
 ]
